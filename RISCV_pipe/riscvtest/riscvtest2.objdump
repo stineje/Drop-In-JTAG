@@ -1,0 +1,45 @@
+
+riscvtest2.elf:     file format elf32-littleriscv
+
+Contents of section .riscv.attributes:
+ 0000 41190000 00726973 63760001 0f000000  A....riscv......
+ 0010 05727633 32693270 3100               .rv32i2p1.      
+Contents of section .text:
+ 80000000 13015000 9301c000 938371ff 33e22300  ..P.......q.3.#.
+ 80000010 33a24100 33a22300 b3832340 23aa7104  3.A.3.#...#@#.q.
+ 80000020 03210006 33019100 23a02102 63002100  .!..3...#.!.c.!.
+
+Disassembly of section .riscv.attributes:
+
+00000000 <.riscv.attributes>:
+   0:	1941                	.insn	2, 0x1941
+   2:	0000                	.insn	2, 0x
+   4:	7200                	.insn	2, 0x7200
+   6:	7369                	.insn	2, 0x7369
+   8:	01007663          	bgeu	zero,a6,14 <main-0x7fffffec>
+   c:	0000000f          	fence	unknown,unknown
+  10:	7205                	.insn	2, 0x7205
+  12:	3376                	.insn	2, 0x3376
+  14:	6932                	.insn	2, 0x6932
+  16:	7032                	.insn	2, 0x7032
+  18:	0031                	.insn	2, 0x0031
+
+Disassembly of section .text:
+
+80000000 <main>:
+main():
+80000000:	00500113          	li	sp,5
+80000004:	00c00193          	li	gp,12
+80000008:	ff718393          	addi	t2,gp,-9
+8000000c:	0023e233          	or	tp,t2,sp
+80000010:	0041a233          	slt	tp,gp,tp
+80000014:	0023a233          	slt	tp,t2,sp
+80000018:	402383b3          	sub	t2,t2,sp
+8000001c:	0471aa23          	sw	t2,84(gp)
+80000020:	06002103          	lw	sp,96(zero) # 60 <main-0x7fffffa0>
+80000024:	00910133          	add	sp,sp,s1
+80000028:	0221a023          	sw	sp,32(gp)
+
+8000002c <done>:
+done():
+8000002c:	00210063          	beq	sp,sp,8000002c <done>
