@@ -1,0 +1,124 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Tue Jul 22 13:24:01 2025
+# Process ID: 3982
+# Current directory: /home/jstine/Arty-A7
+# Command line: vivado
+# Log file: /home/jstine/Arty-A7/vivado.log
+# Journal file: /home/jstine/Arty-A7/vivado.jou
+# Running On: iq9, OS: Linux, CPU Frequency: 1200.000 MHz, CPU Physical cores: 10, Host memory: 24894 MB
+#-----------------------------------------------------------
+start_gui
+open_project /home/jstine/Arty-A7/jtag1/jtag1.xpr
+update_compile_order -fileset sources_1
+export_ip_user_files -of_objects  [get_files /home/jstine/Arty-A7/jtag1/jtag1.srcs/sources_1/imports/hdl/debouncer.vhd] -no_script -reset -force -quiet
+export_ip_user_files -of_objects  [get_files /home/jstine/Arty-A7/jtag1/jtag1.srcs/sources_1/imports/hdl/UART_TX_CTRL.vhd] -no_script -reset -force -quiet
+export_ip_user_files -of_objects  [get_files /home/jstine/Arty-A7/jtag1/jtag1.srcs/sources_1/imports/hdl/RGB_controller.vhd] -no_script -reset -force -quiet
+remove_files  {/home/jstine/Arty-A7/jtag1/jtag1.srcs/sources_1/imports/hdl/debouncer.vhd /home/jstine/Arty-A7/jtag1/jtag1.srcs/sources_1/imports/hdl/UART_TX_CTRL.vhd /home/jstine/Arty-A7/jtag1/jtag1.srcs/sources_1/imports/hdl/RGB_controller.vhd}
+export_ip_user_files -of_objects  [get_files /home/jstine/Arty-A7/jtag1/jtag1.srcs/sources_1/imports/hdl/GPIO_Demo.vhd] -no_script -reset -force -quiet
+remove_files  /home/jstine/Arty-A7/jtag1/jtag1.srcs/sources_1/imports/hdl/GPIO_Demo.vhd
+add_files -norecurse {/home/jstine/Arty-A7/Drop-In-JTAG/RTL/instruction_register.sv /home/jstine/Arty-A7/Drop-In-JTAG/RTL/bypass_register.sv /home/jstine/Arty-A7/Drop-In-JTAG/RTL/tap_controller.sv /home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv /home/jstine/Arty-A7/Drop-In-JTAG/RTL/bsr.sv /home/jstine/Arty-A7/Drop-In-JTAG/RTL/defines.sv /home/jstine/Arty-A7/Drop-In-JTAG/RTL/device_identification_register.sv /home/jstine/Arty-A7/Drop-In-JTAG/RTL/top.sv /home/jstine/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv}
+update_compile_order -fileset sources_1
+set_property target_language Verilog [current_project]
+synth_design -top riscv_top -part xc7a100tcsg324-1 -lint 
+set_property top top [current_fileset]
+update_compile_order -fileset sources_1
+add_files -norecurse /home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/riscvtest/riscvtest.mem
+launch_runs synth_1_copy_1 -jobs 10
+wait_on_run synth_1_copy_1
+launch_runs impl_1 -jobs 10
+wait_on_run impl_1
+open_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 10
+wait_on_run impl_1
+reset_run synth_1_copy_1
+launch_runs synth_1_copy_1 -jobs 10
+wait_on_run synth_1_copy_1
+launch_runs impl_1 -jobs 10
+wait_on_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 10
+wait_on_run impl_1
+reset_run synth_1_copy_1
+launch_runs synth_1_copy_1 -jobs 10
+wait_on_run synth_1_copy_1
+reset_run synth_1_copy_1
+launch_runs synth_1_copy_1 -jobs 10
+wait_on_run synth_1_copy_1
+launch_runs impl_1 -jobs 10
+wait_on_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 10
+wait_on_run impl_1
+close_project
+open_project /home/jstine/Arty-A7/Lab1/Lab1.xpr
+update_compile_order -fileset sources_1
+close_project
+open_project /home/jstine/Arty-A7/jtag1/jtag1.xpr
+update_compile_order -fileset sources_1
+reset_run synth_1_copy_1
+launch_runs synth_1_copy_1 -jobs 10
+wait_on_run synth_1_copy_1
+launch_runs impl_1 -jobs 10
+wait_on_run impl_1
+reset_run synth_1_copy_1
+launch_runs synth_1_copy_1 -jobs 10
+wait_on_run synth_1_copy_1
+launch_runs impl_1 -jobs 10
+wait_on_run impl_1
+reset_run synth_1_copy_1
+launch_runs synth_1_copy_1 -jobs 10
+wait_on_run synth_1_copy_1
+launch_runs impl_1 -jobs 10
+wait_on_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 10
+wait_on_run impl_1
+reset_run synth_1_copy_1
+launch_runs synth_1_copy_1 -jobs 10
+wait_on_run synth_1_copy_1
+launch_runs impl_1 -jobs 10
+wait_on_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 10
+wait_on_run impl_1
+reset_run synth_1_copy_1
+launch_runs synth_1_copy_1 -jobs 10
+wait_on_run synth_1_copy_1
+launch_runs impl_1 -jobs 10
+wait_on_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 10
+wait_on_run impl_1
+reset_run synth_1_copy_1
+launch_runs synth_1_copy_1 -jobs 10
+wait_on_run synth_1_copy_1
+launch_runs impl_1 -jobs 10
+wait_on_run impl_1
+reset_run synth_1_copy_1
+launch_runs synth_1_copy_1 -jobs 10
+wait_on_run synth_1_copy_1
+launch_runs impl_1 -jobs 10
+wait_on_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 10
+wait_on_run impl_1
+reset_run synth_1_copy_1
+launch_runs synth_1_copy_1 -jobs 10
+wait_on_run synth_1_copy_1
+launch_runs impl_1 -jobs 10
+wait_on_run impl_1
+reset_run synth_1_copy_1
+launch_runs impl_1 -to_step write_bitstream -jobs 10
+wait_on_run impl_1
+open_run impl_1
+reset_run synth_1_copy_1
+launch_runs synth_1_copy_1 -jobs 10
+wait_on_run synth_1_copy_1
+launch_runs impl_1 -jobs 10
+wait_on_run impl_1
+reset_run synth_1_copy_1
+launch_runs synth_1_copy_1 -jobs 10
+wait_on_run synth_1_copy_1
+launch_runs impl_1 -jobs 10
+wait_on_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 10
+wait_on_run impl_1
+archive_project /home/jstine/jtag1.xpr.zip -force -include_local_ip_cache

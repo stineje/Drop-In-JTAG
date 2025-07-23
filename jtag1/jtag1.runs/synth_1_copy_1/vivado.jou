@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Wed Jul 23 09:56:21 2025
+# Process ID: 287306
+# Current directory: /home/jstine/Arty-A7/jtag1/jtag1.runs/synth_1_copy_1
+# Command line: vivado -log top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
+# Log file: /home/jstine/Arty-A7/jtag1/jtag1.runs/synth_1_copy_1/top.vds
+# Journal file: /home/jstine/Arty-A7/jtag1/jtag1.runs/synth_1_copy_1/vivado.jou
+# Running On: iq9, OS: Linux, CPU Frequency: 1200.008 MHz, CPU Physical cores: 10, Host memory: 24894 MB
+#-----------------------------------------------------------
+source top.tcl -notrace
