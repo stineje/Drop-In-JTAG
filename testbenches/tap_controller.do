@@ -14,7 +14,7 @@ if [file exists work] {
 vlib work
 
 # compile source files
-vlog tap_controller.sv tb_tap_controller.sv
+vlog ../RTL/tap_controller.sv tb_tap_controller.sv
 
 # start and run simulation
 vsim +nowarn3829 -error 3015 -voptargs=+acc -l transcript.txt work.testbench

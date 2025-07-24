@@ -1,0 +1,11 @@
+# do tap_controller.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 09:09:21 on Jul 24,2025
+# vlog ../RTL/tap_controller.sv tb_tap_controller.sv 
+# -- Compiling module tap_controller
+# -- Compiling module testbench
+# 
+# Top level modules:
+# 	testbench
+# End time: 09:09:21 on Jul 24,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0

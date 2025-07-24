@@ -1,0 +1,76 @@
+m255
+K4
+z2
+!s12c _opt
+Z0 !s99 nomlopt
+!s11f vlog 2023.4_3 2024.02, Feb 17 2024
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z1 d/home/jstine/Arty-A7/Drop-In-JTAG-jstine/testbenches
+T_opt
+Z2 !s110 1753366161
+VLTO0fhnnn`0a9eET3QXG;3
+04 9 4 work testbench fast 0
+=1-000ae431a4f1-68823e91-2e3e0-4ca07
+R0
+!s12f OEM100
+!s12b OEM100
+!s124 OEM100
+o-quiet -auto_acc_if_foreign -work work -error 3015 +acc
+Z3 tCvgOpt 0
+n@_opt
+OL;O;2023.4_3;77
+vtap_controller
+Z4 2../RTL/tap_controller.sv|tb_tap_controller.sv
+Z5 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+R2
+!i10b 1
+!s100 ?Rd3f01KYFN<Q]l]L5Pjc0
+I?NfcWJRek4SPZA82FhbH01
+S1
+R1
+w1753282424
+8../RTL/tap_controller.sv
+F../RTL/tap_controller.sv
+!i122 0
+L0 1 55
+Z6 VDg1SIo80bB@j0V0VzS_@n1
+Z7 OL;L;2023.4_3;77
+r1
+!s85 0
+31
+Z8 !s108 1753366161.000000
+Z9 !s107 tb_tap_controller.sv|../RTL/tap_controller.sv|
+Z10 !s90 ../RTL/tap_controller.sv|tb_tap_controller.sv|
+!i113 0
+Z11 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R3
+vtestbench
+R4
+R5
+R2
+!i10b 1
+!s100 59FCR]1L2f8INElaZNGDf1
+IQ><Tkhd_K7_;oFoEi5>fk0
+S1
+R1
+w1753282428
+8tb_tap_controller.sv
+Ftb_tap_controller.sv
+!i122 0
+L0 2 89
+R6
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R3
