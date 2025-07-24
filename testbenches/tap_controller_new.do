@@ -14,10 +14,10 @@ if [file exists work] {
 vlib work
 
 # compile source files
-vlog ../RTL/tap_controller.sv tb_tap_controller.sv
+vlog ../RTL/tap_controller_new.sv tb_tap_controller_new.sv
 
 # start and run simulation
-vsim +nowarn3829 -error 3015 -voptargs=+acc -l transcript.txt work.testbench
+vsim  -voptargs=+acc work.testbench
 
 # view list
 # view wave
@@ -27,7 +27,7 @@ vsim +nowarn3829 -error 3015 -voptargs=+acc -l transcript.txt work.testbench
 add wave -hex -r /testbench/dut/tck
 add wave -hex -r /testbench/dut/trst
 add wave -hex -r /testbench/dut/tms
-add wave -hex -r /testbench/dut/state
+add wave -hex -r /testbench/dut/State
 add wave -hex -r /testbench/dut/reset
 add wave -hex -r /testbench/dut/clockIR
 add wave -hex -r /testbench/dut/captureIR

@@ -1,0 +1,50 @@
+Thu Jul 24 11:34:58 CDT 2025
+Trace back: grab failed: window not viewable
+    while executing
+"grab -global $menu"
+    (procedure "tk::MenuButtonDown" line 39)
+    invoked from within
+"tk::MenuButtonDown .main_pane.wave.#main_pane#wave#mBar"
+    (command bound to event)
+  <2:/opt/ModelSim/questasim/linux_x86_64/tk8.6/bgerror.tcl:106: ::tkerror {grab failed: window not viewable}
+  <1:eval:1: ::tk::dialog::error::bgerror {grab failed: window not viewable}
+Thu Jul 24 11:35:28 CDT 2025
+Trace back: grab failed: window not viewable
+    while executing
+"grab -global $menu"
+    (procedure "tk::MenuButtonDown" line 39)
+    invoked from within
+"tk::MenuButtonDown .main_pane.wave.#main_pane#wave#mBar"
+    (command bound to event)
+  <2:/opt/ModelSim/questasim/linux_x86_64/tk8.6/bgerror.tcl:106: ::tkerror {grab failed: window not viewable}
+  <1:/mtitcl/vsim/vsimcmd.tc_:1194: ::tk::dialog::error::bgerror {grab failed: window not viewable}
+Thu Jul 24 11:35:58 CDT 2025
+Trace back: grab failed: window not viewable
+    while executing
+"grab -global $menu"
+    (procedure "tk::MenuButtonDown" line 39)
+    invoked from within
+"tk::MenuButtonDown .main_pane.wave.#main_pane#wave#mBar"
+    (command bound to event)
+  <2:/opt/ModelSim/questasim/linux_x86_64/tk8.6/bgerror.tcl:106: ::tkerror {grab failed: window not viewable}
+  <1:/mtitcl/vsim/vsimcmd.tc_:1194: ::tk::dialog::error::bgerror {grab failed: window not viewable}
+Thu Jul 24 11:36:28 CDT 2025
+Trace back: grab failed: window not viewable
+    while executing
+"grab -global $menu"
+    (procedure "tk::MenuButtonDown" line 39)
+    invoked from within
+"tk::MenuButtonDown .main_pane.wave.#main_pane#wave#mBar"
+    (command bound to event)
+  <2:/opt/ModelSim/questasim/linux_x86_64/tk8.6/bgerror.tcl:106: ::tkerror {grab failed: window not viewable}
+  <1:/mtitcl/vsim/vsimcmd.tc_:1194: ::tk::dialog::error::bgerror {grab failed: window not viewable}
+Thu Jul 24 11:36:58 CDT 2025
+Trace back: grab failed: window not viewable
+    while executing
+"grab -global $menu"
+    (procedure "tk::MenuButtonDown" line 39)
+    invoked from within
+"tk::MenuButtonDown .main_pane.wave.#main_pane#wave#mBar"
+    (command bound to event)
+  <2:/opt/ModelSim/questasim/linux_x86_64/tk8.6/bgerror.tcl:106: ::tkerror {grab failed: window not viewable}
+  <1:/mtitcl/vsim/vsimcmd.tc_:1194: ::tk::dialog::error::bgerror {grab failed: window not viewable}

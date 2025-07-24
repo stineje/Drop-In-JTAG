@@ -24,21 +24,22 @@ module testbench();
 
    logic [CYCLES-1:0] testvector;
 
-   tap_controller dut (.tck(tck),
-		       .trst(trst),
-		       .tms(tms),
-		       .reset(reset),
-		       .tdo_en(tdo_en),
-		       .shiftIR(shiftIR),
-		       .captureIR(captureIR),
-		       .clockIR(clockIR),
-		       .updateIR(updateIR),
-		       .shiftDR(shiftDR),
-		       .captureDR(captureDR),
-		       .clockDR(clockDR),
-		       .updateDR(updateDR),
-		       .updateDRstate(updateDRstate),
-		       .select(select));
+   tap_controller_new dut (.tck(tck),
+			   .trst(trst),
+			   .tms(tms),
+			   .reset(reset),
+			   .tdo_en(tdo_en),
+			   .shiftIR(shiftIR),
+			   .captureIR(captureIR),
+			   .clockIR(clockIR),
+			   .updateIR(updateIR),
+			   .shiftDR(shiftDR),
+			   .captureDR(captureDR),
+			   .clockDR(clockDR),
+			   .updateDR(updateDR),
+			   .updateDRstate(updateDRstate),
+			   .select(select)
+		       );
    
    // clock
    initial begin
@@ -66,7 +67,7 @@ end
       tms = 1'b1;
       trst = 1;
       tms = 1;
-      #1 trst = 0;
+      #10 trst = 0;
       #1 trst = 1;
 
       // tlr   rt/idle     shiftdr      shiftdr        idle

@@ -1,11 +1,25 @@
-# do tap_controller.do
+# //  Questa Sim-64
+# //  Version 2023.4_3 linux_x86_64 Feb 17 2024
+# //
+# //  Copyright 1991-2024 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# do tap_controller_new.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:09:21 on Jul 24,2025
-# vlog ../RTL/tap_controller.sv tb_tap_controller.sv 
+# Start time: 09:53:06 on Jul 24,2025
+# vlog -reportprogress 300 ../RTL/tap_controller_new.sv tb_tap_controller.sv 
 # -- Compiling module tap_controller
 # -- Compiling module testbench
 # 
 # Top level modules:
 # 	testbench
-# End time: 09:09:21 on Jul 24,2025, Elapsed time: 0:00:00
+# End time: 09:53:06 on Jul 24,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
