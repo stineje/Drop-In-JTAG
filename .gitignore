@@ -4,3 +4,31 @@
 *.swp
 *.bak
 *.tmp
+
+# Ignore simulation tool temporary files
+work/
+*.sim
+*.fsdb
+*.wlf
+*.ini
+
+# Ignore Vivado/Quartus/ModelSim/other tool folders
+.sim/
+*.jou
+*.pb
+*.runs/
+*.cache/
+*.webtalk/
+*.xpr
+*.qpf
+*.qsf
+*.rpt
+
+# Ignore compiled files
+*.o
+*.vvp
+*.vcd
+*.out
+*.log
+
+
