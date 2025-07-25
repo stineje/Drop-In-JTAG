@@ -25,6 +25,10 @@ R0
 R1
 R0
 R1
+R0
+R1
+R0
+R1
 !s12c _opt1
 R1
 R0
@@ -38,10 +42,10 @@ R1
 cModel Technology
 Z2 d/home/jstine/Arty-A7/Drop-In-JTAG-jstine/testbenches
 T_opt
-!s110 1753459046
-V1H^6ikn`fJ@BG[9ef48zg0
+!s110 1753459381
+VHY2?:EnICo<WJP7c_X:6R3
 Z3 04 9 4 work testbench fast 0
-=1-000ae431a4f1-6883a966-43233-4da89
+=1-000ae431a4f1-6883aab5-a88e8-4dae5
 R1
 Z4 !s12f OEM100
 Z5 !s12b OEM100
@@ -67,13 +71,13 @@ R2
 vtap_controller_new
 Z9 2../RTL/tap_controller_new.sv|tb_tap_controller_new.sv
 Z10 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
-Z11 !s110 1753459044
+Z11 !s110 1753459380
 !i10b 1
 !s100 JELXS;9RIkIS`>6BDUPf_0
 IYOX6i9>X`b^f>IG_S4UUA0
 S1
 R2
-w1753459041
+w1753459353
 8../RTL/tap_controller_new.sv
 F../RTL/tap_controller_new.sv
 !i122 0
@@ -83,7 +87,7 @@ Z13 OL;L;2023.4_3;77
 r1
 !s85 0
 31
-Z14 !s108 1753459044.000000
+Z14 !s108 1753459380.000000
 Z15 !s107 tb_tap_controller_new.sv|../RTL/tap_controller_new.sv|
 Z16 !s90 -reportprogress|300|../RTL/tap_controller_new.sv|tb_tap_controller_new.sv|
 !i113 0

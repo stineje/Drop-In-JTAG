@@ -20,3 +20,40 @@
 #    Time: 565 ns  Iteration: 1  Instance: /testbench
 # 1
 # Break in Module testbench at tb_tap_controller.sv line 85
+do tap_controller.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is jstine@iq9.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is jstine@iq9.
+# ** Warning: (vlib-34) Library already exists at "work".
+# Errors: 0, Warnings: 1
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 11:02:38 on Jul 25,2025
+# vlog -reportprogress 300 ../RTL/tap_controller.sv tb_tap_controller.sv 
+# -- Compiling module tap_controller
+# -- Compiling module testbench
+# 
+# Top level modules:
+# 	testbench
+# End time: 11:02:38 on Jul 25,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 11:02:39 on Jul 25,2025, Elapsed time: 1:29:38
+# Errors: 0, Warnings: 3
+# vsim "+nowarn3829" -error 3015 -voptargs="+acc" -l transcript.txt work.testbench 
+# Start time: 11:02:39 on Jul 25,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.tap_controller(fast)
+# Unable to lock WLF file "vsim.wlf". Retrying 1 times, errno 11
+# Unable to lock WLF file "vsim.wlf". Retrying 2 times, errno 11
+# Unable to lock WLF file "vsim.wlf". Retrying 3 times, errno 11
+# Cannot lock WLF file: "vsim.wlf"
+#           errno 11: Resource temporarily unavailable.
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: jstine  Hostname: iq9  ProcessID: 318132
+#           Attempting to use alternate WLF file "./wlftyosF5x".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftyosF5x
+# ** Note: $finish    : tb_tap_controller.sv(85)
+#    Time: 565 ns  Iteration: 1  Instance: /testbench
+# 1
+# Break in Module testbench at tb_tap_controller.sv line 85
