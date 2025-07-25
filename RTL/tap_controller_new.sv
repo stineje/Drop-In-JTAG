@@ -64,14 +64,20 @@ module tap_controller_new
       shiftDR <= State == ShiftDR;
       captureDR <= State == CaptureDR;
       updateDR <= State == UpdateDR;
+      // Added as forgot value (not sure needed)
+      shiftIR <= State == ShiftIR;
+      
    end
 
-   // Needs fixin'
+   // See spreadsheet: clockIR: 0xA|0xE; clockDR: 0x2|0x6
    assign clockIR = tck | State[0] | ~State[1] | ~State[3];
    assign clockDR = tck | State[0] | ~State[1] | State[3];
+   
    //assign select = State[3];
    assign select = (Exit2IR | Exit1IR | ShiftIR | PauseIR | 
-		    RunTestIdle | UpdateIR | CaptureIR | TLReset);   
+		    RunTestIdle | UpdateIR | CaptureIR | TLReset);
+   // Added but may not be needed
+   assign updateDRstate = State[0] & ~State[1] & State[2] & ~State[3];   
    
 endmodule
 
