@@ -10,7 +10,7 @@ module tap_controller
    output logic captureDR,
    output logic clockDR,
    output logic updateDR,
-   output logic updateDRstate,
+//   output logic updateDRstate,
    output logic select);
 
    (* mark_debug = "true" *) logic [3:0] state;
@@ -50,8 +50,9 @@ module tap_controller
    assign clockIR = tck || state[0] || ~state[1] || ~state[3];
    assign updateIR = ~tck && state[0] && ~state[1] && state[2] && state[3];
    assign clockDR = tck || state[0] || ~state[1] || state[3];
-   assign updateDR = ~tck && updateDRstate;
-   assign updateDRstate = state[0] && ~state[1] && state[2] && ~state[3];
+   //assign updateDR = ~tck && updateDRstate;
+   assign updateDR = ~tck && state[0] && ~state[1] && state[2] && ~state[3];
+   //assign updateDRstate = state[0] && ~state[1] && state[2] && ~state[3];
    assign select = state[3];
 
 endmodule  // tap_controller
