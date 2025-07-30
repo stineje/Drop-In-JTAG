@@ -1,5 +1,6 @@
 // device ID
-`define DEVICE_ID 32'hDEADBEEF  // 12.1.1 (d)
+//`define DEVICE_ID 32'hDEADBEEF  // 12.1.1 (d)
+`define DEVICE_ID 32'h1002ac05  // 12.1.1 (d)
 
 // instruction register width
 `define INST_REG_WIDTH 4
