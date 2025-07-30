@@ -10,7 +10,7 @@ module tap_controller_new
    output logic captureDR,
    output logic clockDR,
    output logic updateDR,
-   output logic updateDRstate,
+//   output logic updateDRstate,
    output logic select);
 
    enum 	logic [3:0] {Exit2DR     = 4'h0,
@@ -57,18 +57,17 @@ module tap_controller_new
    // 6.1.1 Section c 
    // actions occurring on the rising/falling edge of TCK in the state
    always @(negedge tck) begin
-      reset <= ~(State == TLReset);
+      shiftIR <= State == ShiftIR;
+      shiftDR <= State == ShiftDR;            
+      reset <= ~(State == TLReset);      
       tdo_en <= State == ShiftIR || State == ShiftDR;
       captureIR <= State == CaptureIR;
       updateIR <= State == UpdateIR;
-      shiftDR <= State == ShiftDR;
       captureDR <= State == CaptureDR;
-      updateDR <= State == UpdateDR;
-      // Added as forgot value (not sure needed)
-      shiftIR <= State == ShiftIR;
-      
+      updateDR <= State == UpdateDR;      
    end
 
+   // Clocking registers on rising edge of tck
    // See spreadsheet: clockIR: 0xA|0xE; clockDR: 0x2|0x6
    assign clockIR = tck | State[0] | ~State[1] | ~State[3];
    assign clockDR = tck | State[0] | ~State[1] | State[3];
@@ -76,8 +75,8 @@ module tap_controller_new
    //assign select = State[3];
    assign select = (Exit2IR | Exit1IR | ShiftIR | PauseIR | 
 		    RunTestIdle | UpdateIR | CaptureIR | TLReset);
-   // Added but may not be needed
-   assign updateDRstate = State[0] & ~State[1] & State[2] & ~State[3];   
+   
+   //assign updateDRstate = State[0] & ~State[1] & State[2] & ~State[3];   
    
 endmodule
 
