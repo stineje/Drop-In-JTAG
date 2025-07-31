@@ -1,7 +1,7 @@
 ///////////////////////////////////////////
 // tap_controller.sv
 //
-// Written: james.stine@okstate.edu 28 July 2025
+// Written: james.stine@okstate.edu, jacob.pease@okstate.edu 28 July 2025
 // Modified: 
 //
 // Purpose: IEEE 1149.1 tap controller

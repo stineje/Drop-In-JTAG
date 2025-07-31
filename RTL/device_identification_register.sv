@@ -1,7 +1,7 @@
 ///////////////////////////////////////////
 // device_identification_register.sv
 //
-// Written: james.stine@okstate.edu 28 July 2025
+// Written: james.stine@okstate.edu, jacob.pease@okstate.edu, matotto@okstate.edu 28 July 2025
 // Modified: 
 //
 // Purpose: Device ID register for 1149.1 (12.1.1)

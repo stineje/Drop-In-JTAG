@@ -1,7 +1,7 @@
 ///////////////////////////////////////////
 // top.sv
 //
-// Written: james.stine@okstate.edu 28 July 2025
+// Written: james.stine@okstate.edu, jacob.pease@okstate.edu, matotto@okstate.edu 28 July 2025
 // Modified: 
 //
 // Purpose: top-level design for JTAG Drop-in-Test
