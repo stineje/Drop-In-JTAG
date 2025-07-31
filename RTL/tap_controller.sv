@@ -37,7 +37,7 @@ module tap_controller
    output logic captureDR,
    output logic clockDR,
    output logic updateDR,
-//   output logic updateDRstate,
+//   output logic updateDRstate,  // removed as just redundant
    output logic select);
 
    (* mark_debug = "true" *) logic [3:0] state;
@@ -46,9 +46,11 @@ module tap_controller
       if (~trst) begin
          state <= 4'b1111;
       end else begin
-         state[0] <= ~tms && ~state[2] && state[0] || tms && ~state[1] || tms && ~state[0] || tms && state[3] && state[2];
+         state[0] <= ~tms && ~state[2] && state[0] || tms && ~state[1] || tms && ~state[0] || 
+		     tms && state[3] && state[2];
          state[1] <= ~tms && state[1] && ~state[0] || 
-		     ~tms && ~state[2] || ~tms && ~state[3] && state[1] || ~tms && ~state[3] && ~state[0] || 
+		     ~tms && ~state[2] || ~tms && ~state[3] && state[1] || 
+		     ~tms && ~state[3] && ~state[0] || 
 		     tms && state[2] && ~state[1] || tms && state[3] && state[2] && state[0];
          state[2] <= state[2] && ~state[1] || state[2] && state[0] || tms && ~state[1];
          state[3] <= state[3] && ~state[2] || state[3] && state[1] || ~tms && state[2] && ~state[1] || 
@@ -66,11 +68,13 @@ module tap_controller
          captureDR <= 1'b0;
       end else begin
          reset <= ~&state;
-         tdo_en <= ~state[0] && state[1] && ~state[2] && state[3] || ~state[0] && state[1] && ~state[2] && ~state[3]; // shiftIR || shiftDR;
+         tdo_en <= ~state[0] && state[1] && ~state[2] && state[3] || 
+		   ~state[0] && state[1] && ~state[2] && ~state[3]; // shiftIR || shiftDR;
          shiftIR <= ~state[0] && state[1] && ~state[2] && state[3];
          captureIR <= ~state[0] && state[1] && state[2] && state[3];
          shiftDR <= ~state[0] && state[1] && ~state[2] && ~state[3];
-         captureDR <= ~state[0] && state[1] && state[2] && ~state[3]; // TODO: && this with tck unless needed for one cycle
+	 // TODO: && this with tck unless needed for one cycle	 
+         captureDR <= ~state[0] && state[1] && state[2] && ~state[3]; 
       end
    end
 
