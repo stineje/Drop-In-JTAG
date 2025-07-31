@@ -19,7 +19,6 @@ module testbench();
    logic   captureDR;
    logic   clockDR;
    logic   updateDR;
-   logic   updateDRstate;
    logic   select;
 
    logic [CYCLES-1:0] testvector;
@@ -37,7 +36,6 @@ module testbench();
 			   .captureDR(captureDR),
 			   .clockDR(clockDR),
 			   .updateDR(updateDR),
-			   .updateDRstate(updateDRstate),
 			   .select(select)
 		       );
    
@@ -55,14 +53,12 @@ module testbench();
 
    /*
     always begin
-    @(posedge tck) begin
-    $fdisplay(desc3, "uclk: %b | %b | %b || val: %b | data: %b", uclk, reset, rx, data_val, data);
-    end
-end
+      @(posedge tck) begin
+        $fdisplay(desc3, "uclk: %b | %b | %b || val: %b | data: %b", uclk, reset, rx, data_val, data);
+      end
+   end
     */
-
-
-
+   
    initial begin
       tms = 1'b1;
       trst = 1;
@@ -77,9 +73,7 @@ end
       for (i=CYCLES-1; i >= 0; i=i-1) begin
          
          @(negedge tck) begin
-
-            tms <= testvector[i];
-            
+            tms <= testvector[i];            
          end
       end
 

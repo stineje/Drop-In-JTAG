@@ -1,10 +1,10 @@
 ///////////////////////////////////////////
-// bypass_register.sv
+// flopr.sv
 //
-// Written: james.stine@okstate.edu, jacob.pease@okstate.edu, matotto@okstate.edu 28 July 2025
+// Written: james.stine@okstate.edu 28 July 2025
 // Modified: 
 //
-// Purpose: Bypass Register for 1149.1
+// Purpose: D flip-flop with synchronous reset
 // 
 // A component of the CORE-V-WALLY configurable RISC-V project.
 // https://github.com/openhwgroup/cvw
@@ -24,15 +24,3 @@
 // either express or implied. See the License for the specific language governing permissions 
 // and limitations under the License.
 ////////////////////////////////////////////////////////////////////////////////////////////////
-
-module bypass_register 
-  (input logic  tdi, 
-   input logic 	clockDR, 
-   input logic 	shiftDR,
-   output logic tdo);
-
-   always @(posedge clockDR) begin
-      tdo <= tdi & shiftDR;   // 10.1.1 (b)
-   end
-   
-endmodule // bypass_register

@@ -1,59 +1,200 @@
-# vsim "+nowarn3829" -error 3015 -voptargs="+acc" -l transcript.txt work.testbench 
-# Start time: 09:33:01 on Jul 25,2025
+# vsim -wlf tap_controlller.wlf "+nowarn3829" -error 3015 -voptargs="+acc" -l transcript.txt work.testbench 
+# Start time: 10:49:11 on Jul 31,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
 # ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
 # Loading sv_std.std
 # Loading work.testbench(fast)
 # Loading work.tap_controller(fast)
-# Unable to lock WLF file "vsim.wlf". Retrying 1 times, errno 11
-# Unable to lock WLF file "vsim.wlf". Retrying 2 times, errno 11
-# Unable to lock WLF file "vsim.wlf". Retrying 3 times, errno 11
-# Cannot lock WLF file: "vsim.wlf"
-#           errno 11: Resource temporarily unavailable.
-# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
-#           File in use by: jstine  Hostname: iq9  ProcessID: 317031
-#           Attempting to use alternate WLF file "./wlfthCdXfD".
-# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlfthCdXfD
-# ** Note: $finish    : tb_tap_controller.sv(85)
+# ** Note: $finish    : tb_tap_controller.sv(83)
 #    Time: 565 ns  Iteration: 1  Instance: /testbench
 # 1
-# Break in Module testbench at tb_tap_controller.sv line 85
+# Break in Module testbench at tb_tap_controller.sv line 83
 do tap_controller.do
 # ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is jstine@iq9.
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is jstine@iq9.
 # ** Warning: (vlib-34) Library already exists at "work".
 # Errors: 0, Warnings: 1
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 11:02:38 on Jul 25,2025
+# Start time: 11:02:02 on Jul 31,2025
 # vlog -reportprogress 300 ../RTL/tap_controller.sv tb_tap_controller.sv 
 # -- Compiling module tap_controller
 # -- Compiling module testbench
 # 
 # Top level modules:
 # 	testbench
-# End time: 11:02:38 on Jul 25,2025, Elapsed time: 0:00:00
+# End time: 11:02:02 on Jul 31,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# End time: 11:02:39 on Jul 25,2025, Elapsed time: 1:29:38
-# Errors: 0, Warnings: 3
-# vsim "+nowarn3829" -error 3015 -voptargs="+acc" -l transcript.txt work.testbench 
-# Start time: 11:02:39 on Jul 25,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt1
+# End time: 11:02:03 on Jul 31,2025, Elapsed time: 0:12:52
+# Errors: 0, Warnings: 1
+# vsim -wlf tap_controlller.wlf "+nowarn3829" -error 3015 -voptargs="+acc" -l transcript.txt work.testbench 
+# Start time: 11:02:03 on Jul 31,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
 # Loading sv_std.std
 # Loading work.testbench(fast)
 # Loading work.tap_controller(fast)
-# Unable to lock WLF file "vsim.wlf". Retrying 1 times, errno 11
-# Unable to lock WLF file "vsim.wlf". Retrying 2 times, errno 11
-# Unable to lock WLF file "vsim.wlf". Retrying 3 times, errno 11
-# Cannot lock WLF file: "vsim.wlf"
-#           errno 11: Resource temporarily unavailable.
-# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
-#           File in use by: jstine  Hostname: iq9  ProcessID: 318132
-#           Attempting to use alternate WLF file "./wlftyosF5x".
-# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlftyosF5x
-# ** Note: $finish    : tb_tap_controller.sv(85)
+# ** UI-Msg (Warning): (vish-4014) No objects found matching '/testbench/dut/testvector'.
+# Error in macro ./tap_controller.do line 32
+# ** UI-Msg (Warning): (vish-4014) No objects found matching '/testbench/dut/testvector'.
+#     while executing
+# "add wave -hex -r /testbench/dut/tck"
+do tap_controller.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is jstine@iq9.
+# ** Warning: (vlib-34) Library already exists at "work".
+# Errors: 0, Warnings: 1
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 11:03:16 on Jul 31,2025
+# vlog -reportprogress 300 ../RTL/tap_controller.sv tb_tap_controller.sv 
+# -- Compiling module tap_controller
+# -- Compiling module testbench
+# 
+# Top level modules:
+# 	testbench
+# End time: 11:03:16 on Jul 31,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 11:03:17 on Jul 31,2025, Elapsed time: 0:01:14
+# Errors: 0, Warnings: 1
+# vsim -wlf tap_controlller.wlf "+nowarn3829" -error 3015 -voptargs="+acc" -l transcript.txt work.testbench 
+# Start time: 11:03:17 on Jul 31,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.tap_controller(fast)
+# ** UI-Msg (Warning): (vish-4014) No objects found matching '/testbench/dut/updateI'.
+# Error in macro ./tap_controller.do line 39
+# ** UI-Msg (Warning): (vish-4014) No objects found matching '/testbench/dut/updateI'.
+#     while executing
+# "add wave -hex -r /testbench/dut/tck"
+do tap_controller.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is jstine@iq9.
+# ** Warning: (vlib-34) Library already exists at "work".
+# Errors: 0, Warnings: 1
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 11:03:53 on Jul 31,2025
+# vlog -reportprogress 300 ../RTL/tap_controller.sv tb_tap_controller.sv 
+# -- Compiling module tap_controller
+# -- Compiling module testbench
+# 
+# Top level modules:
+# 	testbench
+# End time: 11:03:53 on Jul 31,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 11:03:54 on Jul 31,2025, Elapsed time: 0:00:37
+# Errors: 0, Warnings: 0
+# vsim -wlf tap_controlller.wlf "+nowarn3829" -error 3015 -voptargs="+acc" -l transcript.txt work.testbench 
+# Start time: 11:03:54 on Jul 31,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.tap_controller(fast)
+# ** Note: $finish    : tb_tap_controller.sv(79)
 #    Time: 565 ns  Iteration: 1  Instance: /testbench
 # 1
-# Break in Module testbench at tb_tap_controller.sv line 85
+# Break in Module testbench at tb_tap_controller.sv line 79
+do tap_controller.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is jstine@iq9.
+# ** Warning: (vlib-34) Library already exists at "work".
+# Errors: 0, Warnings: 1
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 11:04:27 on Jul 31,2025
+# vlog -reportprogress 300 ../RTL/tap_controller.sv tb_tap_controller.sv 
+# -- Compiling module tap_controller
+# -- Compiling module testbench
+# 
+# Top level modules:
+# 	testbench
+# End time: 11:04:27 on Jul 31,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 11:04:28 on Jul 31,2025, Elapsed time: 0:00:34
+# Errors: 0, Warnings: 0
+# vsim -wlf tap_controlller.wlf "+nowarn3829" -error 3015 -voptargs="+acc" -l transcript.txt work.testbench 
+# Start time: 11:04:28 on Jul 31,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.tap_controller(fast)
+# ** Note: $finish    : tb_tap_controller.sv(79)
+#    Time: 565 ns  Iteration: 1  Instance: /testbench
+# 1
+# Break in Module testbench at tb_tap_controller.sv line 79
+do tap_controller_new.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is jstine@iq9.
+# ** Warning: (vlib-34) Library already exists at "work".
+# Errors: 0, Warnings: 1
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 11:06:03 on Jul 31,2025
+# vlog -reportprogress 300 ../RTL/tap_controller_new.sv tb_tap_controller_new.sv 
+# -- Compiling module tap_controller_new
+# -- Compiling module testbench
+# 
+# Top level modules:
+# 	testbench
+# End time: 11:06:03 on Jul 31,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 11:06:04 on Jul 31,2025, Elapsed time: 0:01:36
+# Errors: 0, Warnings: 0
+# vsim -wlf tap_controller_new.wlf -voptargs="+acc" work.testbench 
+# Start time: 11:06:04 on Jul 31,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Error (suppressible): tb_tap_controller_new.sv(27): (vopt-2912) Port 'updateDRstate' not found in module 'tap_controller_new' (14th connection).
+# Optimization failed
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=1, Warnings=1.
+# Error loading design
+# Error: Error loading design
+#        Pausing macro execution
+# MACRO ./tap_controller_new.do PAUSED at line 20
+do tap_controller_new.do
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 11:07:14 on Jul 31,2025
+# vlog -reportprogress 300 ../RTL/tap_controller_new.sv tb_tap_controller_new.sv 
+# -- Compiling module tap_controller_new
+# -- Compiling module testbench
+# 
+# Top level modules:
+# 	testbench
+# End time: 11:07:14 on Jul 31,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -wlf tap_controller_new.wlf -voptargs="+acc" work.testbench 
+# Start time: 11:06:04 on Jul 31,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-143) Recognized 1 FSM in module "tap_controller_new(fast)".
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=1, Warnings=2.
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.tap_controller_new(fast)
+# ** UI-Msg (Warning): (vish-4014) No objects found matching '/testbench/dut/state'.
+# Error in macro ./tap_controller_new.do line 34
+# ** UI-Msg (Warning): (vish-4014) No objects found matching '/testbench/dut/state'.
+#     while executing
+# "add wave -color gold -hex -r /testbench/dut/tck"
+do tap_controller_new.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is jstine@iq9.
+# ** Warning: (vlib-34) Library already exists at "work".
+# Errors: 0, Warnings: 1
+# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
+# Start time: 11:07:39 on Jul 31,2025
+# vlog -reportprogress 300 ../RTL/tap_controller_new.sv tb_tap_controller_new.sv 
+# -- Compiling module tap_controller_new
+# -- Compiling module testbench
+# 
+# Top level modules:
+# 	testbench
+# End time: 11:07:39 on Jul 31,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 11:07:40 on Jul 31,2025, Elapsed time: 0:01:36
+# Errors: 1, Warnings: 2
+# vsim -wlf tap_controller_new.wlf -voptargs="+acc" work.testbench 
+# Start time: 11:07:40 on Jul 31,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# Loading sv_std.std
+# Loading work.testbench(fast)
+# Loading work.tap_controller_new(fast)
+# ** Note: $finish    : tb_tap_controller_new.sv(80)
+#    Time: 575 ns  Iteration: 1  Instance: /testbench
+# 1
+# Break in Module testbench at tb_tap_controller_new.sv line 80
+# End time: 11:08:03 on Jul 31,2025, Elapsed time: 0:00:23
+# Errors: 0, Warnings: 0
