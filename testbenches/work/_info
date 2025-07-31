@@ -12,23 +12,22 @@ Z0 !s99 nomlopt
 cModel Technology
 Z1 d/home/jstine/Arty-A7/Drop-In-JTAG-jstine/testbenches
 T_opt
-!s110 1753978034
-Vk=X?2?;GZcl^mE8BhhM9T2
+Z2 !s110 1753979950
+VRFYIm1NPNdPP7=0PeVLem1
 04 9 4 work testbench fast 0
-=2-000ae431a4f1-688b94b2-4745e-1110
+=1-000ae431a4f1-688b9c2e-bd499-12eb
 R0
 !s12f OEM100
 !s12b OEM100
 !s124 OEM100
 o-quiet -auto_acc_if_foreign -work work +acc
-Z2 tCvgOpt 0
+Z3 tCvgOpt 0
 n@_opt
 OL;O;2023.4_3;77
-R1
 vtap_controller_new
-Z3 2../RTL/tap_controller_new.sv|tb_tap_controller_new.sv
-Z4 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
-Z5 !s110 1753978059
+Z4 2../RTL/tap_controller_new.sv|tb_tap_controller_new.sv
+Z5 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+R2
 !i10b 1
 !s100 Vz]1a@<VZgz]P;fMniVz=2
 IKAlXZmEXL5e^XfPPILE2M2
@@ -44,34 +43,34 @@ Z7 OL;L;2023.4_3;77
 r1
 !s85 0
 31
-Z8 !s108 1753978059.000000
-!s107 tb_tap_controller_new.sv|../RTL/tap_controller_new.sv|
-Z9 !s90 -reportprogress|300|../RTL/tap_controller_new.sv|tb_tap_controller_new.sv|
+Z8 !s108 1753979950.000000
+Z9 !s107 tb_tap_controller_new.sv|../RTL/tap_controller_new.sv|
+Z10 !s90 ../RTL/tap_controller_new.sv|tb_tap_controller_new.sv|
 !i113 0
-Z10 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
-R2
-vtestbench
+Z11 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
 R3
+vtestbench
 R4
 R5
+R2
 !i10b 1
-!s100 >adHb10cDF[7Q`[Uz7N6o3
-IPNgPO0`XoRfGgLGd`zdg;0
+!s100 KO2R5Q@^7[M:zgHkbL96h2
+I=_Iz:7Kg:<Z9BLG<Ta7KX0
 S1
 R1
-w1753978026
+w1753979919
 8tb_tap_controller_new.sv
 Ftb_tap_controller_new.sv
 !i122 0
-L0 2 82
+L0 2 87
 R6
 R7
 r1
 !s85 0
 31
 R8
-Z11 !s107 tb_tap_controller_new.sv|../RTL/tap_controller_new.sv|
 R9
-!i113 0
 R10
-R2
+!i113 0
+R11
+R3

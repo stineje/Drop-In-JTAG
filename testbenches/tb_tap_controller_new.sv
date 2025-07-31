@@ -1,4 +1,4 @@
-// `timescale 1ns/1ps
+`timescale 1ns/1ps
 module testbench();
 
    localparam CYCLES = 57;
@@ -49,6 +49,11 @@ module testbench();
    initial begin
       handle3 = $fopen("fsm.out");    
       desc3 = handle3;
+   end
+
+   initial begin
+      $dumpfile("tap_controller_new.vcd");     // VCD output file name
+      $dumpvars(0, testbench.dut);   // Dump all signals from module "testbench"
    end
 
    /*
