@@ -1,3 +1,30 @@
+///////////////////////////////////////////
+// jtag_test_logic.sv
+//
+// Written: james.stine@okstate.edu 28 July 2025
+// Modified: 
+//
+// Purpose: JTAG test logic module
+// 
+// A component of the CORE-V-WALLY configurable RISC-V project.
+// https://github.com/openhwgroup/cvw
+// 
+// Copyright (C) 2021-25 Harvey Mudd College & Oklahoma State University
+//
+// SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
+//
+// Licensed under the Solderpad Hardware License v 2.1 (the “License”); you may not use this file 
+// except in compliance with the License, or, at your option, the Apache License version 2.0. You 
+// may obtain a copy of the License at
+//
+// https://solderpad.org/licenses/SHL-2.1/
+//
+// Unless required by applicable law or agreed to in writing, any work distributed under the 
+// License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+// either express or implied. See the License for the specific language governing permissions 
+// and limitations under the License.
+////////////////////////////////////////////////////////////////////////////////////////////////
+
 module jtag_test_logic 
   (`include "defines.sv"
     input logic  tck, tms, tdi, trst,
@@ -40,8 +67,7 @@ module jtag_test_logic
    logic 		   tdi_ir, tdi_dr;
    logic 		   tdo_ir, tdo_dr;
    logic 		   tdo_br;
-   logic 		   tdo_id;
-   
+   logic 		   tdo_id;   
    
    tap_controller fsm (.tck(tck),
 		       .trst(trst),
@@ -64,8 +90,7 @@ module jtag_test_logic
    assign {tdi_ir,tdi_dr} = select ? {tdi,1'bx} : {1'bx,tdi};
    // IR/DR output mux
    assign tdo = ~tdo_en ? 1'b0 : // TODO: check spec to see if this should be low or high when tdo_en is low
-		select ? tdo_ir : tdo_dr;
-   
+		select ? tdo_ir : tdo_dr;   
    
    instruction_register ir (.tck_ir(ir_clk), 
 			    .tdi(tdi_ir),
@@ -73,8 +98,7 @@ module jtag_test_logic
 			    .captureIR(captureIR),
 			    .updateIR(updateIR),
 			    .tdo(tdo_ir),
-			    .instructions(instructions));
-   
+			    .instructions(instructions));   
    
    // synth tool should recognize these as one-hot signals
    assign idcode         = (instructions == `D_IDCODE);
@@ -88,8 +112,7 @@ module jtag_test_logic
    assign resume         = (instructions == `D_RESUME);
    assign logic_reset    = (instructions == `D_RESET);
    
-   // Data Registers
-   
+   // Data Registers   
    bypass_register br (.clockDR(clk_dr),
 		       .tdi(tdi_dr),
 		       .shiftDR(shiftDR), // 10.1.1 (b)
@@ -98,14 +121,14 @@ module jtag_test_logic
    device_identification_register didr (.tdi(tdi_dr),
 					.tdo(tdo_id),
 					.clockDR(clk_dr || ~idcode),
-					.captureDR(captureDR));
-   
+					.captureDR(captureDR));   
    
    // BSR mux
    logic 		   bsr_enable;
    assign bsr_enable = (sample_preload || extest || intest || clamp);
-   
-   assign bsr_mode = (extest || intest || clamp || (clamp_last && step));  // selects parallel output latches for BSR output
+
+   // selects parallel output regs for BSR output   
+   assign bsr_mode = (extest || intest || clamp || (clamp_last && step));  
    
    assign bsr_tdi = bsr_enable ? tdi_dr : 1'bx;
    assign bsr_clk = clk_dr || ~bsr_enable;  // clock high when idle
@@ -128,12 +151,9 @@ module jtag_test_logic
    // soft persistence clamp
    always @(posedge updateIR) begin
       clamp_last <= clamp;
-   end
+   end  
    
-   
-   
-   // Debug Core (sys_clk domain) ////////////////////////////////////////////////
-   
+   // Debug Core (sys_clk domain) ////////////////////////////////////////////////   
    logic clk_en, clk_gate;
    logic [1:0] debug_state;
    
@@ -146,8 +166,7 @@ module jtag_test_logic
    cdc_sync_stb #(.RISING_EDGE(0)) dbgrst (.a(trst && reset), .clk_b(sys_clk), .b(dbg_rst));
    cdc_sync_stb dbghalt (.a(halt), .clk_b(sys_clk), .b(dbg_halt));
    cdc_sync_stb dbgstep (.a(step && updateIR), .clk_b(sys_clk), .b(dbg_step));
-   cdc_sync_stb dbgresume (.a(resume), .clk_b(sys_clk), .b(dbg_resume));
-   
+   cdc_sync_stb dbgresume (.a(resume), .clk_b(sys_clk), .b(dbg_resume));   
    
    always @(negedge sys_clk)
      clk_gate <= clk_en;
@@ -170,8 +189,7 @@ module jtag_test_logic
                  clk_en <= 0;
                  debug_state <= DBGHALT;
               end
-           end
-	   
+           end	   
            DBGHALT : begin
               if (dbg_step) begin
                  clk_en <= 1;
@@ -180,8 +198,7 @@ module jtag_test_logic
                  clk_en <= 1;
                  debug_state <= DBGRUN;
               end
-           end
-	   
+           end	   
            DBGSTEP : begin
               clk_en <= 0;
               debug_state <= DBGHALT;
@@ -192,7 +209,7 @@ module jtag_test_logic
    
 endmodule  // jtag_test_logic
 
-
+// synchronizer
 module cdc_sync_stb #(parameter RISING_EDGE = 1)
    (input logic  a,
     input logic  clk_b,
