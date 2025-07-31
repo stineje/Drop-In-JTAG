@@ -37,7 +37,6 @@ module tap_controller_new
    output logic captureDR,
    output logic clockDR,
    output logic updateDR,
-//   output logic updateDRstate,
    output logic select);
 
    enum 	logic [3:0] {Exit2DR     = 4'h0,
@@ -103,7 +102,6 @@ module tap_controller_new
    assign select = (Exit2IR | Exit1IR | ShiftIR | PauseIR | 
 		    RunTestIdle | UpdateIR | CaptureIR | TLReset);
    
-   //assign updateDRstate = State[0] & ~State[1] & State[2] & ~State[3];   
-   
-endmodule
+endmodule // tap_controller_new
+
 
