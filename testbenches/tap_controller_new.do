@@ -17,7 +17,7 @@ vlib work
 vlog ../RTL/tap_controller_new.sv tb_tap_controller_new.sv
 
 # start and run simulation
-vsim  -voptargs=+acc work.testbench
+vsim -wlf tap_controller_new.wlf -voptargs=+acc work.testbench
 
 # view list
 # view wave

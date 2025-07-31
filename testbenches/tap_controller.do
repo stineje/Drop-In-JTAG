@@ -17,7 +17,7 @@ vlib work
 vlog ../RTL/tap_controller.sv tb_tap_controller.sv
 
 # start and run simulation
-vsim +nowarn3829 -error 3015 -voptargs=+acc -l transcript.txt work.testbench
+vsim -wlf tap_controlller.wlf +nowarn3829 -error 3015 -voptargs=+acc -l transcript.txt work.testbench
 
 # view list
 # view wave

@@ -4,6 +4,7 @@
 *.swp
 *.bak
 *.tmp
+**/work/
 
 # Ignore simulation tool temporary files
 work/
