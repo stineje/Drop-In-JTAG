@@ -32,14 +32,17 @@ def main():
     global correct_register_data
 
     if not test_mode:
-        tn = Telnet("10.55.0.1", 4444)
+        tn = Telnet("127.0.0.1", 4444)
 
+    print("HEY")
     root = tk.Tk()
 
 
     app = RegisterCheckerApp(root)
     root.configure(bg='DarkOrange1')
 
+    print("HEY")
+    
     with open("fixed_data.pkl", "rb") as f:
         correct_register_data = pickle.load(f)
 
