@@ -26,7 +26,6 @@ cd openocd-code
 make
 sudo make install
 ```
-
 # Configuring OpenOCD
 USB port locations may be nested underneath other ports if you have a USB hub. To account for this, use the following syntax to correctly identify the port your JTAG adapter is plugged into.
 
@@ -40,4 +39,14 @@ Additionally, confirm that the usb configuration rules from the OpenOCD reposito
 sudo cp openocd-code/contrib/60-openocd.rules /etc/udev/rules.d/
 sudo udevadm control --reload-rules
 sudo udevadm trigger
+```
+# Running OpenOCD
+Use the following command to run OpenOCD:
+```bash
+openocd -f openocd.cfg
+```
+This should output that it's listening on Telnet port 4444. To connect to it, open another terminal and type:
+
+```bash
+telnet localhost 4444
 ```
