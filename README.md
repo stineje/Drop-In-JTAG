@@ -44,8 +44,8 @@ sudo udevadm trigger
 Linux may require the follow to update the USB device 
 
 ```bash
-sudo systemctl udev stop
-sudo systemctl udev start
+sudo udevadm control --reload-rules
+sudo udevadm trigger
 ```
 
 # Running OpenOCD
