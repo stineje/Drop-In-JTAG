@@ -40,6 +40,14 @@ sudo cp openocd-code/contrib/60-openocd.rules /etc/udev/rules.d/
 sudo udevadm control --reload-rules
 sudo udevadm trigger
 ```
+
+Linux may require the follow to update the USB device 
+
+```bash
+sudo systemctl udev stop
+sudo systemctl udev start
+```
+
 # Running OpenOCD
 Use the following command to run OpenOCD:
 ```bash
