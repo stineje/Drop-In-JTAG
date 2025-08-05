@@ -1,90 +1,19 @@
-# do top_complete.do
+# do tap_controller_new.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:34:28 on Aug 05,2025
-# vlog ../testbenches/tb_top.sv ../RTL/top.sv ../RTL/jtag_test_logic.sv 
+# Start time: 09:44:46 on Aug 05,2025
+# vlog ../RTL/tap_controller_new.sv tb_tap_controller_new.sv 
+# -- Compiling module tap_controller_new
 # -- Compiling module testbench
-# -- Compiling module top
-# -- Compiling module jtag_test_logic
 # 
 # Top level modules:
 # 	testbench
-# End time: 09:34:28 on Aug 05,2025, Elapsed time: 0:00:00
+# End time: 09:44:46 on Aug 05,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:34:28 on Aug 05,2025
-# vlog ../RTL/bsr_cell.sv ../RTL/cdc_sync_stb.sv 
-# -- Compiling module bsr_cell
-# -- Compiling module cdc_sync_stb
-# 
-# Top level modules:
-# 	bsr_cell
-# 	cdc_sync_stb
-# End time: 09:34:28 on Aug 05,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:34:28 on Aug 05,2025
-# vlog ../RTL/tap_controller.sv ../RTL/instruction_register.sv 
-# -- Compiling module tap_controller
-# -- Compiling module instruction_register
-# 
-# Top level modules:
-# 	tap_controller
-# 	instruction_register
-# End time: 09:34:28 on Aug 05,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:34:28 on Aug 05,2025
-# vlog ../RTL/bypass_register.sv ../RTL/bsr.sv 
-# -- Compiling module bypass_register
-# -- Compiling module bsr
-# 
-# Top level modules:
-# 	bypass_register
-# 	bsr
-# End time: 09:34:28 on Aug 05,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:34:28 on Aug 05,2025
-# vlog ../RTL/device_identification_register.sv 
-# -- Compiling module device_identification_register
-# 
-# Top level modules:
-# 	device_identification_register
-# End time: 09:34:28 on Aug 05,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:34:28 on Aug 05,2025
-# vlog ../RISCV_pipe/hdl/riscv_pipelined.sv 
-# -- Compiling module riscv
-# -- Compiling module controller
-# -- Compiling module maindec
-# -- Compiling module aludec
-# -- Compiling module datapath
-# -- Compiling module hazard
-# -- Compiling module regfile
-# -- Compiling module adder
-# -- Compiling module extend
-# -- Compiling module flopr
-# -- Compiling module flopenr
-# -- Compiling module flopenrc
-# -- Compiling module floprc
-# -- Compiling module mux2
-# -- Compiling module mux3
-# -- Compiling module imem
-# -- Compiling module dmem
-# -- Compiling module alu
-# 
-# Top level modules:
-# 	riscv
-# 	imem
-# 	dmem
-# End time: 09:34:28 on Aug 05,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vsim -voptargs="+acc" work.testbench 
-# Start time: 09:34:28 on Aug 05,2025
+# vsim -wlf tap_controller_new.wlf -voptargs="+acc" work.testbench 
+# Start time: 09:44:46 on Aug 05,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
-# ** Note: (vopt-143) Recognized 1 FSM in module "jtag_test_logic(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "tap_controller_new(fast)".
 # ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
 # //  Questa Sim-64
 # //  Version 2023.4_3 linux_x86_64 Feb 17 2024
@@ -102,39 +31,7 @@
 # //
 # Loading sv_std.std
 # Loading work.testbench(fast)
-# Loading work.top(fast)
-# Loading work.jtag_test_logic(fast)
-# Loading work.tap_controller(fast)
-# Loading work.instruction_register(fast)
-# Loading work.bypass_register(fast)
-# Loading work.device_identification_register(fast)
-# Loading work.cdc_sync_stb(fast)
-# Loading work.cdc_sync_stb(fast__1)
-# Loading work.cdc_sync_stb(fast__2)
-# Loading work.riscv(fast)
-# Loading work.controller(fast)
-# Loading work.maindec(fast)
-# Loading work.aludec(fast)
-# Loading work.floprc(fast)
-# Loading work.flopr(fast)
-# Loading work.flopr(fast__1)
-# Loading work.datapath(fast)
-# Loading work.mux2(fast)
-# Loading work.flopenr(fast)
-# Loading work.adder(fast)
-# Loading work.flopenrc(fast)
-# Loading work.regfile(fast)
-# Loading work.extend(fast)
-# Loading work.floprc(fast__1)
-# Loading work.mux3(fast)
-# Loading work.alu(fast)
-# Loading work.flopr(fast__2)
-# Loading work.hazard(fast)
-# Loading work.imem(fast)
-# Loading work.dmem(fast)
-# Loading work.bsr(fast)
-# Loading work.bsr_cell(fast)
-# Loading work.bsr(fast__1)
+# Loading work.tap_controller_new(fast)
 # configure wave not supported in batch mode
 # configure wave not supported in batch mode
 # configure wave not supported in batch mode
@@ -143,15 +40,7 @@
 # configure wave not supported in batch mode
 # configure wave not supported in batch mode
 # configure wave not supported in batch mode
-# Simulation failed
-# HALTing system logic
-# putting TAP in SAMPLE/PRELOAD
-# Scanning DR register
-# Returning to test-logic reset
-# ReadDataM: xxxxxxxx | WriteDataM xxxxxxxx | DataAdrM: xxxxxxxxx | MemWriteM: x | InstrF: xxxxxxxX | PCF: 74000000
-# ** Note: $stop    : ../testbenches/tb_top.sv(106)
-#    Time: 3990 ns  Iteration: 1  Instance: /testbench
-# Break in Module testbench at ../testbenches/tb_top.sv line 106
-# Stopped at ../testbenches/tb_top.sv line 106
-# End time: 09:34:31 on Aug 05,2025, Elapsed time: 0:00:03
+# ** Note: $finish    : tb_tap_controller_new.sv(85)
+#    Time: 575 ns  Iteration: 1  Instance: /testbench
+# End time: 09:44:47 on Aug 05,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 1
