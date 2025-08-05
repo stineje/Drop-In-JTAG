@@ -56,6 +56,33 @@ module tap_controller_new
 			     CaptureIR   = 4'hE,
 			     TLReset     = 4'hF
 			     } State;
+
+   // -----------------------------------------------------------------------------
+   // TAP State to State[3] Mapping (IEEE 1149.1)
+   // State[3] distinguishes between DR path (0) and IR path (1)
+   //
+   //   State Name     | Encoding | Binary  | State[3] | Path Type
+   // -----------------+----------+---------+----------+------------------------
+   //   Exit2DR        | 0x0      | 0000    |    0     | DR path
+   //   Exit1DR        | 0x1      | 0001    |    0     | DR path
+   //   ShiftDR        | 0x2      | 0010    |    0     | DR path
+   //   PauseDR        | 0x3      | 0011    |    0     | DR path
+   //   SelectIR       | 0x4      | 0100    |    0     | DR path -> IR select
+   //   UpdateDR       | 0x5      | 0101    |    0     | DR path
+   //   CaptureDR      | 0x6      | 0110    |    0     | DR path
+   //   SelectDR       | 0x7      | 0111    |    0     | DR path
+   //   Exit2IR        | 0x8      | 1000    |    1     | IR path
+   //   Exit1IR        | 0x9      | 1001    |    1     | IR path
+   //   ShiftIR        | 0xA      | 1010    |    1     | IR path
+   //   PauseIR        | 0xB      | 1011    |    1     | IR path
+   //   RunTestIdle    | 0xC      | 1100    |    1     | IR path
+   //   UpdateIR       | 0xD      | 1101    |    1     | IR path
+   //   CaptureIR      | 0xE      | 1110    |    1     | IR path
+   //   TLReset        | 0xF      | 1111    |    1     | IR path
+   //
+   // Therefore:
+   //   assign select = State[3];
+   // -----------------------------------------------------------------------------
    
    always @(posedge tck) begin
       if (~trst) State <= TLReset; 
@@ -97,10 +124,7 @@ module tap_controller_new
    // See spreadsheet: clockIR: 0xA|0xE; clockDR: 0x2|0x6
    assign clockIR = tck | State[0] | ~State[1] | ~State[3];
    assign clockDR = tck | State[0] | ~State[1] | State[3];
-   
-   //assign select = State[3];
-   assign select = (Exit2IR | Exit1IR | ShiftIR | PauseIR | 
-		    RunTestIdle | UpdateIR | CaptureIR | TLReset);
+   assign select = State[3];   
    
 endmodule // tap_controller_new
 
