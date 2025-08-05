@@ -14,7 +14,8 @@ if [file exists work] {
 vlib work
 
 # compile source files
-vlog ../testbenches/tb_top.sv ../RTL/top.sv ../RTL/jtag_test_logic.sv 
+vlog ../testbenches/tb_top.sv ../RTL/top.sv ../RTL/jtag_test_logic.sv
+vlog ../RTL/bsr_cell.sv ../RTL/cdc_sync_stb.sv
 vlog ../RTL/tap_controller.sv ../RTL/instruction_register.sv 
 vlog ../RTL/bypass_register.sv ../RTL/bsr.sv
 vlog ../RTL/device_identification_register.sv
@@ -88,7 +89,7 @@ add wave -label shiftDR -hex /testbench/dut/jtag/fsm/shiftDR
 add wave -label captureDR -hex /testbench/dut/jtag/fsm/captureDR 
 add wave -label clockDR -hex /testbench/dut/jtag/fsm/clockDR 
 add wave -label updateDR -hex /testbench/dut/jtag/fsm/updateDR 
-add wave -label updateDRstate -hex /testbench/dut/jtag/fsm/updateDRstate 
+#add wave -label updateDRstate -hex /testbench/dut/jtag/fsm/updateDRstate 
 add wave -label select -hex /testbench/dut/jtag/fsm/select
 
 

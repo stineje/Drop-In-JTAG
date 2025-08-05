@@ -46,59 +46,42 @@ module jtag_test_logic
    logic 	 shiftDR;
    logic 	 captureDR;
    logic 	 clk_dr;
-   //logic 	 updateDRstate;
    logic 	 select;
    
    // instruction signals
-   logic [`INST_COUNT-1:0] instructions;
-   logic 		   idcode;
-   logic 		   sample_preload;
-   logic 		   extest;
-   logic 		   intest;
+   logic [`INST_COUNT-1:0]   instructions;
+   logic 		     idcode;
+   logic 		     sample_preload;
+   logic 		     extest;
+   logic 		     intest;
    (* mark_debug = "true" *) logic clamp;
    (* mark_debug = "true" *) logic clamp_last;
    
    (* mark_debug = "true" *) logic halt;
    (* mark_debug = "true" *) logic step;
    (* mark_debug = "true" *) logic resume;
-   logic 		   logic_reset;
+   logic 		     logic_reset;
    
    // intermediate wires
-   logic 		   tdi_ir, tdi_dr;
-   logic 		   tdo_ir, tdo_dr;
-   logic 		   tdo_br;
-   logic 		   tdo_id;   
+   logic 		     tdi_ir, tdi_dr;
+   logic 		     tdo_ir, tdo_dr;
+   logic 		     tdo_br;
+   logic 		     tdo_id;   
    
-   tap_controller fsm (.tck(tck),
-		       .trst(trst),
-		       .tms(tms),
-		       .reset(reset),
-		       .tdo_en(tdo_en),
-		       .shiftIR(shiftIR),
-		       .captureIR(captureIR),
-		       .clockIR(ir_clk),
-		       .updateIR(updateIR),
-		       .shiftDR(shiftDR),
-		       .captureDR(captureDR),
-		       .clockDR(clk_dr),
-		       .updateDR(updateDR),
-//		       .updateDRstate(updateDRstate),
-		       .select(select));
+   tap_controller fsm (.tck(tck), .trst(trst), .tms(tms), .reset(reset), .tdo_en(tdo_en), 
+		       .shiftIR(shiftIR), .captureIR(captureIR), .clockIR(ir_clk), 
+		       .updateIR(updateIR), .shiftDR(shiftDR), .captureDR(captureDR),
+		       .clockDR(clk_dr),.updateDR(updateDR), .select(select));
 
 
-   // IR/DR input demux
-   assign {tdi_ir,tdi_dr} = select ? {tdi,1'bx} : {1'bx,tdi};
+   // IR/DR input demux 
+   assign {tdi_ir, tdi_dr} = select ? {tdi,1'bx} : {1'bx,tdi};
    // IR/DR output mux
    assign tdo = ~tdo_en ? 1'b0 : // TODO: check spec to see if this should be low or high when tdo_en is low
 		select ? tdo_ir : tdo_dr;   
    
-   instruction_register ir (.tck_ir(ir_clk), 
-			    .tdi(tdi_ir),
-			    .tl_reset(reset),
-			    .captureIR(captureIR),
-			    .updateIR(updateIR),
-			    .tdo(tdo_ir),
-			    .instructions(instructions));   
+   instruction_register ir (.tck_ir(ir_clk), .tdi(tdi_ir), .tl_reset(reset), .captureIR(captureIR),
+			    .updateIR(updateIR), .tdo(tdo_ir), .instructions(instructions));   
    
    // synth tool should recognize these as one-hot signals
    assign idcode         = (instructions == `D_IDCODE);
@@ -113,13 +96,11 @@ module jtag_test_logic
    assign logic_reset    = (instructions == `D_RESET);
    
    // Data Registers   
-   bypass_register br (.clockDR(clk_dr),
-		       .tdi(tdi_dr),
+   bypass_register br (.clockDR(clk_dr), .tdi(tdi_dr),
 		       .shiftDR(shiftDR), // 10.1.1 (b)
 		       .tdo(tdo_br));   
    
-   device_identification_register didr (.tdi(tdi_dr),
-					.tdo(tdo_id),
+   device_identification_register didr (.tdi(tdi_dr), .tdo(tdo_id),
 					.clockDR(clk_dr || ~idcode),
 					.captureDR(captureDR));   
    
@@ -208,42 +189,3 @@ module jtag_test_logic
    end
    
 endmodule  // jtag_test_logic
-
-// synchronizer
-module cdc_sync_stb #(parameter RISING_EDGE = 1)
-   (input logic  a,
-    input logic  clk_b,
-    output logic b);
-
-   logic 	 sync1, sync2;
-   logic 	 lock;
-   
-   initial
-     lock = 0;
-   
-   always @(posedge clk_b) begin
-      sync1 <= a;
-      sync2 <= sync1;
-      
-      if (RISING_EDGE) begin
-         if (sync2 && ~lock) begin
-            lock <= 1;
-            b <= 1;
-         end
-         if (b)
-           b <= 0;
-         if (~sync2)
-           lock <= 0;
-      end else begin
-         if (~sync2 && ~lock) begin
-            lock <= 1;
-            b <= 0;
-         end
-         if (~b)
-           b <= 1;
-         if (sync2)
-           lock <= 0;
-      end
-   end
-   
-endmodule  // cdc_sync

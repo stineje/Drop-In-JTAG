@@ -1,10 +1,10 @@
 ///////////////////////////////////////////
-// bsr.sv
+// cdc_sync_stb.sv
 //
 // Written: james.stine@okstate.edu, jacob.pease@okstate.edu, matotto@okstate.edu 28 July 2025
 // Modified: 
 //
-// Purpose: Boundary Scan Register
+// Purpose: CDC synchronizer
 // 
 // A component of the CORE-V-WALLY configurable RISC-V project.
 // https://github.com/openhwgroup/cvw
@@ -25,36 +25,41 @@
 // and limitations under the License.
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-module bsr #(parameter WIDTH) (
-    input  clk,
-    input  update_dr,
-    input  shift_dr,
-    input  mode,
+module cdc_sync_stb #(parameter RISING_EDGE = 1)
+   (input logic  a,
+    input logic  clk_b,
+    output logic b);
 
-    input  tdi,
-    output tdo,
-    
-    input [WIDTH-1:0] parallel_in,
-    output [WIDTH-1:0] parallel_out
-);
+   logic 	 sync1, sync2;
+   logic 	 lock;
+   
+   initial
+     lock = 0;
+   
+   always @(posedge clk_b) begin
+      sync1 <= a;
+      sync2 <= sync1;
+      
+      if (RISING_EDGE) begin
+         if (sync2 && ~lock) begin
+            lock <= 1;
+            b <= 1;
+         end
+         if (b)
+           b <= 0;
+         if (~sync2)
+           lock <= 0;
+      end else begin
+         if (~sync2 && ~lock) begin
+            lock <= 1;
+            b <= 0;
+         end
+         if (~b)
+           b <= 1;
+         if (sync2)
+           lock <= 0;
+      end
+   end
+   
+endmodule // cdc_sync_stb
 
-logic [WIDTH:0] shift_reg;
-
-assign shift_reg[WIDTH] = tdi;
-assign tdo = shift_reg[0];
-
-genvar i;
-for (i=0; i<WIDTH; i=i+1) begin
-    bsr_cell bsr_cell (
-        .clk(clk),
-        .update_dr(update_dr),
-        .shift_dr(shift_dr),
-        .mode(mode),
-        .parallel_in(parallel_in[i]),
-        .parallel_out(parallel_out[i]),
-        .sequential_in(shift_reg[i+1]),
-        .sequential_out(shift_reg[i])
-    );
-end
-
-endmodule  // bsr
