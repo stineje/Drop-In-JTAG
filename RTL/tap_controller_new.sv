@@ -39,27 +39,9 @@ module tap_controller_new
    output logic updateDR,
    output logic select);
 
-   enum 	logic [3:0] {Exit2DR     = 4'h0,
-			     Exit1DR     = 4'h1,
-			     ShiftDR     = 4'h2,
-			     PauseDR     = 4'h3,
-			     SelectIR    = 4'h4,
-			     UpdateDR    = 4'h5,
-			     CaptureDR   = 4'h6,
-			     SelectDR    = 4'h7,
-			     Exit2IR     = 4'h8,
-			     Exit1IR     = 4'h9,
-			     ShiftIR     = 4'hA,
-			     PauseIR     = 4'hB,
-			     RunTestIdle = 4'hC,
-			     UpdateIR    = 4'hD,
-			     CaptureIR   = 4'hE,
-			     TLReset     = 4'hF
-			     } State;
-
    // -----------------------------------------------------------------------------
-   // TAP State to State[3] Mapping (IEEE 1149.1)
-   // State[3] distinguishes between DR path (0) and IR path (1)
+   // TAP Controller States (IEEE 1149.1)
+   // State[3] distinguishes between DR path (0) and IR path / special (1)
    //
    //   State Name     | Encoding | Binary  | State[3] | Path Type
    // -----------------+----------+---------+----------+------------------------
@@ -78,11 +60,36 @@ module tap_controller_new
    //   RunTestIdle    | 0xC      | 1100    |    1     | IR path
    //   UpdateIR       | 0xD      | 1101    |    1     | IR path
    //   CaptureIR      | 0xE      | 1110    |    1     | IR path
-   //   TLReset        | 0xF      | 1111    |    1     | IR path
+   //   TLReset        | 0xF      | 1111    |    1     | Special state
    //
    // Therefore:
-   //   assign select = State[3];
+   //   assign select = State[3];  See Figuare 6-5 in 1149.1
    // -----------------------------------------------------------------------------
+   typedef enum logic [3:0] {
+			     // --- DR Path States ---
+			     Exit2DR      = 4'h0,
+			     Exit1DR      = 4'h1,
+			     ShiftDR      = 4'h2,
+			     PauseDR      = 4'h3,
+			     SelectIR     = 4'h4,
+			     UpdateDR     = 4'h5,
+			     CaptureDR    = 4'h6,
+			     SelectDR     = 4'h7,
+			     
+			     // --- IR Path States ---
+			     Exit2IR      = 4'h8,
+			     Exit1IR      = 4'h9,
+			     ShiftIR      = 4'hA,
+			     PauseIR      = 4'hB,
+			     RunTestIdle  = 4'hC,
+			     UpdateIR     = 4'hD,
+			     CaptureIR    = 4'hE,
+			     
+			     // --- Special State ---
+			     TLReset      = 4'hF
+			     } tap_state_t;
+   
+   tap_state_t State;
    
    always @(posedge tck) begin
       if (~trst) State <= TLReset; 
