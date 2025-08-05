@@ -63,7 +63,7 @@ module tap_controller_new
    //   TLReset        | 0xF      | 1111    |    1     | Special state
    //
    // Therefore:
-   //   assign select = State[3];  See Figuare 6-5 in 1149.1
+   //   assign select = State[3];  See Figure 6-5 in 1149.1
    // -----------------------------------------------------------------------------
    typedef enum logic [3:0] {
 			     // --- DR Path States ---
