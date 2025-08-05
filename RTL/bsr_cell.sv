@@ -26,9 +26,14 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 module bsr_cell (
-    input clk, update_dr, shift_dr, mode,
-    input parallel_in, sequential_in,
-    output logic parallel_out, sequential_out
+    input logic  clk,
+    input logic	 update_dr, 
+    input logic  shift_dr, 
+    input logic  mode,
+    input logic  parallel_in, 
+    input logic  sequential_in,
+    output logic parallel_out, 
+    output logic sequential_out
 );
 
    logic 	 state_in, state_out;
