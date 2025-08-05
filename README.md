@@ -3,11 +3,11 @@ Open Source Silicon Development Testing Unit using JTAG
 
 Oklahoma State University
 School of Electrical and Computer Engineering
-Originally work by the following for a senior thesis.  
+Originally work by the following for a senior project.  
 
 Matthew Otto, Zach Johnson, Coleman Curtsinger, and James Stine
 
-The design is refined to be more concise for use with any project including add-on features including a FPGA implementation.
+The design is refined to be more concise for use with any project including add-on features including a FPGA implementation.   Implemented further by Jacob Pease and James Stine.
 
 # Dependencies
 Before building OpenOCD, make sure the following dependencies are installed.
@@ -41,12 +41,8 @@ sudo udevadm control --reload-rules
 sudo udevadm trigger
 ```
 
-Linux may require the follow to update the USB device 
+Linux may require the sudo items above to update the USB device.  If this fails, try a reboot. 
 
-```bash
-sudo udevadm control --reload-rules
-sudo udevadm trigger
-```
 
 # Running OpenOCD
 Use the following command to run OpenOCD:
