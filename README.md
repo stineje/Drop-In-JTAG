@@ -41,12 +41,8 @@ sudo udevadm control --reload-rules
 sudo udevadm trigger
 ```
 
-Linux may require the follow to update the USB device 
+Linux may require the sudo items above to update the USB device.  If this fails, try a reboot. 
 
-```bash
-sudo udevadm control --reload-rules
-sudo udevadm trigger
-```
 
 # Running OpenOCD
 Use the following command to run OpenOCD:
