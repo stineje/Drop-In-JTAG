@@ -1,8 +1,8 @@
 # Drop-In-JTAG
 Open Source Silicon Development Testing Unit using JTAG
 
-Oklahoma State University
-School of Electrical and Computer Engineering
+Oklahoma State University <br>
+School of Electrical and Computer Engineering <br>
 
 Team
 -----
