@@ -6,11 +6,11 @@ School of Electrical and Computer Engineering
 
 Team
 -----
-James Stine
-Jacob Pease
-Matthew Otto
-Zach Johnon
-Coleman Curtsinger
+James Stine <br>
+Jacob Pease <br>
+Matthew Otto <br>
+Zach Johnon <br>
+Coleman Curtsinger <br>
 
 # Dependencies
 Before building OpenOCD, make sure the following dependencies are installed.
