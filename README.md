@@ -3,11 +3,14 @@ Open Source Silicon Development Testing Unit using JTAG
 
 Oklahoma State University
 School of Electrical and Computer Engineering
-Originally work by the following for a senior project.  
 
-Matthew Otto, Zach Johnson, Coleman Curtsinger, and James Stine
-
-The design is refined to be more concise for use with any project including add-on features including a FPGA implementation.   Implemented further by Jacob Pease and James Stine.
+Team
+-----
+James Stine
+Jacob Pease
+Matthew Otto
+Zach Johnon
+Coleman Curtsinger
 
 # Dependencies
 Before building OpenOCD, make sure the following dependencies are installed.
