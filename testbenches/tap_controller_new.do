@@ -14,7 +14,7 @@ if [file exists work] {
 vlib work
 
 # compile source files
-vlog ../RTL/tap_controller_new.sv tb_tap_controller_new.sv
+vlog ../JTAG-HDL/tap_controller_new.sv tb_tap_controller_new.sv
 
 # start and run simulation
 vsim -wlf tap_controller_new.wlf -voptargs=+acc work.testbench
