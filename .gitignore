@@ -1,10 +1,9 @@
-# Ignore system files
-*~
-.DS_Store
-*.swp
-*.bak
-*.tmp
-**/work/
+# Ignore compiled files
+*.o
+*.vvp
+*.vcd
+*.out
+*.log
 
 # Ignore simulation tool temporary files
 work/
@@ -25,11 +24,8 @@ work/
 *.qsf
 *.rpt
 
-# Ignore compiled files
-*.o
-*.vvp
-*.vcd
-*.out
-*.log
-
-
+# Ignore system files
+.DS_Store
+*.swp
+*.bak
+*.tmp
