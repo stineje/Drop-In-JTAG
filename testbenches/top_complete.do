@@ -112,7 +112,7 @@ configure wave -rowmargin 4
 configure wave -childrowmargin 2
 
 -- Run the Simulation
-run 400 ns
+run 10000 ns
 
 -- Add schematic
 # add schematic -full sim:/testbench/dut/jtag
