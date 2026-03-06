@@ -422,3 +422,6 @@ do top_complete.do
 # Break in Module testbench at ../testbenches/tb_top.sv line 100
 # DebugDB::get_child_count_from_duid no such table: shape_tblShowFullView error1 DebugDB QueryError:
 #   GetInstInfo1 = no such table: rw_du_inst_tbl
+exit
+# End time: 09:25:15 on Mar 06,2026, Elapsed time: 0:00:59
+# Errors: 0, Warnings: 0

@@ -130,8 +130,7 @@ configure wave -childrowmargin 2
 run 10000 ns
 
 -- Add schematic
-# add schematic -full sim:/testbench/dut/jtag
-add schematic -full sim:/testbench/dut
+# add schematic -full sim:/testbench/dut
 
 -- Save memory for checking (if needed)
 # mem save -outfile memory.dat -wordsperline 1 /testbench/dut/dmem/RAM
