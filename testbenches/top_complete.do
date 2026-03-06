@@ -24,6 +24,9 @@ vlog ../RISCV_pipe/riscv_pipelined.sv
 # start and run simulation
 vsim -debugdb  -voptargs=+acc work.testbench
 
+# Load dram to 0
+mem load -filltype value -filldata 0 -startaddress 0 -endaddress 255 sim:/testbench/dut/dmem/RAM
+
 #+nowarn3829 -error 3015
 
 # view list
@@ -128,6 +131,10 @@ configure wave -childrowmargin 2
 
 -- Run the Simulation
 run 10000 ns
+
+if {[info exists gui] && $gui} {
+    wave sort ascending
+}
 
 -- Add schematic
 # add schematic -full sim:/testbench/dut
