@@ -19,7 +19,7 @@ vlog ../JTAG-HDL/bsr_cell.sv ../JTAG-HDL/cdc_sync_stb.sv
 vlog ../JTAG-HDL/tap_controller.sv ../JTAG-HDL/instruction_register.sv 
 vlog ../JTAG-HDL/bypass_register.sv ../JTAG-HDL/bsr.sv
 vlog ../JTAG-HDL/device_identification_register.sv
-vlog ../RISCV_pipe/hdl/riscv_pipelined.sv
+vlog ../RISCV_pipe/riscv_pipelined.sv
 
 # start and run simulation
 vsim  -voptargs=+acc work.testbench
@@ -30,7 +30,7 @@ vsim  -voptargs=+acc work.testbench
 # view wave
 
 # Load Decoding
-do ../RISCV_pipe/hdl/wave.do
+do ../RISCV_pipe/wave.do
 
 # RISC-V core waves
 -- display input and output signals as hexidecimal values
@@ -112,7 +112,7 @@ configure wave -rowmargin 4
 configure wave -childrowmargin 2
 
 -- Run the Simulation
-run 10000 ns
+run 100 ns
 
 -- Add schematic
 #add schematic -full sim:/testbench/dut/jtag

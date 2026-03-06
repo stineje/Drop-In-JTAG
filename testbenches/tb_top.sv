@@ -57,14 +57,13 @@ initial begin
     static logic [11:0] sp_tmsvector = 'b1100_0001_1100;
     static logic [11:0] sp_tdivector = 'b0000_0100_0000; // LSB first
 
-
     while (1) begin
         @(negedge clk) begin
             if (dut.MemWriteM) begin
                 if(dut.DataAdrM === 100 & dut.WriteDataM === 25) begin
                     $display("Simulation succeeded");
                     break;
-                end else if (dut.DataAdrM !== 96) begin
+                end else if (dut.DataAdrM != 96) begin
                     $display("Simulation failed");
                     break;
                 end
