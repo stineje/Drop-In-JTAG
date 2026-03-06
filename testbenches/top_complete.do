@@ -22,7 +22,7 @@ vlog ../JTAG-HDL/device_identification_register.sv
 vlog ../RISCV_pipe/riscv_pipelined.sv
 
 # start and run simulation
-vsim  -voptargs=+acc work.testbench
+vsim -debugdb  -voptargs=+acc work.testbench
 
 #+nowarn3829 -error 3015
 
@@ -93,10 +93,10 @@ add wave -label updateDR -hex /testbench/dut/jtag/fsm/updateDR
 add wave -label select -hex /testbench/dut/jtag/fsm/select
 
 
-add wave -noupdate -divider -height 32 "All Signals"
-# Diplays All Signals recursively
-add wave -hex -r /testbench/*
-#add wave -noupdate -divider -height 32 "Title"
+# add wave -noupdate -divider -height 32 "All Signals"
+# Diplays All Signals recursivelya
+# add wave -hex -r /testbench/*
+# add wave -noupdate -divider -height 32 "Title"
 
 
 -- Set Wave Output Items 
@@ -105,18 +105,18 @@ WaveRestoreZoom {0 ps} {200 ns}
 configure wave -namecolwidth 250
 configure wave -valuecolwidth 100
 configure wave -justifyvalue left
-configure wave -signalnamewidth 0
+configure wave -signalnamewidth 1
 configure wave -snapdistance 10
 configure wave -datasetprefix 0
 configure wave -rowmargin 4
 configure wave -childrowmargin 2
 
 -- Run the Simulation
-run 100 ns
+run 300 ns
 
 -- Add schematic
-#add schematic -full sim:/testbench/dut/jtag
-#add schematic -full sim:/testbench/dut/core
+# add schematic -full sim:/testbench/dut/jtag
+add schematic -full sim:/testbench/dut
 
 -- Save memory for checking (if needed)
 # mem save -outfile memory.dat -wordsperline 1 /testbench/dut/dmem/RAM

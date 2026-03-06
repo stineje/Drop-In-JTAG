@@ -14,7 +14,7 @@
 # //
 # do top_complete.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 16:08:26 on Mar 05,2026
+# Start time: 06:32:13 on Mar 06,2026
 # vlog -reportprogress 300 ../testbenches/tb_top.sv ../JTAG-HDL/top.sv ../JTAG-HDL/jtag_test_logic.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -22,10 +22,10 @@
 # 
 # Top level modules:
 # 	testbench
-# End time: 16:08:26 on Mar 05,2026, Elapsed time: 0:00:00
+# End time: 06:32:13 on Mar 06,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 16:08:26 on Mar 05,2026
+# Start time: 06:32:13 on Mar 06,2026
 # vlog -reportprogress 300 ../JTAG-HDL/bsr_cell.sv ../JTAG-HDL/cdc_sync_stb.sv 
 # -- Compiling module bsr_cell
 # -- Compiling module cdc_sync_stb
@@ -33,10 +33,10 @@
 # Top level modules:
 # 	bsr_cell
 # 	cdc_sync_stb
-# End time: 16:08:26 on Mar 05,2026, Elapsed time: 0:00:00
+# End time: 06:32:13 on Mar 06,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 16:08:26 on Mar 05,2026
+# Start time: 06:32:13 on Mar 06,2026
 # vlog -reportprogress 300 ../JTAG-HDL/tap_controller.sv ../JTAG-HDL/instruction_register.sv 
 # -- Compiling module tap_controller
 # -- Compiling module instruction_register
@@ -44,10 +44,10 @@
 # Top level modules:
 # 	tap_controller
 # 	instruction_register
-# End time: 16:08:26 on Mar 05,2026, Elapsed time: 0:00:00
+# End time: 06:32:13 on Mar 06,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 16:08:26 on Mar 05,2026
+# Start time: 06:32:13 on Mar 06,2026
 # vlog -reportprogress 300 ../JTAG-HDL/bypass_register.sv ../JTAG-HDL/bsr.sv 
 # -- Compiling module bypass_register
 # -- Compiling module bsr
@@ -55,19 +55,19 @@
 # Top level modules:
 # 	bypass_register
 # 	bsr
-# End time: 16:08:26 on Mar 05,2026, Elapsed time: 0:00:00
+# End time: 06:32:13 on Mar 06,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 16:08:26 on Mar 05,2026
+# Start time: 06:32:13 on Mar 06,2026
 # vlog -reportprogress 300 ../JTAG-HDL/device_identification_register.sv 
 # -- Compiling module device_identification_register
 # 
 # Top level modules:
 # 	device_identification_register
-# End time: 16:08:26 on Mar 05,2026, Elapsed time: 0:00:00
+# End time: 06:32:13 on Mar 06,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 16:08:26 on Mar 05,2026
+# Start time: 06:32:13 on Mar 06,2026
 # vlog -reportprogress 300 ../RISCV_pipe/riscv_pipelined.sv 
 # -- Compiling module riscv
 # -- Compiling module controller
@@ -92,12 +92,15 @@
 # 	riscv
 # 	imem
 # 	dmem
-# End time: 16:08:26 on Mar 05,2026, Elapsed time: 0:00:00
+# End time: 06:32:13 on Mar 06,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vsim -voptargs="+acc" work.testbench 
-# Start time: 16:08:26 on Mar 05,2026
+# vsim -debugdb -voptargs="+acc" work.testbench 
+# Start time: 06:32:14 on Mar 06,2026
 # ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=256, type=RAM at location ../RISCV_pipe/riscv_pipelined.sv:405
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=64, type=ROM at location ../RISCV_pipe/riscv_pipelined.sv:389
 # ** Note: (vopt-143) Recognized 1 FSM in module "jtag_test_logic(fast)".
 # ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
 # Loading sv_std.std
@@ -135,20 +138,10 @@
 # Loading work.bsr(fast)
 # Loading work.bsr_cell(fast)
 # Loading work.bsr(fast__1)
+# ** Note: (vsim-8900) Creating design debug database vsim.dbg.
 # Simulation succeeded
 # HALTing system logic
-run 3500ns
+run 100ns
 # putting TAP in SAMPLE/PRELOAD
-# Scanning DR register
-run 40ns
-run 100ns
-run 100ns
-# Returning to test-logic reset
-run 100ns
-run 100ns
-# ReadDataM: xxxxxxxX | WriteDataM 00000000 | DataAdrM: 00000000X | MemWriteM: x | InstrF: xxxxxxxX | PCF: 34000000
-# ** Note: $stop    : ../testbenches/tb_top.sv(105)
-#    Time: 3990 ns  Iteration: 1  Instance: /testbench
-# Break in Module testbench at ../testbenches/tb_top.sv line 105
-# End time: 18:45:22 on Mar 05,2026, Elapsed time: 2:36:56
+# End time: 06:36:30 on Mar 06,2026, Elapsed time: 0:04:16
 # Errors: 0, Warnings: 1
