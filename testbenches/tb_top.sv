@@ -96,7 +96,7 @@ module testbench();
          end
       end
       
-      $display("ReadDataM: %h | WriteDataM %h | DataAdrM: %h | MemWriteM: %b | InstrF: %h | PCF: %h", tdovector[160:129],tdovector[128:97],tdovector[96:64],tdovector[64:64],tdovector[63:32],tdovector[31:0]);
+      $display("ReadDataM: %h | WriteDataM %h | DataAdrM: %h | MemWriteM: %b | InstrF: %h | PCF: %h", tdovector[160:129],tdovector[128:97],tdovector[96:65],tdovector[64:64],tdovector[63:32],tdovector[31:0]);
       $stop;
    end
    
