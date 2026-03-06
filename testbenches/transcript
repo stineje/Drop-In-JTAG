@@ -14,7 +14,7 @@
 # //
 # do top_complete.do
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:08:13 on Mar 06,2026
+# Start time: 09:21:23 on Mar 06,2026
 # vlog -reportprogress 300 ../testbenches/tb_top.sv ../JTAG-HDL/top.sv ../JTAG-HDL/jtag_test_logic.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -22,10 +22,10 @@
 # 
 # Top level modules:
 # 	testbench
-# End time: 09:08:13 on Mar 06,2026, Elapsed time: 0:00:00
+# End time: 09:21:23 on Mar 06,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:08:13 on Mar 06,2026
+# Start time: 09:21:23 on Mar 06,2026
 # vlog -reportprogress 300 ../JTAG-HDL/bsr_cell.sv ../JTAG-HDL/cdc_sync_stb.sv 
 # -- Compiling module bsr_cell
 # -- Compiling module cdc_sync_stb
@@ -33,10 +33,10 @@
 # Top level modules:
 # 	bsr_cell
 # 	cdc_sync_stb
-# End time: 09:08:13 on Mar 06,2026, Elapsed time: 0:00:00
+# End time: 09:21:23 on Mar 06,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:08:13 on Mar 06,2026
+# Start time: 09:21:23 on Mar 06,2026
 # vlog -reportprogress 300 ../JTAG-HDL/tap_controller.sv ../JTAG-HDL/instruction_register.sv 
 # -- Compiling module tap_controller
 # -- Compiling module instruction_register
@@ -44,10 +44,10 @@
 # Top level modules:
 # 	tap_controller
 # 	instruction_register
-# End time: 09:08:13 on Mar 06,2026, Elapsed time: 0:00:00
+# End time: 09:21:23 on Mar 06,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:08:13 on Mar 06,2026
+# Start time: 09:21:23 on Mar 06,2026
 # vlog -reportprogress 300 ../JTAG-HDL/bypass_register.sv ../JTAG-HDL/bsr.sv 
 # -- Compiling module bypass_register
 # -- Compiling module bsr
@@ -55,19 +55,19 @@
 # Top level modules:
 # 	bypass_register
 # 	bsr
-# End time: 09:08:13 on Mar 06,2026, Elapsed time: 0:00:00
+# End time: 09:21:23 on Mar 06,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:08:14 on Mar 06,2026
+# Start time: 09:21:23 on Mar 06,2026
 # vlog -reportprogress 300 ../JTAG-HDL/device_identification_register.sv 
 # -- Compiling module device_identification_register
 # 
 # Top level modules:
 # 	device_identification_register
-# End time: 09:08:14 on Mar 06,2026, Elapsed time: 0:00:00
+# End time: 09:21:23 on Mar 06,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:08:14 on Mar 06,2026
+# Start time: 09:21:23 on Mar 06,2026
 # vlog -reportprogress 300 ../RISCV_pipe/riscv_pipelined.sv 
 # -- Compiling module riscv
 # -- Compiling module controller
@@ -92,10 +92,10 @@
 # 	riscv
 # 	imem
 # 	dmem
-# End time: 09:08:14 on Mar 06,2026, Elapsed time: 0:00:00
+# End time: 09:21:23 on Mar 06,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 09:08:14 on Mar 06,2026
+# Start time: 09:21:23 on Mar 06,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
@@ -139,17 +139,21 @@
 # Loading work.bsr_cell(fast)
 # Loading work.bsr(fast__1)
 # ** Note: (vsim-8900) Creating design debug database vsim.dbg.
-# ** Error: (vish-4014) No objects found matching '/testbench/dut/jtag/trst,'.
-# Error in macro ./top_complete.do line 82
-# (vish-4014) No objects found matching '/testbench/dut/jtag/trst,'.
-#     while executing
-# "add wave -noupdate -divider -height 32 "JTAG block""
+# Simulation succeeded
+# HALTing system logic
+# putting TAP in SAMPLE/PRELOAD
+# Scanning DR register
+# Returning to test-logic reset
+# ReadDataM: xxxxxxxX | WriteDataM 00000000 | DataAdrM: 00000000X | MemWriteM: x | InstrF: xxxxxxxX | PCF: 34000000
+# ** Note: $stop    : ../testbenches/tb_top.sv(100)
+#    Time: 3990 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at ../testbenches/tb_top.sv line 100
 do top_complete.do
 # ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is jstine@avatar.
 # ** Warning: (vlib-34) Library already exists at "work".
 # Errors: 0, Warnings: 1
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:08:38 on Mar 06,2026
+# Start time: 09:23:19 on Mar 06,2026
 # vlog -reportprogress 300 ../testbenches/tb_top.sv ../JTAG-HDL/top.sv ../JTAG-HDL/jtag_test_logic.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -157,10 +161,10 @@ do top_complete.do
 # 
 # Top level modules:
 # 	testbench
-# End time: 09:08:38 on Mar 06,2026, Elapsed time: 0:00:00
+# End time: 09:23:19 on Mar 06,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:08:38 on Mar 06,2026
+# Start time: 09:23:19 on Mar 06,2026
 # vlog -reportprogress 300 ../JTAG-HDL/bsr_cell.sv ../JTAG-HDL/cdc_sync_stb.sv 
 # -- Compiling module bsr_cell
 # -- Compiling module cdc_sync_stb
@@ -168,10 +172,10 @@ do top_complete.do
 # Top level modules:
 # 	bsr_cell
 # 	cdc_sync_stb
-# End time: 09:08:38 on Mar 06,2026, Elapsed time: 0:00:00
+# End time: 09:23:19 on Mar 06,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:08:38 on Mar 06,2026
+# Start time: 09:23:19 on Mar 06,2026
 # vlog -reportprogress 300 ../JTAG-HDL/tap_controller.sv ../JTAG-HDL/instruction_register.sv 
 # -- Compiling module tap_controller
 # -- Compiling module instruction_register
@@ -179,10 +183,10 @@ do top_complete.do
 # Top level modules:
 # 	tap_controller
 # 	instruction_register
-# End time: 09:08:38 on Mar 06,2026, Elapsed time: 0:00:00
+# End time: 09:23:20 on Mar 06,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:08:38 on Mar 06,2026
+# Start time: 09:23:20 on Mar 06,2026
 # vlog -reportprogress 300 ../JTAG-HDL/bypass_register.sv ../JTAG-HDL/bsr.sv 
 # -- Compiling module bypass_register
 # -- Compiling module bsr
@@ -190,19 +194,19 @@ do top_complete.do
 # Top level modules:
 # 	bypass_register
 # 	bsr
-# End time: 09:08:38 on Mar 06,2026, Elapsed time: 0:00:00
+# End time: 09:23:20 on Mar 06,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:08:38 on Mar 06,2026
+# Start time: 09:23:20 on Mar 06,2026
 # vlog -reportprogress 300 ../JTAG-HDL/device_identification_register.sv 
 # -- Compiling module device_identification_register
 # 
 # Top level modules:
 # 	device_identification_register
-# End time: 09:08:38 on Mar 06,2026, Elapsed time: 0:00:00
+# End time: 09:23:20 on Mar 06,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:08:38 on Mar 06,2026
+# Start time: 09:23:20 on Mar 06,2026
 # vlog -reportprogress 300 ../RISCV_pipe/riscv_pipelined.sv 
 # -- Compiling module riscv
 # -- Compiling module controller
@@ -227,12 +231,12 @@ do top_complete.do
 # 	riscv
 # 	imem
 # 	dmem
-# End time: 09:08:38 on Mar 06,2026, Elapsed time: 0:00:00
+# End time: 09:23:20 on Mar 06,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# End time: 09:08:39 on Mar 06,2026, Elapsed time: 0:00:25
-# Errors: 1, Warnings: 1
+# End time: 09:23:21 on Mar 06,2026, Elapsed time: 0:01:58
+# Errors: 0, Warnings: 1
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 09:08:39 on Mar 06,2026
+# Start time: 09:23:21 on Mar 06,2026
 # ** Note: (vsim-8009) Loading existing optimized design _opt
 # Loading sv_std.std
 # Loading work.testbench(fast)
@@ -286,7 +290,7 @@ do top_complete.do
 # ** Warning: (vlib-34) Library already exists at "work".
 # Errors: 0, Warnings: 1
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:10:08 on Mar 06,2026
+# Start time: 09:24:14 on Mar 06,2026
 # vlog -reportprogress 300 ../testbenches/tb_top.sv ../JTAG-HDL/top.sv ../JTAG-HDL/jtag_test_logic.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -294,10 +298,10 @@ do top_complete.do
 # 
 # Top level modules:
 # 	testbench
-# End time: 09:10:08 on Mar 06,2026, Elapsed time: 0:00:00
+# End time: 09:24:14 on Mar 06,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:10:08 on Mar 06,2026
+# Start time: 09:24:15 on Mar 06,2026
 # vlog -reportprogress 300 ../JTAG-HDL/bsr_cell.sv ../JTAG-HDL/cdc_sync_stb.sv 
 # -- Compiling module bsr_cell
 # -- Compiling module cdc_sync_stb
@@ -305,10 +309,10 @@ do top_complete.do
 # Top level modules:
 # 	bsr_cell
 # 	cdc_sync_stb
-# End time: 09:10:08 on Mar 06,2026, Elapsed time: 0:00:00
+# End time: 09:24:15 on Mar 06,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:10:08 on Mar 06,2026
+# Start time: 09:24:15 on Mar 06,2026
 # vlog -reportprogress 300 ../JTAG-HDL/tap_controller.sv ../JTAG-HDL/instruction_register.sv 
 # -- Compiling module tap_controller
 # -- Compiling module instruction_register
@@ -316,10 +320,10 @@ do top_complete.do
 # Top level modules:
 # 	tap_controller
 # 	instruction_register
-# End time: 09:10:08 on Mar 06,2026, Elapsed time: 0:00:00
+# End time: 09:24:15 on Mar 06,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:10:08 on Mar 06,2026
+# Start time: 09:24:15 on Mar 06,2026
 # vlog -reportprogress 300 ../JTAG-HDL/bypass_register.sv ../JTAG-HDL/bsr.sv 
 # -- Compiling module bypass_register
 # -- Compiling module bsr
@@ -327,19 +331,19 @@ do top_complete.do
 # Top level modules:
 # 	bypass_register
 # 	bsr
-# End time: 09:10:08 on Mar 06,2026, Elapsed time: 0:00:00
+# End time: 09:24:15 on Mar 06,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:10:09 on Mar 06,2026
+# Start time: 09:24:15 on Mar 06,2026
 # vlog -reportprogress 300 ../JTAG-HDL/device_identification_register.sv 
 # -- Compiling module device_identification_register
 # 
 # Top level modules:
 # 	device_identification_register
-# End time: 09:10:09 on Mar 06,2026, Elapsed time: 0:00:00
+# End time: 09:24:15 on Mar 06,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:10:09 on Mar 06,2026
+# Start time: 09:24:15 on Mar 06,2026
 # vlog -reportprogress 300 ../RISCV_pipe/riscv_pipelined.sv 
 # -- Compiling module riscv
 # -- Compiling module controller
@@ -364,12 +368,12 @@ do top_complete.do
 # 	riscv
 # 	imem
 # 	dmem
-# End time: 09:10:09 on Mar 06,2026, Elapsed time: 0:00:00
+# End time: 09:24:15 on Mar 06,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# End time: 09:10:10 on Mar 06,2026, Elapsed time: 0:01:31
+# End time: 09:24:16 on Mar 06,2026, Elapsed time: 0:00:55
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 09:10:10 on Mar 06,2026
+# Start time: 09:24:16 on Mar 06,2026
 # ** Note: (vsim-8009) Loading existing optimized design _opt
 # Loading sv_std.std
 # Loading work.testbench(fast)
@@ -418,142 +422,3 @@ do top_complete.do
 # Break in Module testbench at ../testbenches/tb_top.sv line 100
 # DebugDB::get_child_count_from_duid no such table: shape_tblShowFullView error1 DebugDB QueryError:
 #   GetInstInfo1 = no such table: rw_du_inst_tbl
-do top_complete.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is jstine@avatar.
-# ** Warning: (vlib-34) Library already exists at "work".
-# Errors: 0, Warnings: 1
-# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:13:27 on Mar 06,2026
-# vlog -reportprogress 300 ../testbenches/tb_top.sv ../JTAG-HDL/top.sv ../JTAG-HDL/jtag_test_logic.sv 
-# -- Compiling module testbench
-# -- Compiling module top
-# -- Compiling module jtag_test_logic
-# 
-# Top level modules:
-# 	testbench
-# End time: 09:13:27 on Mar 06,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:13:27 on Mar 06,2026
-# vlog -reportprogress 300 ../JTAG-HDL/bsr_cell.sv ../JTAG-HDL/cdc_sync_stb.sv 
-# -- Compiling module bsr_cell
-# -- Compiling module cdc_sync_stb
-# 
-# Top level modules:
-# 	bsr_cell
-# 	cdc_sync_stb
-# End time: 09:13:27 on Mar 06,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:13:27 on Mar 06,2026
-# vlog -reportprogress 300 ../JTAG-HDL/tap_controller.sv ../JTAG-HDL/instruction_register.sv 
-# -- Compiling module tap_controller
-# -- Compiling module instruction_register
-# 
-# Top level modules:
-# 	tap_controller
-# 	instruction_register
-# End time: 09:13:27 on Mar 06,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:13:27 on Mar 06,2026
-# vlog -reportprogress 300 ../JTAG-HDL/bypass_register.sv ../JTAG-HDL/bsr.sv 
-# -- Compiling module bypass_register
-# -- Compiling module bsr
-# 
-# Top level modules:
-# 	bypass_register
-# 	bsr
-# End time: 09:13:27 on Mar 06,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:13:27 on Mar 06,2026
-# vlog -reportprogress 300 ../JTAG-HDL/device_identification_register.sv 
-# -- Compiling module device_identification_register
-# 
-# Top level modules:
-# 	device_identification_register
-# End time: 09:13:27 on Mar 06,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# QuestaSim-64 vlog 2023.4_3 Compiler 2024.02 Feb 17 2024
-# Start time: 09:13:27 on Mar 06,2026
-# vlog -reportprogress 300 ../RISCV_pipe/riscv_pipelined.sv 
-# -- Compiling module riscv
-# -- Compiling module controller
-# -- Compiling module maindec
-# -- Compiling module aludec
-# -- Compiling module datapath
-# -- Compiling module hazard
-# -- Compiling module regfile
-# -- Compiling module adder
-# -- Compiling module extend
-# -- Compiling module flopr
-# -- Compiling module flopenr
-# -- Compiling module flopenrc
-# -- Compiling module floprc
-# -- Compiling module mux2
-# -- Compiling module mux3
-# -- Compiling module imem
-# -- Compiling module dmem
-# -- Compiling module alu
-# 
-# Top level modules:
-# 	riscv
-# 	imem
-# 	dmem
-# End time: 09:13:27 on Mar 06,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# End time: 09:13:29 on Mar 06,2026, Elapsed time: 0:03:19
-# Errors: 0, Warnings: 0
-# vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 09:13:29 on Mar 06,2026
-# ** Note: (vsim-8009) Loading existing optimized design _opt
-# Loading sv_std.std
-# Loading work.testbench(fast)
-# Loading work.top(fast)
-# Loading work.jtag_test_logic(fast)
-# Loading work.tap_controller(fast)
-# Loading work.instruction_register(fast)
-# Loading work.bypass_register(fast)
-# Loading work.device_identification_register(fast)
-# Loading work.cdc_sync_stb(fast)
-# Loading work.cdc_sync_stb(fast__1)
-# Loading work.cdc_sync_stb(fast__2)
-# Loading work.riscv(fast)
-# Loading work.controller(fast)
-# Loading work.maindec(fast)
-# Loading work.aludec(fast)
-# Loading work.floprc(fast)
-# Loading work.flopr(fast)
-# Loading work.flopr(fast__1)
-# Loading work.datapath(fast)
-# Loading work.mux2(fast)
-# Loading work.flopenr(fast)
-# Loading work.adder(fast)
-# Loading work.flopenrc(fast)
-# Loading work.regfile(fast)
-# Loading work.extend(fast)
-# Loading work.floprc(fast__1)
-# Loading work.mux3(fast)
-# Loading work.alu(fast)
-# Loading work.flopr(fast__2)
-# Loading work.hazard(fast)
-# Loading work.imem(fast)
-# Loading work.dmem(fast)
-# Loading work.bsr(fast)
-# Loading work.bsr_cell(fast)
-# Loading work.bsr(fast__1)
-# ** Note: (vsim-8716) Reusing existing debug database vsim.dbg.
-# Simulation succeeded
-# HALTing system logic
-# putting TAP in SAMPLE/PRELOAD
-# Scanning DR register
-# Returning to test-logic reset
-# ReadDataM: xxxxxxxX | WriteDataM 00000000 | DataAdrM: 00000000X | MemWriteM: x | InstrF: xxxxxxxX | PCF: 34000000
-# ** Note: $stop    : ../testbenches/tb_top.sv(100)
-#    Time: 3990 ns  Iteration: 1  Instance: /testbench
-# Break in Module testbench at ../testbenches/tb_top.sv line 100
-# DebugDB::get_child_count_from_duid no such table: shape_tblShowFullView error1 DebugDB QueryError:
-#   GetInstInfo1 = no such table: rw_du_inst_tbl
-# End time: 09:14:15 on Mar 06,2026, Elapsed time: 0:00:46
-# Errors: 0, Warnings: 0

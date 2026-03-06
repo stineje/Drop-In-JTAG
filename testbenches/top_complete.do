@@ -76,38 +76,38 @@ add wave -label updateDR -hex /testbench/dut/jtag/fsm/updateDR
 add wave -label select -hex /testbench/dut/jtag/fsm/select
 
 add wave -noupdate -divider -height 32 "JTAG block"
-add wave -label jtag -hex /testbench/dut/jtag/tck
-add wave -label jtag -hex /testbench/dut/jtag/tms
-add wave -label jtag -hex /testbench/dut/jtag/tdi
-add wave -label jtag -hex /testbench/dut/jtag/trst
-add wave -label jtag -hex /testbench/dut/jtag/tdo
-add wave -label jtag -hex /testbench/dut/jtag/bsr_tdi
-add wave -label jtag -hex /testbench/dut/jtag/bsr_clk
-add wave -label jtag -hex /testbench/dut/jtag/bsr_update
-add wave -label jtag -hex /testbench/dut/jtag/bsr_shift
-add wave -label jtag -hex /testbench/dut/jtag/bsr_mode
-add wave -label jtag -hex /testbench/dut/jtag/bsr_tdo
-add wave -label jtag -hex /testbench/dut/jtag/sys_clk
-add wave -label jtag -hex /testbench/dut/jtag/dbg_clk
-add wave -label jtag -hex /testbench/dut/jtag/dm_reset
+add wave -hex /testbench/dut/jtag/tck
+add wave -hex /testbench/dut/jtag/tms
+add wave -hex /testbench/dut/jtag/tdi
+add wave -hex /testbench/dut/jtag/trst
+add wave -hex /testbench/dut/jtag/tdo
+add wave -hex /testbench/dut/jtag/bsr_tdi
+add wave -hex /testbench/dut/jtag/bsr_clk
+add wave -hex /testbench/dut/jtag/bsr_update
+add wave -hex /testbench/dut/jtag/bsr_shift
+add wave -hex /testbench/dut/jtag/bsr_mode
+add wave -hex /testbench/dut/jtag/bsr_tdo
+add wave -hex /testbench/dut/jtag/sys_clk
+add wave -hex /testbench/dut/jtag/dbg_clk
+add wave -hex /testbench/dut/jtag/dm_reset
 
 add wave -noupdate -divider -height 32 "PCF_bsr"
-add wave -label pcf_bsr -hex /testbench/dut/PCF_bsr/*
+add wave -hex /testbench/dut/PCF_bsr/*
 
 add wave -noupdate -divider -height 32 "InstrF_bsr"
-add wave -label instrf_bsr -hex /testbench/dut/InstrF_bsr/*
+add wave -hex /testbench/dut/InstrF_bsr/*
 
 add wave -noupdate -divider -height 32 "MemWriteM_bsr"
-add wave -label memwritem_bsr -hex /testbench/dut/MemWriteM_bsr/*
+add wave -hex /testbench/dut/MemWriteM_bsr/*
 
 add wave -noupdate -divider -height 32 "DataAdrM_bsr"
-add wave -label dataadrm_bsr -hex /testbench/dut/DataAdrM_bsr/*
+add wave -hex /testbench/dut/DataAdrM_bsr/*
 
 add wave -noupdate -divider -height 32 "WriteDataM_bsr"
-add wave -label writedatam_bsr -hex /testbench/dut/WriteDataM_bsr/*
+add wave -hex /testbench/dut/WriteDataM_bsr/*
 
 add wave -noupdate -divider -height 32 "ReadDataM_bsr"
-add wave -label readdata_bsr -hex /testbench/dut/ReadDataM_bsr/*
+add wave -hex /testbench/dut/ReadDataM_bsr/*
 
 # add wave -noupdate -divider -height 32 "All Signals"
 # Diplays All Signals recursivelya
