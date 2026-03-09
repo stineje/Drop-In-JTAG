@@ -8,6 +8,8 @@ module testbench();
    logic   tdo_ref, tdo_sample;
    logic   clk;
    logic   reset;
+   logic [160:0] tdovector;
+   
 
 
    top dut (.tck(tck),
@@ -44,7 +46,7 @@ module testbench();
    end
    
    initial begin
-      logic [160:0] tdovector;
+      //logic [160:0] tdovector;
       
       static logic [11:0] halt_tmsvector = 'b101100_0001_10;
       static logic [11:0] halt_tdivector = 'b000000_0110_00; // LSB first
@@ -95,8 +97,9 @@ module testbench();
             tdi <= 1;
          end
       end
-      
-      $display("ReadDataM: %h | WriteDataM %h | DataAdrM: %h | MemWriteM: %b | InstrF: %h | PCF: %h", tdovector[160:129],tdovector[128:97],tdovector[96:65],tdovector[64:64],tdovector[63:32],tdovector[31:0]);
+
+      $display("ReadDataM: %h | WriteDataM %h | DataAdrM: %h | MemWriteM: %b | InstrF: %h | PCF: %h", 
+	       tdovector[160:129], tdovector[128:97], tdovector[96:65], tdovector[64:64], tdovector[63:32], tdovector[31:0]);
       $stop;
    end
    

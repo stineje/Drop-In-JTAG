@@ -41,9 +41,7 @@ add wave -noupdate -divider -height 32 "Instructions"
 add wave -noupdate -expand -group Instructions /testbench/dut/core/reset
 add wave -noupdate -expand -group Instructions -color {Orange Red} /testbench/dut/core/PCF
 add wave -noupdate -expand -group Instructions -color Orange /testbench/dut/core/InstrF
-add wave -noupdate -expand -group Instructions -color Orange -radix Instructions /testbench/dut/core/InstrF
-add wave -noupdate -expand -group Instructions -color Orange /testbench/dut/core/dp/InstrF
-add wave -noupdate -expand -group Instructions -color Orange -radix Instructions /testbench/dut/core/dp/InstrF
+add wave -hex -color Blue /testbench/tdovector
 add wave -noupdate -divider -height 32 "Datapath"
 add wave -hex /testbench/dut/core/dp/*
 add wave -noupdate -divider -height 32 "Control"
