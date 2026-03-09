@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "/home/jstine/Arty-A7/jtag1/jtag1.runs/synth_1_copy_1/top.tcl"
+  variable script "/home/jstine/Drop-In-JTAG/jtag1/jtag1.runs/synth_1_copy_1/top.tcl"
   variable category "vivado_synth"
 }
 
@@ -55,54 +55,37 @@ if {$::dispatch::connected} {
   }
 }
 
-proc create_report { reportName command } {
-  set status "."
-  append status $reportName ".fail"
-  if { [file exists $status] } {
-    eval file delete [glob $status]
-  }
-  send_msg_id runtcl-4 info "Executing : $command"
-  set retval [eval catch { $command } msg]
-  if { $retval != 0 } {
-    set fp [open $status w]
-    close $fp
-    send_msg_id runtcl-5 warning "$msg"
-  }
-}
 OPTRACE "synth_1_copy_1" START { ROLLUP_AUTO }
-set_param checkpoint.writeSynthRtdsInDcp 1
 set_param chipscope.maxJobs 5
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a100tcsg324-1
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir /home/jstine/Arty-A7/jtag1/jtag1.cache/wt [current_project]
-set_property parent.project_path /home/jstine/Arty-A7/jtag1/jtag1.xpr [current_project]
+set_property webtalk.parent_dir /home/jstine/Drop-In-JTAG/jtag1/jtag1.cache/wt [current_project]
+set_property parent.project_path /home/jstine/Drop-In-JTAG/jtag1/jtag1.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property board_part_repo_paths {/home/jstine/Arty-A7/jtag1/jtag1.board} [current_project]
+set_property board_part_repo_paths {/home/jstine/Drop-In-JTAG/jtag1/jtag1.board} [current_project]
 set_property board_part digilentinc.com:arty-a7-100:part0:1.1 [current_project]
 set_property ip_repo_paths /repo [current_project]
 update_ip_catalog
-set_property ip_output_repo /home/jstine/Arty-A7/jtag1/jtag1.cache/ip [current_project]
+set_property ip_output_repo /home/jstine/Drop-In-JTAG/jtag1/jtag1.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_mem /home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/riscvtest/riscvtest.mem
+read_mem /home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/riscvtest/riscvtest.mem
 read_verilog -library xil_defaultlib -sv {
-  /home/jstine/Arty-A7/Drop-In-JTAG/RTL/bsr.sv
-  /home/jstine/Arty-A7/Drop-In-JTAG/RTL/bypass_register.sv
-  /home/jstine/Arty-A7/Drop-In-JTAG/RTL/defines.sv
-  /home/jstine/Arty-A7/Drop-In-JTAG/RTL/device_identification_register.sv
-  /home/jstine/Arty-A7/Drop-In-JTAG/RTL/instruction_register.sv
-  /home/jstine/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv
-  /home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv
-  /home/jstine/Arty-A7/Drop-In-JTAG/RTL/tap_controller.sv
-  /home/jstine/Arty-A7/Drop-In-JTAG/RTL/top.sv
+  /home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/bsr.sv
+  /home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/bypass_register.sv
+  /home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/defines.sv
+  /home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/device_identification_register.sv
+  /home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/instruction_register.sv
+  /home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv
+  /home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv
+  /home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/tap_controller.sv
+  /home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/top.sv
 }
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -113,12 +96,12 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc /home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc
-set_property used_in_implementation false [get_files /home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc]
+read_xdc /home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc
+set_property used_in_implementation false [get_files /home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 
-read_checkpoint -auto_incremental -incremental /home/jstine/Arty-A7/jtag1/jtag1.srcs/utils_1/imports/synth_1_copy_1/top.dcp
+read_checkpoint -auto_incremental -incremental /home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/utils_1/imports/synth_1_copy_1/top.dcp
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }
@@ -135,7 +118,7 @@ set_param constraints.enableBinaryConstraints false
 write_checkpoint -force -noxdef top.dcp
 OPTRACE "write_checkpoint" END { }
 OPTRACE "synth reports" START { REPORT }
-create_report "synth_1_copy_1_synth_report_utilization_0" "report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb"
+generate_parallel_reports -reports { "report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb"  } 
 OPTRACE "synth reports" END { }
 file delete __synthesis_is_running__
 close [open __synthesis_is_complete__ w]

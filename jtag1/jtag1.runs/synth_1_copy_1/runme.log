@@ -3,21 +3,21 @@
     with args -log top.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
 
 
-****** Vivado v2023.2 (64-bit)
-  **** SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
-  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
-  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+****** Vivado v2024.2.2 (64-bit)
+  **** SW Build 6060944 on Thu Mar 06 19:10:09 MST 2025
+  **** IP Build 6050500 on Thu Mar  6 23:33:39 MST 2025
+  **** SharedData Build 6060542 on Thu Mar 06 10:31:07 MST 2025
+  **** Start of session at: Sun Mar  8 22:22:38 2026
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source top.tcl -notrace
-create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1367.176 ; gain = 64.836 ; free physical = 17402 ; free virtual = 21962
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 WARNING: [IP_Flow 19-2248] Failed to load user IP repository '/repo'; Can't find the specified path.
 If this directory should no longer be in your list of user repositories, go to the IP Settings dialog and remove it.
-INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/export/drive2/jstine/Xilinx/Vivado/2023.2/data/ip'.
-Command: read_checkpoint -auto_incremental -incremental /home/jstine/Arty-A7/jtag1/jtag1.srcs/utils_1/imports/synth_1_copy_1/top.dcp
-INFO: [Vivado 12-5825] Read reference checkpoint from /home/jstine/Arty-A7/jtag1/jtag1.srcs/utils_1/imports/synth_1_copy_1/top.dcp for incremental synthesis
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2024.2/data/ip'.
+Command: read_checkpoint -auto_incremental -incremental /home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/utils_1/imports/synth_1_copy_1/top.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from /home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/utils_1/imports/synth_1_copy_1/top.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
 Command: synth_design -top top -part xc7a100tcsg324-1
 Starting synth_design
@@ -26,115 +26,114 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
-INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 7 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 287328
+INFO: [Synth 8-7075] Helper process launched with PID 2754685
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2138.711 ; gain = 412.715 ; free physical = 16338 ; free virtual = 20898
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2004.453 ; gain = 421.797 ; free physical = 2041 ; free virtual = 16312
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-9661] initial value of parameter 'WIDTH' is omitted [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/bsr.sv:1]
-INFO: [Synth 8-11241] undeclared symbol 'updateDR', assumed default net type 'wire' [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv:63]
-WARNING: [Synth 8-9661] initial value of parameter 'MEM_INIT_FILE' is omitted [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:385]
-INFO: [Synth 8-6157] synthesizing module 'top' [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/top.sv:5]
-WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/top.sv:51]
-WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/top.sv:51]
-WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/top.sv:53]
-WARNING: [Synth 8-589] replacing case/wildcard equality operator !== with logical equality operator != [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/top.sv:53]
-INFO: [Synth 8-6157] synthesizing module 'jtag_test_logic' [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv:1]
-INFO: [Synth 8-6157] synthesizing module 'tap_controller' [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/tap_controller.sv:1]
-INFO: [Synth 8-6155] done synthesizing module 'tap_controller' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/tap_controller.sv:1]
-INFO: [Synth 8-6157] synthesizing module 'instruction_register' [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/instruction_register.sv:1]
-INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/instruction_register.sv:34]
-INFO: [Synth 8-6155] done synthesizing module 'instruction_register' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/instruction_register.sv:1]
-INFO: [Synth 8-6157] synthesizing module 'bypass_register' [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/bypass_register.sv:1]
-INFO: [Synth 8-6155] done synthesizing module 'bypass_register' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/bypass_register.sv:1]
-INFO: [Synth 8-6157] synthesizing module 'device_identification_register' [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/device_identification_register.sv:3]
-INFO: [Synth 8-6155] done synthesizing module 'device_identification_register' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/device_identification_register.sv:3]
-INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv:131]
-INFO: [Synth 8-6157] synthesizing module 'cdc_sync_stb' [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv:210]
-INFO: [Synth 8-6155] done synthesizing module 'cdc_sync_stb' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv:210]
-INFO: [Synth 8-6157] synthesizing module 'cdc_sync_stb__parameterized0' [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv:210]
+INFO: [Synth 8-11241] undeclared symbol 'updateDR', assumed default net type 'wire' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv:63]
+INFO: [Synth 8-6157] synthesizing module 'top' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/top.sv:5]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/top.sv:51]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/top.sv:51]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/top.sv:53]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator !== with logical equality operator != [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/top.sv:53]
+INFO: [Synth 8-6157] synthesizing module 'jtag_test_logic' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'tap_controller' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/tap_controller.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'tap_controller' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/tap_controller.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'instruction_register' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/instruction_register.sv:1]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/instruction_register.sv:34]
+INFO: [Synth 8-6155] done synthesizing module 'instruction_register' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/instruction_register.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'bypass_register' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/bypass_register.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'bypass_register' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/bypass_register.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'device_identification_register' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/device_identification_register.sv:3]
+WARNING: [Synth 8-2898] ignoring concurrent assertion [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/device_identification_register.sv:24]
+INFO: [Synth 8-6155] done synthesizing module 'device_identification_register' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/device_identification_register.sv:3]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv:131]
+INFO: [Synth 8-6157] synthesizing module 'cdc_sync_stb' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv:210]
+INFO: [Synth 8-6155] done synthesizing module 'cdc_sync_stb' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv:210]
+INFO: [Synth 8-6157] synthesizing module 'cdc_sync_stb__parameterized0' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv:210]
 	Parameter RISING_EDGE bound to: 0 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'cdc_sync_stb__parameterized0' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv:210]
-INFO: [Synth 8-155] case statement is not full and has no default [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv:181]
-INFO: [Synth 8-6155] done synthesizing module 'jtag_test_logic' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv:1]
-INFO: [Synth 8-6157] synthesizing module 'riscv' [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:1]
-INFO: [Synth 8-6157] synthesizing module 'controller' [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:47]
-INFO: [Synth 8-6157] synthesizing module 'maindec' [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:101]
-INFO: [Synth 8-6155] done synthesizing module 'maindec' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:101]
-INFO: [Synth 8-6157] synthesizing module 'aludec' [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:128]
-INFO: [Synth 8-6155] done synthesizing module 'aludec' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:128]
-INFO: [Synth 8-6157] synthesizing module 'floprc' [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:355]
+INFO: [Synth 8-6155] done synthesizing module 'cdc_sync_stb__parameterized0' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv:210]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv:181]
+INFO: [Synth 8-6155] done synthesizing module 'jtag_test_logic' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'riscv' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'controller' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:47]
+INFO: [Synth 8-6157] synthesizing module 'maindec' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:101]
+INFO: [Synth 8-6155] done synthesizing module 'maindec' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:101]
+INFO: [Synth 8-6157] synthesizing module 'aludec' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:128]
+INFO: [Synth 8-6155] done synthesizing module 'aludec' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:128]
+INFO: [Synth 8-6157] synthesizing module 'floprc' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:355]
 	Parameter WIDTH bound to: 10 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'floprc' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:355]
-INFO: [Synth 8-6157] synthesizing module 'flopr' [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:323]
+INFO: [Synth 8-6155] done synthesizing module 'floprc' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:355]
+INFO: [Synth 8-6157] synthesizing module 'flopr' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:323]
 	Parameter WIDTH bound to: 4 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'flopr' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:323]
-INFO: [Synth 8-6157] synthesizing module 'flopr__parameterized0' [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:323]
+INFO: [Synth 8-6155] done synthesizing module 'flopr' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:323]
+INFO: [Synth 8-6157] synthesizing module 'flopr__parameterized0' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:323]
 	Parameter WIDTH bound to: 3 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'flopr__parameterized0' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:323]
-INFO: [Synth 8-6155] done synthesizing module 'controller' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:47]
-INFO: [Synth 8-6157] synthesizing module 'datapath' [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:154]
-INFO: [Synth 8-6157] synthesizing module 'mux2' [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:369]
+INFO: [Synth 8-6155] done synthesizing module 'flopr__parameterized0' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:323]
+INFO: [Synth 8-6155] done synthesizing module 'controller' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:47]
+INFO: [Synth 8-6157] synthesizing module 'datapath' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:154]
+INFO: [Synth 8-6157] synthesizing module 'mux2' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:369]
 	Parameter WIDTH bound to: 32 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'mux2' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:369]
-INFO: [Synth 8-6157] synthesizing module 'flopenr' [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:333]
+INFO: [Synth 8-6155] done synthesizing module 'mux2' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:369]
+INFO: [Synth 8-6157] synthesizing module 'flopenr' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:333]
 	Parameter WIDTH bound to: 32 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'flopenr' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:333]
-INFO: [Synth 8-6157] synthesizing module 'adder' [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:299]
-INFO: [Synth 8-6155] done synthesizing module 'adder' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:299]
-INFO: [Synth 8-6157] synthesizing module 'flopenrc' [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:343]
+INFO: [Synth 8-6155] done synthesizing module 'flopenr' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:333]
+INFO: [Synth 8-6157] synthesizing module 'adder' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:299]
+INFO: [Synth 8-6155] done synthesizing module 'adder' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:299]
+INFO: [Synth 8-6157] synthesizing module 'flopenrc' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:343]
 	Parameter WIDTH bound to: 96 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'flopenrc' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:343]
-INFO: [Synth 8-6157] synthesizing module 'regfile' [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:278]
-INFO: [Synth 8-6155] done synthesizing module 'regfile' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:278]
-INFO: [Synth 8-6157] synthesizing module 'extend' [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:305]
-INFO: [Synth 8-226] default block is never used [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:310]
-INFO: [Synth 8-6155] done synthesizing module 'extend' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:305]
-INFO: [Synth 8-6157] synthesizing module 'floprc__parameterized0' [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:355]
+INFO: [Synth 8-6155] done synthesizing module 'flopenrc' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:343]
+INFO: [Synth 8-6157] synthesizing module 'regfile' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:278]
+INFO: [Synth 8-6155] done synthesizing module 'regfile' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:278]
+INFO: [Synth 8-6157] synthesizing module 'extend' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:305]
+INFO: [Synth 8-226] default block is never used [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:310]
+INFO: [Synth 8-6155] done synthesizing module 'extend' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:305]
+INFO: [Synth 8-6157] synthesizing module 'floprc__parameterized0' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:355]
 	Parameter WIDTH bound to: 175 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'floprc__parameterized0' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:355]
-INFO: [Synth 8-6157] synthesizing module 'mux3' [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:377]
+INFO: [Synth 8-6155] done synthesizing module 'floprc__parameterized0' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:355]
+INFO: [Synth 8-6157] synthesizing module 'mux3' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:377]
 	Parameter WIDTH bound to: 32 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'mux3' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:377]
-INFO: [Synth 8-6157] synthesizing module 'alu' [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:413]
-INFO: [Synth 8-226] default block is never used [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:428]
-INFO: [Synth 8-6155] done synthesizing module 'alu' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:413]
-INFO: [Synth 8-6157] synthesizing module 'flopr__parameterized1' [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:323]
+INFO: [Synth 8-6155] done synthesizing module 'mux3' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:377]
+INFO: [Synth 8-6157] synthesizing module 'alu' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:413]
+INFO: [Synth 8-226] default block is never used [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:428]
+INFO: [Synth 8-6155] done synthesizing module 'alu' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:413]
+INFO: [Synth 8-6157] synthesizing module 'flopr__parameterized1' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:323]
 	Parameter WIDTH bound to: 101 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'flopr__parameterized1' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:323]
-INFO: [Synth 8-6155] done synthesizing module 'datapath' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:154]
-INFO: [Synth 8-6157] synthesizing module 'hazard' [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:249]
-INFO: [Synth 8-6155] done synthesizing module 'hazard' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:249]
-INFO: [Synth 8-6155] done synthesizing module 'riscv' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:1]
-INFO: [Synth 8-6157] synthesizing module 'imem' [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:385]
+INFO: [Synth 8-6155] done synthesizing module 'flopr__parameterized1' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:323]
+INFO: [Synth 8-6155] done synthesizing module 'datapath' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:154]
+INFO: [Synth 8-6157] synthesizing module 'hazard' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:249]
+INFO: [Synth 8-6155] done synthesizing module 'hazard' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:249]
+INFO: [Synth 8-6155] done synthesizing module 'riscv' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'imem' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:385]
 	Parameter MEM_INIT_FILE bound to: riscvtest.mem - type: string 
-INFO: [Synth 8-3876] $readmem data file 'riscvtest.mem' is read successfully [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:393]
-INFO: [Synth 8-6155] done synthesizing module 'imem' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:385]
-INFO: [Synth 8-6157] synthesizing module 'dmem' [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:401]
-INFO: [Synth 8-6155] done synthesizing module 'dmem' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:401]
-INFO: [Synth 8-6157] synthesizing module 'bsr' [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/bsr.sv:1]
+INFO: [Synth 8-3876] $readmem data file 'riscvtest.mem' is read successfully [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:393]
+INFO: [Synth 8-6155] done synthesizing module 'imem' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:385]
+INFO: [Synth 8-6157] synthesizing module 'dmem' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:401]
+INFO: [Synth 8-6155] done synthesizing module 'dmem' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:401]
+INFO: [Synth 8-6157] synthesizing module 'bsr' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/bsr.sv:1]
 	Parameter WIDTH bound to: 32 - type: integer 
-INFO: [Synth 8-6157] synthesizing module 'bsr_cell' [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/bsr.sv:37]
-INFO: [Synth 8-6155] done synthesizing module 'bsr_cell' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/bsr.sv:37]
-INFO: [Synth 8-6155] done synthesizing module 'bsr' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/bsr.sv:1]
-INFO: [Synth 8-6157] synthesizing module 'bsr__parameterized0' [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/bsr.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'bsr_cell' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/bsr.sv:37]
+INFO: [Synth 8-6155] done synthesizing module 'bsr_cell' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/bsr.sv:37]
+INFO: [Synth 8-6155] done synthesizing module 'bsr' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/bsr.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'bsr__parameterized0' [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/bsr.sv:1]
 	Parameter WIDTH bound to: 1 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'bsr__parameterized0' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/bsr.sv:1]
-INFO: [Synth 8-6155] done synthesizing module 'top' (0#1) [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/top.sv:5]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'fsm'. This will prevent further optimization [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv:50]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'jtag'. This will prevent further optimization [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/top.sv:65]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'dbghalt'. This will prevent further optimization [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv:161]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'dbgresume'. This will prevent further optimization [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv:163]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'dmem'. This will prevent further optimization [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/top.sv:98]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'core'. This will prevent further optimization [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/top.sv:84]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'PCF_bsr'. This will prevent further optimization [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/top.sv:103]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'imem'. This will prevent further optimization [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/top.sv:97]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'InstrF_bsr'. This will prevent further optimization [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/top.sv:114]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'MemWriteM_bsr'. This will prevent further optimization [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/top.sv:125]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'DataAdrM_bsr'. This will prevent further optimization [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/top.sv:136]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'WriteDataM_bsr'. This will prevent further optimization [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/top.sv:147]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'ReadDataM_bsr'. This will prevent further optimization [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/top.sv:158]
+INFO: [Synth 8-6155] done synthesizing module 'bsr__parameterized0' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/bsr.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'top' (0#1) [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/top.sv:5]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'fsm'. This will prevent further optimization [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv:50]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'jtag'. This will prevent further optimization [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/top.sv:65]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'dbghalt'. This will prevent further optimization [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv:161]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'dbgresume'. This will prevent further optimization [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv:163]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'dmem'. This will prevent further optimization [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/top.sv:98]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'core'. This will prevent further optimization [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/top.sv:84]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'PCF_bsr'. This will prevent further optimization [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/top.sv:103]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'imem'. This will prevent further optimization [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/top.sv:97]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'InstrF_bsr'. This will prevent further optimization [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/top.sv:114]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'MemWriteM_bsr'. This will prevent further optimization [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/top.sv:125]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'DataAdrM_bsr'. This will prevent further optimization [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/top.sv:136]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'WriteDataM_bsr'. This will prevent further optimization [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/top.sv:147]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'ReadDataM_bsr'. This will prevent further optimization [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/top.sv:158]
 WARNING: [Synth 8-7129] Port a[31] in module dmem is either unconnected or has no load
 WARNING: [Synth 8-7129] Port a[30] in module dmem is either unconnected or has no load
 WARNING: [Synth 8-7129] Port a[29] in module dmem is either unconnected or has no load
@@ -163,173 +162,186 @@ WARNING: [Synth 8-7129] Port a[1] in module imem is either unconnected or has no
 WARNING: [Synth 8-7129] Port a[0] in module imem is either unconnected or has no load
 WARNING: [Synth 8-7129] Port MemWriteM in module datapath is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2219.680 ; gain = 493.684 ; free physical = 16235 ; free virtual = 20796
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2080.422 ; gain = 497.766 ; free physical = 1954 ; free virtual = 16226
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2237.492 ; gain = 511.496 ; free physical = 16235 ; free virtual = 20796
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2098.234 ; gain = 515.578 ; free physical = 1954 ; free virtual = 16226
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2237.492 ; gain = 511.496 ; free physical = 16235 ; free virtual = 20796
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2098.234 ; gain = 515.578 ; free physical = 1954 ; free virtual = 16226
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2237.492 ; gain = 0.000 ; free physical = 16234 ; free virtual = 20794
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2098.234 ; gain = 0.000 ; free physical = 1954 ; free virtual = 16225
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc]
-WARNING: [Vivado 12-584] No ports matched 'sw[0]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:15]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:15]
+Parsing XDC File [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc]
+WARNING: [Vivado 12-627] No clocks matched 'sys_clk'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:13]
+INFO: [Vivado 12-626] No clocks found. Please use 'create_clock' or 'create_generated_clock' command to create clocks. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:13]
+WARNING: [Vivado 12-627] No clocks matched 'tck'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:13]
+INFO: [Vivado 12-626] No clocks found. Please use 'create_clock' or 'create_generated_clock' command to create clocks. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:13]
+CRITICAL WARNING: [Vivado 12-4739] set_clock_groups:No valid object(s) found for '-group [get_clocks sys_clk]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:13]
+Resolution: Check if the specified object(s) exists in the current design. If it does, ensure that the correct design hierarchy was specified for the object. If you are working with clocks, make sure create_clock was used to create the clock object before it is referenced.
+CRITICAL WARNING: [Vivado 12-4739] set_clock_groups:No valid object(s) found for '-group '. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:13]
+Resolution: Check if the specified object(s) exists in the current design. If it does, ensure that the correct design hierarchy was specified for the object. If you are working with clocks, make sure create_clock was used to create the clock object before it is referenced.
+CRITICAL WARNING: [Vivado 12-4739] set_clock_groups:No valid object(s) found for '-group [get_clocks tck]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:13]
+Resolution: Check if the specified object(s) exists in the current design. If it does, ensure that the correct design hierarchy was specified for the object. If you are working with clocks, make sure create_clock was used to create the clock object before it is referenced.
+CRITICAL WARNING: [Vivado 12-4739] set_clock_groups:No valid object(s) found for '-group '. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:13]
+Resolution: Check if the specified object(s) exists in the current design. If it does, ensure that the correct design hierarchy was specified for the object. If you are working with clocks, make sure create_clock was used to create the clock object before it is referenced.
+CRITICAL WARNING: [Constraints 18-4644] set_clock_groups: All clock groups specified are empty. Please specify atleast one clock group which is not empty. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:13]
+WARNING: [Vivado 12-584] No ports matched 'sw[0]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:20]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:20]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[1]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:16]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:16]
+WARNING: [Vivado 12-584] No ports matched 'sw[1]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:21]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:21]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[2]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:17]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:17]
+WARNING: [Vivado 12-584] No ports matched 'sw[2]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:22]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:22]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'sw[3]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:18]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:18]
+WARNING: [Vivado 12-584] No ports matched 'sw[3]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:23]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:23]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[7]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:23]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:23]
+WARNING: [Vivado 12-584] No ports matched 'LED[7]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:28]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:28]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[6]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:24]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:24]
+WARNING: [Vivado 12-584] No ports matched 'LED[6]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:29]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:29]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[5]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:25]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:25]
+WARNING: [Vivado 12-584] No ports matched 'LED[5]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:30]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:30]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[4]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:26]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:26]
+WARNING: [Vivado 12-584] No ports matched 'LED[4]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:31]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:31]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[2]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:29]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:29]
+WARNING: [Vivado 12-584] No ports matched 'LED[2]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:34]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:34]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'LED[3]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:30]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:30]
+WARNING: [Vivado 12-584] No ports matched 'LED[3]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:35]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:35]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'btn[1]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:36]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:36]
+WARNING: [Vivado 12-584] No ports matched 'btn[1]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:41]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:41]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'btn[2]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:37]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:37]
+WARNING: [Vivado 12-584] No ports matched 'btn[2]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:42]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:42]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'btn[3]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:38]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:38]
+WARNING: [Vivado 12-584] No ports matched 'btn[3]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:43]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:43]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'ja[8]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:51]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:51]
+WARNING: [Vivado 12-584] No ports matched 'ja[8]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:56]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:56]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'ja[9]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:52]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:52]
+WARNING: [Vivado 12-584] No ports matched 'ja[9]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:57]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:57]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'ja[10]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:53]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:53]
+WARNING: [Vivado 12-584] No ports matched 'ja[10]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:58]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:58]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-507] No nets matched 'tck_IBUF'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:57]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:57]
+WARNING: [Vivado 12-507] No nets matched 'tck_IBUF'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:62]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:62]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'jb[1]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:61]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:61]
+WARNING: [Vivado 12-584] No ports matched 'jb[1]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:66]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:66]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'jb[2]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:62]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:62]
+WARNING: [Vivado 12-584] No ports matched 'jb[2]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:67]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:67]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'jb[3]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:63]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:63]
+WARNING: [Vivado 12-584] No ports matched 'jb[3]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:68]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:68]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'jb[4]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:64]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:64]
+WARNING: [Vivado 12-584] No ports matched 'jb[4]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:69]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:69]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'jb[7]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:65]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:65]
+WARNING: [Vivado 12-584] No ports matched 'jb[7]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:70]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:70]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'jb[8]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:66]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:66]
+WARNING: [Vivado 12-584] No ports matched 'jb[8]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:71]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:71]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'jb[9]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:67]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:67]
+WARNING: [Vivado 12-584] No ports matched 'jb[9]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:72]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:72]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'jb[10]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:68]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:68]
+WARNING: [Vivado 12-584] No ports matched 'jb[10]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:73]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:73]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'jc[1]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:73]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:73]
+WARNING: [Vivado 12-584] No ports matched 'jc[1]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:78]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:78]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'jc[2]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:74]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:74]
+WARNING: [Vivado 12-584] No ports matched 'jc[2]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:79]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:79]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'jc[3]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:75]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:75]
+WARNING: [Vivado 12-584] No ports matched 'jc[3]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:80]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:80]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'jc[4]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:76]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:76]
+WARNING: [Vivado 12-584] No ports matched 'jc[4]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:81]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:81]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'jc[7]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:77]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:77]
+WARNING: [Vivado 12-584] No ports matched 'jc[7]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:82]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:82]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'jc[8]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:78]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:78]
+WARNING: [Vivado 12-584] No ports matched 'jc[8]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:83]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:83]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'jc[9]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:79]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:79]
+WARNING: [Vivado 12-584] No ports matched 'jc[9]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:84]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:84]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'jc[10]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:80]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:80]
+WARNING: [Vivado 12-584] No ports matched 'jc[10]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:85]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:85]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'jd[1]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:85]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:85]
+WARNING: [Vivado 12-584] No ports matched 'jd[1]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:90]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:90]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'jd[2]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:86]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:86]
+WARNING: [Vivado 12-584] No ports matched 'jd[2]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:91]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:91]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'jd[3]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:87]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:87]
+WARNING: [Vivado 12-584] No ports matched 'jd[3]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:92]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:92]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'jd[4]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:88]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:88]
+WARNING: [Vivado 12-584] No ports matched 'jd[4]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:93]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:93]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'jd[7]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:89]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:89]
+WARNING: [Vivado 12-584] No ports matched 'jd[7]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:94]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:94]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'jd[8]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:90]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:90]
+WARNING: [Vivado 12-584] No ports matched 'jd[8]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:95]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:95]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'jd[9]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:91]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:91]
+WARNING: [Vivado 12-584] No ports matched 'jd[9]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:96]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:96]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'jd[10]'. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:92]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:92]
+WARNING: [Vivado 12-584] No ports matched 'jd[10]'. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:97]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc:97]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-Finished Parsing XDC File [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc]
-INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/jstine/Arty-A7/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_propImpl.xdc].
+Finished Parsing XDC File [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/constrs_1/imports/constraints/Arty_Master.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2385.242 ; gain = 0.000 ; free physical = 16221 ; free virtual = 20781
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2248.984 ; gain = 0.000 ; free physical = 1954 ; free virtual = 16225
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2385.277 ; gain = 0.000 ; free physical = 16221 ; free virtual = 20781
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2248.984 ; gain = 0.000 ; free physical = 1954 ; free virtual = 16225
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 2385.277 ; gain = 659.281 ; free physical = 16220 ; free virtual = 20780
+Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 2248.984 ; gain = 666.328 ; free physical = 1979 ; free virtual = 16251
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 2385.277 ; gain = 659.281 ; free physical = 16220 ; free virtual = 20780
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 2256.988 ; gain = 674.332 ; free physical = 1979 ; free virtual = 16251
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 2385.277 ; gain = 659.281 ; free physical = 16220 ; free virtual = 20780
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 2256.988 ; gain = 674.332 ; free physical = 1979 ; free virtual = 16251
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'debug_state_reg' in module 'jtag_test_logic'
 ---------------------------------------------------------------------------------------------------
@@ -341,7 +353,7 @@ INFO: [Synth 8-802] inferred FSM for state register 'debug_state_reg' in module 
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'debug_state_reg' using encoding 'sequential' in module 'jtag_test_logic'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 2385.277 ; gain = 659.281 ; free physical = 16212 ; free virtual = 20774
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 2256.988 ; gain = 674.332 ; free physical = 1976 ; free virtual = 16249
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -369,7 +381,6 @@ Detailed RTL Component Info :
 	   2 Input   32 Bit        Muxes := 11    
 	   4 Input   32 Bit        Muxes := 1     
 	  22 Input   32 Bit        Muxes := 1     
-	   8 Input   11 Bit        Muxes := 1     
 	  11 Input   10 Bit        Muxes := 1     
 	   2 Input   10 Bit        Muxes := 1     
 	   2 Input    3 Bit        Muxes := 2     
@@ -446,7 +457,7 @@ WARNING: [Synth 8-7129] Port a[7] in module imem is either unconnected or has no
 WARNING: [Synth 8-7129] Port a[1] in module imem is either unconnected or has no load
 WARNING: [Synth 8-7129] Port a[0] in module imem is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 2385.277 ; gain = 659.281 ; free physical = 16179 ; free virtual = 20745
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 2256.988 ; gain = 674.332 ; free physical = 1957 ; free virtual = 16235
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -467,14 +478,15 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
+WARNING: [Synth 8-565] redefining clock 'sys_clk_pin'
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2385.277 ; gain = 659.281 ; free physical = 16180 ; free virtual = 20746
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 2279.988 ; gain = 697.332 ; free physical = 1964 ; free virtual = 16241
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:22 ; elapsed = 00:00:22 . Memory (MB): peak = 2385.277 ; gain = 659.281 ; free physical = 16174 ; free virtual = 20741
+Finished Timing Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 2292.004 ; gain = 709.348 ; free physical = 1950 ; free virtual = 16228
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -495,7 +507,7 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:22 ; elapsed = 00:00:22 . Memory (MB): peak = 2385.277 ; gain = 659.281 ; free physical = 16174 ; free virtual = 20741
+Finished Technology Mapping : Time (s): cpu = 00:00:22 ; elapsed = 00:00:22 . Memory (MB): peak = 2311.035 ; gain = 728.379 ; free physical = 1929 ; free virtual = 16207
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -512,40 +524,40 @@ Start Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-5396] Clock pin C has keep related attribute (keep/mark_debug/dont_touch) which could create extra logic on its net [/home/jstine/Arty-A7/Drop-In-JTAG/RTL/tap_controller.sv:37]
-WARNING: [Synth 8-5396] Clock pin WCLK has keep related attribute (keep/mark_debug/dont_touch) which could create extra logic on its net [/home/jstine/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:407]
+WARNING: [Synth 8-5396] Clock pin C has keep related attribute (keep/mark_debug/dont_touch) which could create extra logic on its net [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/tap_controller.sv:37]
+WARNING: [Synth 8-5396] Clock pin WCLK has keep related attribute (keep/mark_debug/dont_touch) which could create extra logic on its net [/home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv:407]
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 2385.277 ; gain = 659.281 ; free physical = 16180 ; free virtual = 20746
+Finished IO Insertion : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 2458.848 ; gain = 876.191 ; free physical = 1819 ; free virtual = 16097
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 2385.277 ; gain = 659.281 ; free physical = 16180 ; free virtual = 20746
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 2458.848 ; gain = 876.191 ; free physical = 1819 ; free virtual = 16097
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 2385.277 ; gain = 659.281 ; free physical = 16180 ; free virtual = 20746
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 2458.848 ; gain = 876.191 ; free physical = 1819 ; free virtual = 16097
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 2385.277 ; gain = 659.281 ; free physical = 16180 ; free virtual = 20746
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 2458.848 ; gain = 876.191 ; free physical = 1819 ; free virtual = 16097
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 2385.277 ; gain = 659.281 ; free physical = 16180 ; free virtual = 20746
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 2458.848 ; gain = 876.191 ; free physical = 1819 ; free virtual = 16097
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 2385.277 ; gain = 659.281 ; free physical = 16180 ; free virtual = 20746
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 2458.848 ; gain = 876.191 ; free physical = 1819 ; free virtual = 16097
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -555,8 +567,8 @@ Static Shift Register Report:
 +----------------+------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
 |Module Name     | RTL Name                           | Length | Width | Reset Signal | Pull out first Reg | Pull out last Reg | SRL16E | SRLC32E | 
 +----------------+------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
-|jtag_test_logic | didr/genblk1[25].shift_reg_reg[25] | 4      | 2     | YES          | NO                 | YES               | 2      | 0       | 
-|jtag_test_logic | didr/genblk1[9].shift_reg_reg[9]   | 5      | 1     | YES          | NO                 | YES               | 1      | 0       | 
+|jtag_test_logic | didr/genblk1[18].shift_reg_reg[18] | 10     | 1     | YES          | NO                 | YES               | 1      | 0       | 
+|jtag_test_logic | didr/genblk1[3].shift_reg_reg[3]   | 7      | 1     | YES          | NO                 | YES               | 1      | 0       | 
 +----------------+------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
 
 ---------------------------------------------------------------------------------
@@ -576,10 +588,10 @@ Report Cell Usage:
 +------+----------+------+
 |      |Cell      |Count |
 +------+----------+------+
-|1     |BUFG      |     3|
+|1     |BUFG      |     2|
 |2     |CARRY4    |    32|
 |3     |LUT1      |    10|
-|4     |LUT2      |   227|
+|4     |LUT2      |   226|
 |5     |LUT3      |   510|
 |6     |LUT4      |    69|
 |7     |LUT5      |   166|
@@ -587,42 +599,42 @@ Report Cell Usage:
 |9     |RAM256X1S |    32|
 |10    |RAM32M    |    10|
 |11    |RAM32X1D  |     4|
-|12    |SRL16E    |     3|
+|12    |SRL16E    |     2|
 |13    |FDCE      |   524|
 |14    |FDPE      |     6|
-|15    |FDRE      |   360|
-|16    |FDSE      |    18|
+|15    |FDRE      |   369|
+|16    |FDSE      |     8|
 |17    |IBUF      |     6|
 |18    |OBUF      |     3|
 +------+----------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 2385.277 ; gain = 659.281 ; free physical = 16180 ; free virtual = 20746
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 2458.848 ; gain = 876.191 ; free physical = 1819 ; free virtual = 16097
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 54 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 2385.277 ; gain = 511.496 ; free physical = 16180 ; free virtual = 20746
-Synthesis Optimization Complete : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 2385.277 ; gain = 659.281 ; free physical = 16180 ; free virtual = 20746
+Synthesis finished with 0 errors, 0 critical warnings and 55 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:23 ; elapsed = 00:00:23 . Memory (MB): peak = 2458.848 ; gain = 725.441 ; free physical = 1821 ; free virtual = 16099
+Synthesis Optimization Complete : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 2458.855 ; gain = 876.191 ; free physical = 1821 ; free virtual = 16099
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2385.277 ; gain = 0.000 ; free physical = 16469 ; free virtual = 21035
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2458.855 ; gain = 0.000 ; free physical = 1981 ; free virtual = 16259
 INFO: [Netlist 29-17] Analyzing 78 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 1 inverter(s) to 14 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2385.277 ; gain = 0.000 ; free physical = 16469 ; free virtual = 21035
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2514.875 ; gain = 0.000 ; free physical = 1975 ; free virtual = 16252
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 46 instances were transformed.
   RAM256X1S => RAM256X1S (MUXF7(x2), MUXF8, RAMS64E(x4)): 32 instances
   RAM32M => RAM32M (inverted pins: WCLK) (RAMD32(x6), RAMS32(x2)): 10 instances
   RAM32X1D => RAM32X1D (inverted pins: WCLK) (RAMD32(x2)): 4 instances
 
-Synth Design complete | Checksum: 73cebeb8
+Synth Design complete | Checksum: 186a38ac
 INFO: [Common 17-83] Releasing license: Synthesis
-109 Infos, 129 Warnings, 41 Critical Warnings and 0 Errors encountered.
+111 Infos, 131 Warnings, 46 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:31 ; elapsed = 00:00:29 . Memory (MB): peak = 2385.277 ; gain = 1005.227 ; free physical = 16468 ; free virtual = 21035
-INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1943.099; main = 1619.064; forked = 377.857
-INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3342.445; main = 2385.246; forked = 989.215
+synth_design: Time (s): cpu = 00:00:32 ; elapsed = 00:00:30 . Memory (MB): peak = 2514.875 ; gain = 1046.762 ; free physical = 1975 ; free virtual = 16252
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1682.477; main = 1682.477; forked = 268.656
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3172.906; main = 2514.879; forked = 915.914
 INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
-Write ShapeDB Complete: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2409.254 ; gain = 0.000 ; free physical = 16468 ; free virtual = 21035
-INFO: [Common 17-1381] The checkpoint '/home/jstine/Arty-A7/jtag1/jtag1.runs/synth_1_copy_1/top.dcp' has been generated.
-INFO: [runtcl-4] Executing : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Wed Jul 23 09:56:59 2025...
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2538.887 ; gain = 0.000 ; free physical = 1975 ; free virtual = 16252
+INFO: [Common 17-1381] The checkpoint '/home/jstine/Drop-In-JTAG/jtag1/jtag1.runs/synth_1_copy_1/top.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sun Mar  8 22:23:15 2026...

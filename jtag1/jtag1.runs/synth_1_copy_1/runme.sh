@@ -4,13 +4,13 @@
 # Vivado(TM)
 # runme.sh: a Vivado-generated Runs Script for UNIX
 # Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-# Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+# Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 # 
 
 if [ -z "$PATH" ]; then
-  PATH=/export/drive2/jstine/Xilinx/Vivado/2023.2/ids_lite/ISE/bin/lin64:/export/drive2/jstine/Xilinx/Vivado/2023.2/bin
+  PATH=/opt/Xilinx/Vitis/2024.2/bin:/opt/Xilinx/Vivado/2024.2/ids_lite/ISE/bin/lin64:/opt/Xilinx/Vivado/2024.2/bin
 else
-  PATH=/export/drive2/jstine/Xilinx/Vivado/2023.2/ids_lite/ISE/bin/lin64:/export/drive2/jstine/Xilinx/Vivado/2023.2/bin:$PATH
+  PATH=/opt/Xilinx/Vitis/2024.2/bin:/opt/Xilinx/Vivado/2024.2/ids_lite/ISE/bin/lin64:/opt/Xilinx/Vivado/2024.2/bin:$PATH
 fi
 export PATH
 
@@ -21,7 +21,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='/home/jstine/Arty-A7/jtag1/jtag1.runs/synth_1_copy_1'
+HD_PWD='/home/jstine/Drop-In-JTAG/jtag1/jtag1.runs/synth_1_copy_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

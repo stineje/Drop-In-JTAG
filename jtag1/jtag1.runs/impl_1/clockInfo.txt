@@ -1,7 +1,7 @@
 -------------------------------------
-| Tool Version : Vivado v.2023.2
-| Date         : Wed Jul 23 09:57:30 2025
-| Host         : iq9
+| Tool Version : Vivado v.2024.2.2
+| Date         : Sun Mar  8 22:23:51 2026
+| Host         : mimi
 | Design       : design_1
 | Device       : xc7a100t-csg324-1--
 -------------------------------------
