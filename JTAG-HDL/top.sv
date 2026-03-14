@@ -107,7 +107,7 @@ module top #(parameter IMEM_INIT_FILE="riscvtest.mem")
    imem #(.MEM_INIT_FILE(IMEM_INIT_FILE)) imem (PCF, InstrF);
    dmem dmem (dbgclk, MemWriteM, DataAdrM, WriteDataM, ReadDataM);
    
-   // boundary scan registers ///////////////////////////////////////   
+   // boundary scan registers ///////////////////////////////////////
    bsr #(.WIDTH(32)) PCF_bsr (.clk(bsr_clk),
 			      .update_dr(bsr_update),
 			      .shift_dr(bsr_shift),

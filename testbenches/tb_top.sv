@@ -104,14 +104,13 @@ module testbench();
          end
       end
 
-$display("ReadDataM: %08h | WriteDataM: %08h | DataAdrM: %08h | MemWriteM: %b | InstrF: %08h | PCF: %08h", 
-         bitrev32(tdovector[160:129]),
-         bitrev32(tdovector[128:97]),
-         bitrev32(tdovector[96:65]),
-         tdovector[64],
-         bitrev32(tdovector[63:32]),
-         bitrev32(tdovector[31:0]));
-
+      $display("ReadDataM: %08h | WriteDataM: %08h | DataAdrM: %08h | MemWriteM: %b | InstrF: %08h | PCF: %08h", 
+               bitrev32(tdovector[160:129]),
+               bitrev32(tdovector[128:97]),
+               bitrev32(tdovector[96:65]),
+               tdovector[64],
+               bitrev32(tdovector[63:32]),
+               bitrev32(tdovector[31:0]));      
       $stop;
    end
    
