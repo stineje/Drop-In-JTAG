@@ -42,6 +42,11 @@ module testbench();
       trst <= 1;
    end
 
+   // Scan chains are fundamentally bit-serial:  Scan chains are built from individual flip-flops.
+   // Each flip-flop shifts one bit, and there is no concept of “32-bit word ordering” inside the chain.
+   // So the scan chain naturally behaves like: bit0 -> bit1 -> bit2 -> ... -> bitN
+   // So when a 32-bit signal is scanned, it just becomes 32 individual bits in the chain, and 
+   // whichever bit happens to be closest to TDO comes out first.  
    function automatic [31:0] bitrev32(input [31:0] x);
       integer k;
       begin
@@ -105,12 +110,8 @@ module testbench();
       end
 
       $display("ReadDataM: %08h | WriteDataM: %08h | DataAdrM: %08h | MemWriteM: %b | InstrF: %08h | PCF: %08h", 
-               bitrev32(tdovector[160:129]),
-               bitrev32(tdovector[128:97]),
-               bitrev32(tdovector[96:65]),
-               tdovector[64],
-               bitrev32(tdovector[63:32]),
-               bitrev32(tdovector[31:0]));      
+               bitrev32(tdovector[160:129]), bitrev32(tdovector[128:97]), bitrev32(tdovector[96:65]),
+               tdovector[64], bitrev32(tdovector[63:32]), bitrev32(tdovector[31:0]));      
       $stop;
    end
    
