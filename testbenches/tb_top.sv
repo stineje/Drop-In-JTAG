@@ -46,7 +46,8 @@ module testbench();
    // Each flip-flop shifts one bit, and there is no concept of “32-bit word ordering” inside the chain.
    // So the scan chain naturally behaves like: bit0 -> bit1 -> bit2 -> ... -> bitN
    // So when a 32-bit signal is scanned, it just becomes 32 individual bits in the chain, and 
-   // whichever bit happens to be closest to TDO comes out first.  
+   // whichever bit happens to be closest to TDO comes out first.  This function reverses items from the
+   // hardware to be in the proper order.
    function automatic [31:0] bitrev32(input [31:0] x);
       integer k;
       begin
