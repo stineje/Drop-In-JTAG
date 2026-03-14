@@ -14,9 +14,7 @@ module testbench();
    logic 	 tdo_sample;
    logic 	 clk;
    logic 	 reset;
-   logic [160:0] tdovector;
-   
-
+   logic [160:0] tdovector; // moved on top for easy viewing
 
    top dut (.tck(tck), .tdi(tdi), .tms(tms), .trst(trst), .tdo(tdo),
 	    .sysclk(clk), .sys_reset(reset), .success(), .fail());
@@ -43,10 +41,19 @@ module testbench();
       reset <= 0;
       trst <= 1;
    end
+
+   function automatic [31:0] bitrev32(input [31:0] x);
+      integer k;
+      begin
+	 for (k = 0; k < 32; k = k + 1)
+           bitrev32[k] = x[31-k];
+      end
+   endfunction   
    
    initial begin
       // logic [160:0] tdovector;
-      
+
+      // Puts TAP in modesl starting from reset
       static logic [11:0] halt_tmsvector = 'b101100_0001_10;
       static logic [11:0] halt_tdivector = 'b000000_0110_00; // LSB first
       
@@ -65,8 +72,8 @@ module testbench();
                end
             end
          end
-      end
-      
+      end // while (1)
+
       $display("HALTing system logic");
       for (i=11; i >= 0; i=i-1) begin
          @(negedge tck) begin
@@ -84,7 +91,7 @@ module testbench();
       end
       
       $display("Scanning DR register");
-      for (i=161; i >= 0; i=i-1) begin
+      for (i=160; i >= 0; i=i-1) begin
          @(negedge tck) begin
             tdovector[i] <= tdo;
          end
@@ -97,8 +104,14 @@ module testbench();
          end
       end
 
-      $display("ReadDataM: %h | WriteDataM %h | DataAdrM: %h | MemWriteM: %b | InstrF: %h | PCF: %h", 
-	       tdovector[160:129], tdovector[128:97], tdovector[96:65], tdovector[64:64], tdovector[63:32], tdovector[31:0]);
+$display("ReadDataM: %08h | WriteDataM: %08h | DataAdrM: %08h | MemWriteM: %b | InstrF: %08h | PCF: %08h", 
+         bitrev32(tdovector[160:129]),
+         bitrev32(tdovector[128:97]),
+         bitrev32(tdovector[96:65]),
+         tdovector[64],
+         bitrev32(tdovector[63:32]),
+         bitrev32(tdovector[31:0]));
+
       $stop;
    end
    
