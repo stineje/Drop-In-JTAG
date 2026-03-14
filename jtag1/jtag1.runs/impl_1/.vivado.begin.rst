@@ -1,20 +1,15 @@
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado" Owner="jstine" Host="mimi" Pid="2753645" HostCore="20" HostMemory="24310972">
+    <Process Command="vivado" Owner="jstine" Host="mimi" Pid="2877576" HostCore="20" HostMemory="24310972">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado" Owner="jstine" Host="mimi" Pid="2754237" HostCore="20" HostMemory="24310972">
+    <Process Command="vivado" Owner="jstine" Host="mimi" Pid="2901732" HostCore="20" HostMemory="24310972">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado" Owner="jstine" Host="mimi" Pid="2754839" HostCore="20" HostMemory="24310972">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado" Owner="jstine" Host="mimi" Pid="2778000" HostCore="20" HostMemory="24310972">
+    <Process Command="vivado" Owner="jstine" Host="mimi" Pid="3000275" HostCore="20" HostMemory="24310972">
     </Process>
 </ProcessHandle>

@@ -73,19 +73,25 @@ set_property ip_repo_paths /repo [current_project]
 update_ip_catalog
 set_property ip_output_repo /home/jstine/Drop-In-JTAG/jtag1/jtag1.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
+set_property include_dirs {
+  /home/jstine/Drop-In-JTAG/JTAG-HDL
+  /home/jstine/Drop-In-JTAG/RISCV_pipe
+} [current_fileset]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_mem /home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/riscvtest/riscvtest.mem
 read_verilog -library xil_defaultlib -sv {
-  /home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/bsr.sv
-  /home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/bypass_register.sv
-  /home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/defines.sv
-  /home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/device_identification_register.sv
-  /home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/instruction_register.sv
-  /home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv
-  /home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv
-  /home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/tap_controller.sv
-  /home/jstine/Drop-In-JTAG/jtag1/jtag1.srcs/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/top.sv
+  /home/jstine/Drop-In-JTAG/JTAG-HDL/bsr.sv
+  /home/jstine/Drop-In-JTAG/JTAG-HDL/bsr_cell.sv
+  /home/jstine/Drop-In-JTAG/JTAG-HDL/bypass_register.sv
+  /home/jstine/Drop-In-JTAG/JTAG-HDL/cdc_sync_stb.sv
+  /home/jstine/Drop-In-JTAG/JTAG-HDL/defines.sv
+  /home/jstine/Drop-In-JTAG/JTAG-HDL/device_identification_register.sv
+  /home/jstine/Drop-In-JTAG/JTAG-HDL/instruction_register.sv
+  /home/jstine/Drop-In-JTAG/JTAG-HDL/jtag_test_logic.sv
+  /home/jstine/Drop-In-JTAG/RISCV_pipe/riscv_pipelined.sv
+  /home/jstine/Drop-In-JTAG/JTAG-HDL/tap_controller.sv
+  /home/jstine/Drop-In-JTAG/JTAG-HDL/top.sv
 }
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being

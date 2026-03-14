@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1773023009">
+<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1773526453">
   <File Type="POSTROUTE-PHYSOPT-RQS-RPT" Name="postroute_physopt_report_qor_suggestions_0.rpt"/>
   <File Type="ROUTE-RQS-RPT" Name="route_report_qor_suggestions_0.rpt"/>
   <File Type="POSTROUTE-PHYSOPT-RQS" Name="top_postroute_physopted.rqs"/>
@@ -86,82 +86,78 @@
   <File Type="PA-TCL" Name="top.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
-    <File Path="$PSRCDIR/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/bsr.sv">
+    <File Path="$PPRDIR/../JTAG-HDL/bsr.sv">
       <FileInfo>
-        <Attr Name="ImportPath" Val="$PPRDIR/../../../../Drop-In-JTAG/RTL/bsr.sv"/>
-        <Attr Name="ImportTime" Val="1753208809"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/bypass_register.sv">
+    <File Path="$PPRDIR/../JTAG-HDL/bsr_cell.sv">
       <FileInfo>
-        <Attr Name="ImportPath" Val="$PPRDIR/../../../../Drop-In-JTAG/RTL/bypass_register.sv"/>
-        <Attr Name="ImportTime" Val="1753208809"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/defines.sv">
+    <File Path="$PPRDIR/../JTAG-HDL/bypass_register.sv">
       <FileInfo>
-        <Attr Name="ImportPath" Val="$PPRDIR/../../../../Drop-In-JTAG/RTL/defines.sv"/>
-        <Attr Name="ImportTime" Val="1753208809"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/device_identification_register.sv">
+    <File Path="$PPRDIR/../JTAG-HDL/cdc_sync_stb.sv">
       <FileInfo>
-        <Attr Name="ImportPath" Val="$PPRDIR/../../../../Drop-In-JTAG/RTL/device_identification_register.sv"/>
-        <Attr Name="ImportTime" Val="1753208809"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/instruction_register.sv">
+    <File Path="$PPRDIR/../JTAG-HDL/defines.sv">
       <FileInfo>
-        <Attr Name="ImportPath" Val="$PPRDIR/../../../../Drop-In-JTAG/RTL/instruction_register.sv"/>
-        <Attr Name="ImportTime" Val="1753208809"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/jtag_test_logic.sv">
+    <File Path="$PPRDIR/../JTAG-HDL/device_identification_register.sv">
       <FileInfo>
-        <Attr Name="ImportPath" Val="$PPRDIR/../../../../Drop-In-JTAG/RTL/jtag_test_logic.sv"/>
-        <Attr Name="ImportTime" Val="1753208809"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/imports/Arty-A7/Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv">
+    <File Path="$PPRDIR/../JTAG-HDL/instruction_register.sv">
       <FileInfo>
-        <Attr Name="ImportPath" Val="$PPRDIR/../../../../Drop-In-JTAG/RISCV_pipe/hdl/riscv_pipelined.sv"/>
-        <Attr Name="ImportTime" Val="1753213250"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/tap_controller.sv">
+    <File Path="$PPRDIR/../JTAG-HDL/jtag_test_logic.sv">
       <FileInfo>
-        <Attr Name="ImportPath" Val="$PPRDIR/../../../../Drop-In-JTAG/RTL/tap_controller.sv"/>
-        <Attr Name="ImportTime" Val="1753208809"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/imports/Arty-A7/Drop-In-JTAG/RTL/top.sv">
+    <File Path="$PPRDIR/../RISCV_pipe/riscv_pipelined.sv">
       <FileInfo>
-        <Attr Name="ImportPath" Val="$PPRDIR/../../../../Drop-In-JTAG/RTL/top.sv"/>
-        <Attr Name="ImportTime" Val="1753221160"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../JTAG-HDL/tap_controller.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../JTAG-HDL/top.sv">
+      <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -188,6 +184,14 @@
       </FileInfo>
     </File>
     <File Path="$PPRDIR/archive_project_summary.txt"/>
+    <File Path="$PPRDIR/../JTAG-HDL/tap_controller_new.sv">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
       <Option Name="TopModule" Val="top"/>
