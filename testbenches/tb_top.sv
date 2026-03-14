@@ -1,26 +1,25 @@
 // `timescale 1ns/1ps
 module testbench();
 
-   integer i, errors;
-
+   integer       i;
+   integer 	 errors;
    
-   logic   tck, trst, tms, tdi, tdo;
-   logic   tdo_ref, tdo_sample;
-   logic   clk;
-   logic   reset;
+   logic 	 tck;
+   logic 	 trst;
+   logic 	 tms;
+   logic 	 tdi;
+   logic 	 tdo;
+   
+   logic 	 tdo_ref;
+   logic 	 tdo_sample;
+   logic 	 clk;
+   logic 	 reset;
    logic [160:0] tdovector;
    
 
 
-   top dut (.tck(tck),
-	    .tdi(tdi),
-	    .tms(tms),
-	    .trst(trst),
-	    .tdo(tdo),
-	    .sysclk(clk),
-	    .sys_reset(reset),
-	    .success(),
-	    .fail());
+   top dut (.tck(tck), .tdi(tdi), .tms(tms), .trst(trst), .tdo(tdo),
+	    .sysclk(clk), .sys_reset(reset), .success(), .fail());
    
    // clocks
    initial begin
@@ -46,7 +45,7 @@ module testbench();
    end
    
    initial begin
-      //logic [160:0] tdovector;
+      // logic [160:0] tdovector;
       
       static logic [11:0] halt_tmsvector = 'b101100_0001_10;
       static logic [11:0] halt_tdivector = 'b000000_0110_00; // LSB first
