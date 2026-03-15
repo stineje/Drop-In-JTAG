@@ -12,6 +12,9 @@ Matthew Otto <br>
 Zach Johnon <br>
 Coleman Curtsinger <br>
 
+# Sample Design
+The design used in this work is based on the pipelined RISC-V architecture described by Harris and Harris in Digital Design and Computer Architecture: RISC-V Edition, available at the Harris & Harris Digital Design and Computer Architecture RISC‑V materials (https://pages.hmc.edu/harris/ddca/ddcarv.html). This implementation follows the standard five-stage pipeline organization and provides access to multiple internal architectural registers for observation and debugging. The framework is intentionally structured to allow selected registers and internal signals to be exported, making it convenient for testing, educational demonstrations, and architectural exploration. Because the design is modular, the set of exposed registers can be easily extended or modified, and the same approach can be adapted to other RISC-V cores or alternative processor architectures with minimal changes to the surrounding infrastructure.
+
 # Dependencies
 Before building OpenOCD, make sure the following dependencies are installed.
 This is only confirmed to work on Ubuntu.
