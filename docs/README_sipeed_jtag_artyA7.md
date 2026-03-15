@@ -1,7 +1,7 @@
 
 # Arty A7-100T PMOD JA → JTAG Wiring (Sipeed USB‑JTAG Adapter)
 
-This document describes how to connect a **Sipeed USB‑JTAG debugger** to the **PMOD JA header** on the **Digilent Arty A7‑100T** FPGA board.  We used the Sipeed USB-JTAG debugger but you can probably use whatever you can connnect to via through USB.  A link of the device is here [Sipeed USB-JTAG Debugger](https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/114991786/10060366?_gl=1*1xobv3f*_gcl_au*MTI0MzUzNTY1Mi4xNzczNTM2NTQ4) 
+This document describes how to connect a **Sipeed USB‑JTAG debugger** to the **PMOD JA header** on the **Digilent Arty A7‑100T** FPGA board.  We used the Sipeed USB-JTAG debugger but you can probably use whatever you can connnect to via through USB.  A link of the device is here [Sipeed USB-JTAG Debugger](https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/114991786/10060366?_gl=1*1xobv3f*_gcl_au*MTI0MzUzNTY1Mi4xNzczNTM2NTQ4).  We utilized the ArtyA7-100T as its relatively cheap and easy to use from [Digilent ArtyA7-100T](https://digilent.com/shop/arty-a7-100t-artix-7-fpga-development-board/?srsltid=AfmBOorbwjRsO-zJlkpczOTosNvzRwnXn1g6ZVx3xiNGtv4Zny58v5Er)
 
 The signals below expose JTAG on the PMOD connector so an external debugger can control a soft processor or debug module implemented in the FPGA.
 
