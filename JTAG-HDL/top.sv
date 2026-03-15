@@ -108,6 +108,7 @@ module top #(parameter IMEM_INIT_FILE="riscvtest.mem")
    dmem dmem (dbgclk, MemWriteM, DataAdrM, WriteDataM, ReadDataM);
    
    // boundary scan registers ///////////////////////////////////////
+   // add as needed (modify number of bsrs/cycles needed to get data out 32*5+1=161 cycles)   
    bsr #(.WIDTH(32)) PCF_bsr (.clk(bsr_clk),
 			      .update_dr(bsr_update),
 			      .shift_dr(bsr_shift),
@@ -116,6 +117,7 @@ module top #(parameter IMEM_INIT_FILE="riscvtest.mem")
 			      .tdo(bsr_chain[1]),
 			      .parallel_in(PCF_internal),
 			      .parallel_out(PCF));
+   
    bsr #(.WIDTH(32)) InstrF_bsr (.clk(bsr_clk),   
 				 .update_dr(bsr_update),
 				 .shift_dr(bsr_shift),
@@ -124,6 +126,7 @@ module top #(parameter IMEM_INIT_FILE="riscvtest.mem")
 				 .tdo(bsr_chain[2]),
 				 .parallel_in(InstrF),
 				 .parallel_out(InstrF_internal));
+   
    bsr #(.WIDTH(1)) MemWriteM_bsr (.clk(bsr_clk),
 				   .update_dr(bsr_update),
 				   .shift_dr(bsr_shift),
@@ -132,6 +135,7 @@ module top #(parameter IMEM_INIT_FILE="riscvtest.mem")
 				   .tdo(bsr_chain[3]),
 				   .parallel_in(MemWriteM_internal),
 				   .parallel_out(MemWriteM));
+   
    bsr #(.WIDTH(32)) DataAdrM_bsr (.clk(bsr_clk),
 				   .update_dr(bsr_update),
 				   .shift_dr(bsr_shift),
@@ -140,6 +144,7 @@ module top #(parameter IMEM_INIT_FILE="riscvtest.mem")
 				   .tdo(bsr_chain[4]),
 				   .parallel_in(DataAdrM_internal),
 				   .parallel_out(DataAdrM));
+   
    bsr #(.WIDTH(32)) WriteDataM_bsr (.clk(bsr_clk),
 				     .update_dr(bsr_update),
 				     .shift_dr(bsr_shift),
@@ -148,6 +153,7 @@ module top #(parameter IMEM_INIT_FILE="riscvtest.mem")
 				     .tdo(bsr_chain[5]),
 				     .parallel_in(WriteDataM_internal),
 				     .parallel_out(WriteDataM));
+   
    bsr #(.WIDTH(32)) ReadDataM_bsr (.clk(bsr_clk),
 				    .update_dr(bsr_update),
 				    .shift_dr(bsr_shift),

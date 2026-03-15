@@ -1,60 +1,74 @@
+# //  Questa Sim-64
+# //  Version 2024.3_3 linux_x86_64 Mar 20 2025
+# //
+# // Unpublished work. Copyright 2025 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
 # do top_complete.do
 # QuestaSim-64 vlog 2024.3_3 Compiler 2025.03 Mar 20 2025
-# Start time: 18:33:51 on Mar 14,2026
-# vlog ../testbenches/tb_top.sv ../JTAG-HDL/top.sv ../JTAG-HDL/jtag_test_logic.sv 
+# Start time: 09:24:29 on Mar 15,2026
+# vlog -reportprogress 300 ../testbenches/tb_top.sv ../JTAG-HDL/top.sv ../JTAG-HDL/jtag_test_logic.sv 
 # -- Compiling module testbench
 # -- Compiling module top
 # -- Compiling module jtag_test_logic
 # 
 # Top level modules:
 # 	testbench
-# End time: 18:33:51 on Mar 14,2026, Elapsed time: 0:00:00
+# End time: 09:24:29 on Mar 15,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2024.3_3 Compiler 2025.03 Mar 20 2025
-# Start time: 18:33:51 on Mar 14,2026
-# vlog ../JTAG-HDL/bsr_cell.sv ../JTAG-HDL/cdc_sync_stb.sv 
+# Start time: 09:24:29 on Mar 15,2026
+# vlog -reportprogress 300 ../JTAG-HDL/bsr_cell.sv ../JTAG-HDL/cdc_sync_stb.sv 
 # -- Compiling module bsr_cell
 # -- Compiling module cdc_sync_stb
 # 
 # Top level modules:
 # 	bsr_cell
 # 	cdc_sync_stb
-# End time: 18:33:51 on Mar 14,2026, Elapsed time: 0:00:00
+# End time: 09:24:29 on Mar 15,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2024.3_3 Compiler 2025.03 Mar 20 2025
-# Start time: 18:33:51 on Mar 14,2026
-# vlog ../JTAG-HDL/tap_controller.sv ../JTAG-HDL/instruction_register.sv 
+# Start time: 09:24:29 on Mar 15,2026
+# vlog -reportprogress 300 ../JTAG-HDL/tap_controller.sv ../JTAG-HDL/instruction_register.sv 
 # -- Compiling module tap_controller
 # -- Compiling module instruction_register
 # 
 # Top level modules:
 # 	tap_controller
 # 	instruction_register
-# End time: 18:33:51 on Mar 14,2026, Elapsed time: 0:00:00
+# End time: 09:24:29 on Mar 15,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2024.3_3 Compiler 2025.03 Mar 20 2025
-# Start time: 18:33:51 on Mar 14,2026
-# vlog ../JTAG-HDL/bypass_register.sv ../JTAG-HDL/bsr.sv 
+# Start time: 09:24:29 on Mar 15,2026
+# vlog -reportprogress 300 ../JTAG-HDL/bypass_register.sv ../JTAG-HDL/bsr.sv 
 # -- Compiling module bypass_register
 # -- Compiling module bsr
 # 
 # Top level modules:
 # 	bypass_register
 # 	bsr
-# End time: 18:33:51 on Mar 14,2026, Elapsed time: 0:00:00
+# End time: 09:24:29 on Mar 15,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2024.3_3 Compiler 2025.03 Mar 20 2025
-# Start time: 18:33:51 on Mar 14,2026
-# vlog ../JTAG-HDL/device_identification_register.sv 
+# Start time: 09:24:29 on Mar 15,2026
+# vlog -reportprogress 300 ../JTAG-HDL/device_identification_register.sv 
 # -- Compiling module device_identification_register
 # 
 # Top level modules:
 # 	device_identification_register
-# End time: 18:33:51 on Mar 14,2026, Elapsed time: 0:00:00
+# End time: 09:24:29 on Mar 15,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2024.3_3 Compiler 2025.03 Mar 20 2025
-# Start time: 18:33:51 on Mar 14,2026
-# vlog ../RISCV_pipe/riscv_pipelined.sv 
+# Start time: 09:24:29 on Mar 15,2026
+# vlog -reportprogress 300 ../RISCV_pipe/riscv_pipelined.sv 
 # -- Compiling module riscv
 # -- Compiling module controller
 # -- Compiling module maindec
@@ -78,10 +92,10 @@
 # 	riscv
 # 	imem
 # 	dmem
-# End time: 18:33:51 on Mar 14,2026, Elapsed time: 0:00:00
+# End time: 09:24:29 on Mar 15,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 18:33:51 on Mar 14,2026
+# Start time: 09:24:29 on Mar 15,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
@@ -91,20 +105,6 @@
 # ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=64, type=ROM at location ../RISCV_pipe/riscv_pipelined.sv:389
 # ** Note: (vopt-143) Recognized 1 FSM in module "jtag_test_logic(fast)".
 # ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
-# //  Questa Sim-64
-# //  Version 2024.3_3 linux_x86_64 Mar 20 2025
-# //
-# // Unpublished work. Copyright 2025 Siemens
-# //
-# // This material contains trade secrets or otherwise confidential information
-# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
-# // "SISW"), or its licensors. Access to and use of this information is strictly
-# // limited as set forth in the Customer's applicable agreements with SISW.
-# //
-# // This material may not be copied, distributed, or otherwise disclosed outside
-# // of the Customer's facilities without the express written permission of SISW,
-# // and may not be used in any way not expressly authorized by SISW.
-# //
 # Loading sv_std.std
 # Loading work.testbench(fast)
 # Loading work.top(fast)
@@ -141,23 +141,15 @@
 # Loading work.bsr_cell(fast)
 # Loading work.bsr(fast__1)
 # ** Note: (vsim-8900) Creating design debug database vsim.dbg.
-# configure wave not supported in batch mode
-# configure wave not supported in batch mode
-# configure wave not supported in batch mode
-# configure wave not supported in batch mode
-# configure wave not supported in batch mode
-# configure wave not supported in batch mode
-# configure wave not supported in batch mode
-# configure wave not supported in batch mode
 # Simulation succeeded
 # HALTing system logic
 # putting TAP in SAMPLE/PRELOAD
 # Scanning DR register
 # Returning to test-logic reset
 # ReadDataM: 00000000 | WriteDataM: 00000000 | DataAdrM: 00000000 | MemWriteM: 0 | InstrF: 00210063 | PCF: 00000058
-# ** Note: $stop    : ../testbenches/tb_top.sv(114)
+# ** Note: $stop    : ../testbenches/tb_top.sv(116)
 #    Time: 3970 ns  Iteration: 1  Instance: /testbench
-# Break in Module testbench at ../testbenches/tb_top.sv line 114
-# Stopped at ../testbenches/tb_top.sv line 114
-# End time: 18:33:55 on Mar 14,2026, Elapsed time: 0:00:04
+# Break in Module testbench at ../testbenches/tb_top.sv line 116
+wave sort ascending
+# End time: 09:25:28 on Mar 15,2026, Elapsed time: 0:00:59
 # Errors: 0, Warnings: 1
