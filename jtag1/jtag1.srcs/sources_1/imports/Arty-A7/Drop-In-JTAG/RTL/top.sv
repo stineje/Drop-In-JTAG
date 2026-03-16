@@ -4,33 +4,33 @@
 
 module top #(parameter IMEM_INIT_FILE="riscvtest.mem") (    
     // jtag logic
-    (* mark_debug = "true" *) input tck,tdi,tms,trst,
-    (* mark_debug = "true" *) output tdo,
+    input tck,tdi,tms,trst,
+    output tdo,
 
     // dut logic
     input sysclk,
-    (* mark_debug = "true" *) input sys_reset,
+    input sys_reset,
 
-    (* mark_debug = "true" *) output logic success, fail  // PHY DEBUG
+    output logic success, fail  // PHY DEBUG
 );
 
 logic [8:0] bsr_chain;
 
 logic bsr_tdi, bsr_clk, bsr_update, bsr_shift, bsr_mode, bsr_tdo;
 
-(* mark_debug = "true" *) logic dbgclk;
-(* mark_debug = "true" *) logic dm_reset;
-(* mark_debug = "true" *) logic reset;
+logic dbgclk;
+logic dm_reset;
+logic reset;
 
-(* mark_debug = "true" *) logic [31:0] PCF;
-(* mark_debug = "true" *) logic [31:0] InstrF;
-(* mark_debug = "true" *) logic        MemWriteM;
-(* mark_debug = "true" *) logic [31:0] DataAdrM;
-(* mark_debug = "true" *) logic [31:0] WriteDataM;
-(* mark_debug = "true" *) logic [31:0] ReadDataM;
+logic [31:0] PCF;
+logic [31:0] InstrF;
+logic        MemWriteM;
+logic [31:0] DataAdrM;
+logic [31:0] WriteDataM;
+logic [31:0] ReadDataM;
 
 logic [31:0] PCF_internal;
-(* mark_debug = "true" *) logic [31:0] InstrF_internal;
+logic [31:0] InstrF_internal;
 logic        MemWriteM_internal;
 logic [31:0] DataAdrM_internal;
 logic [31:0] WriteDataM_internal;

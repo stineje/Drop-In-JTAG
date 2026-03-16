@@ -5,7 +5,7 @@ module jtag_test_logic (
     output tdo,
 
     output bsr_tdi, bsr_clk, bsr_update,
-    (* mark_debug = "true" *) output bsr_shift, bsr_mode,
+    output bsr_shift, bsr_mode,
     input bsr_tdo,
 
     input sys_clk,
@@ -32,12 +32,12 @@ logic idcode;
 logic sample_preload;
 logic extest;
 logic intest;
-(* mark_debug = "true" *) logic clamp;
-(* mark_debug = "true" *) logic clamp_last;
+logic clamp;
+logic clamp_last;
 
-(* mark_debug = "true" *) logic halt;
-(* mark_debug = "true" *) logic step;
-(* mark_debug = "true" *) logic resume;
+logic halt;
+logic step;
+logic resume;
 logic logic_reset;
 
 // intermediate wires
