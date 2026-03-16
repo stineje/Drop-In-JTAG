@@ -1,95 +1,207 @@
+
 # Drop-In-JTAG Testbench
 
 ## Overview
 
-This repository demonstrates a **Drop-In-JTAG debug infrastructure** that allows a processor or SoC to be halted and inspected through a JTAG interface without modifying the processor datapath. The example testbench shows how to:
+This repository demonstrates a **Drop-In-JTAG debug infrastructure** that allows internal processor signals to be observed through a JTAG interface without modifying the processor datapath. The example testbench shows how a running processor can be:
 
-1. Run a processor normally
-2. Halt execution through JTAG
-3. Move the TAP controller to SAMPLE/PRELOAD
-4. Scan out internal signals
-5. Decode and display processor state
+1. Executed normally under the system clock
+2. Halted through a JTAG command sequence
+3. Placed into the JTAG `SAMPLE/PRELOAD` state
+4. Scanned to retrieve internal processor signals
+5. Decoded and printed for debugging
 
-This approach enables lightweight debug visibility through an HDL-based scan chain connected to JTAG.
+This approach enables **non‑intrusive hardware debugging** by attaching a scan chain to selected internal signals and accessing them through the JTAG TAP controller.
 
 ---
 
-## Architecture Overview
+# Architecture Overview
 
-The design separates the processor clock domain from the JTAG debug clock domain.
+The design separates two clock domains:
 
 | Clock | Purpose |
 |------|--------|
-| clk | System / processor clock |
-| tck | JTAG clock driving the TAP controller |
+| `clk` | System / processor clock |
+| `tck` | JTAG test clock driving the TAP controller |
+
+The processor runs normally on `clk`, while debug operations occur through the JTAG interface driven by `tck`.
+
+This separation reflects real hardware debugging systems where the CPU continues operating independently of the debug interface.
 
 ---
 
-## JTAG Interface Signals
+# JTAG Interface Signals
 
-Standard JTAG interface pins are used:
+Standard JTAG signals are used:
 
 | Signal | Description |
 |------|-------------|
-| tck | Test clock |
-| tms | Test mode select |
-| tdi | Test data input |
-| tdo | Test data output |
-| trst | Test reset |
+| `tck` | Test clock |
+| `tms` | Test mode select (controls TAP state transitions) |
+| `tdi` | Test data input (serial input to scan chain) |
+| `tdo` | Test data output (serial output from scan chain) |
+| `trst` | Test reset (resets the TAP controller) |
 
-Additional system signals:
+System signals include:
 
 | Signal | Description |
 |------|-------------|
-| sysclk | Processor clock |
-| sys_reset | Processor reset |
+| `sysclk` | Processor clock |
+| `sys_reset` | Processor reset |
 
 ---
 
-## Testbench Flow
+# Execution Flow
 
-The testbench performs the following steps:
+The testbench performs the following operations:
 
-1. Initialize system and JTAG resets.
-2. Allow the processor to run until a known memory event occurs.
-3. Halt the system through a JTAG command sequence.
-4. Move the TAP controller to SAMPLE/PRELOAD.
-5. Scan the data register to capture internal processor signals.
-6. Display the captured processor state.
+```
+Processor execution
+        ↓
+Detect program completion
+        ↓
+Halt processor via JTAG
+        ↓
+Move TAP to SAMPLE/PRELOAD
+        ↓
+Scan internal signals
+        ↓
+Display processor state
+```
 
 ---
 
-## Internal Signals Captured
+# Halting the Processor via JTAG
 
-The JTAG scan chain captures the following processor signals:
+The processor is halted using a **JTAG command sequence** shifted into the TAP controller using `tms` and `tdi`.
+
+This sequence drives the TAP through specific states and loads a control instruction that stops the processor pipeline.
+
+Example code:
+
+```systemverilog
+$display("HALTing system logic");
+for (i=11; i >= 0; i=i-1) begin
+   @(negedge tck) begin
+      tms <= halt_tmsvector[i];
+      tdi <= halt_tdivector[i];
+   end
+end
+```
+
+### Why the Processor Must Be Halted
+
+If the processor continues running during a scan operation:
+
+* internal signals change every cycle
+* captured scan data becomes inconsistent
+* debugging results become unreliable
+
+Halting the processor ensures the internal architectural state remains **stable while being scanned out**.
+
+---
+
+# SAMPLE/PRELOAD Mode
+
+After halting the processor, the TAP controller is moved to the **SAMPLE/PRELOAD state**.
+
+```systemverilog
+$display("putting TAP in SAMPLE/PRELOAD");
+for (i=11; i >= 0; i=i-1) begin
+   @(negedge tck) begin
+      tms <= sp_tmsvector[i];
+      tdi <= sp_tdivector[i];
+   end
+end
+```
+
+### What SAMPLE/PRELOAD Does
+
+The `SAMPLE/PRELOAD` state allows the scan chain to:
+
+* **capture internal signals**
+* prepare the scan chain for shifting data out
+* observe internal processor state without modifying it
+
+In this Drop‑In‑JTAG design, selected processor signals are connected into a scan chain so they can be captured and shifted out serially.
+
+---
+
+# Scanning the Data Register
+
+Once the TAP is in the correct state, the scan chain is shifted out through `tdo`.
+
+```systemverilog
+for (i=160; i >= 0; i=i-1) begin
+   @(negedge tck) begin
+      tdovector[i] <= tdo;
+   end
+end
+```
+
+Each clock cycle shifts one bit of internal processor state out of the scan chain.
+
+---
+
+# Captured Processor Signals
+
+The scan chain contains several internal signals from the processor pipeline.
 
 | Bits | Signal |
 |-----|-------|
-| [160:129] | ReadDataM |
-| [128:97] | WriteDataM |
-| [96:65] | DataAdrM |
-| [64] | MemWriteM |
-| [63:32] | InstrF |
-| [31:0] | PCF |
+| `[160:129]` | `ReadDataM` |
+| `[128:97]` | `WriteDataM` |
+| `[96:65]` | `DataAdrM` |
+| `[64]` | `MemWriteM` |
+| `[63:32]` | `InstrF` |
+| `[31:0]` | `PCF` |
 
-These signals correspond to values inside the processor pipeline and memory stage.
-
----
-
-## Why Drop-In-JTAG
-
-The term **Drop-In-JTAG** reflects the ability to add debug capability to an existing HDL design with minimal modification. Rather than redesigning the processor, selected internal signals are connected to a scan chain that is accessible through JTAG.
-
-Benefits include:
-
-- Non‑intrusive debug access
-- Reusable infrastructure across designs
-- Works in FPGA or ASIC environments
-- Standardized JTAG interface
-- Visibility into internal architectural state
+These signals expose both datapath and control information from the processor.
 
 ---
 
-## Summary
+# Displaying Captured State
 
-This example demonstrates how a processor can execute normally while a separate JTAG interface is used to halt execution and inspect internal signals through a scan chain. The approach provides a lightweight and reusable debugging infrastructure suitable for educational processors, FPGA prototypes, and experimental architectures.
+After scanning the vector, the testbench prints the decoded values.
+
+```systemverilog
+$display("ReadDataM: %h | WriteDataM %h | DataAdrM: %h | MemWriteM: %b | InstrF: %h | PCF: %h",
+         tdovector[160:129],
+         tdovector[128:97],
+         tdovector[96:65],
+         tdovector[64],
+         tdovector[63:32],
+         tdovector[31:0]);
+```
+
+This allows inspection of processor execution state through JTAG.
+
+---
+
+# Why It Is Called Drop‑In‑JTAG
+
+The term **Drop‑In‑JTAG** refers to the ability to add debug capability to an existing design with minimal changes.
+
+Instead of modifying the processor architecture, internal signals are simply connected to a scan chain accessible through JTAG.
+
+Advantages include:
+
+* Non‑intrusive debugging
+* Minimal design modification
+* Reusable debug infrastructure
+* FPGA and ASIC compatibility
+* Visibility into internal processor state
+
+---
+
+# Summary
+
+This example demonstrates a simple but powerful debugging approach:
+
+* The processor runs normally on the system clock.
+* JTAG commands halt the processor and control the TAP controller.
+* The TAP captures internal signals through `SAMPLE/PRELOAD`.
+* The scan chain shifts internal state out through `tdo`.
+* The testbench decodes and prints the captured processor signals.
+
+This Drop‑In‑JTAG approach provides a lightweight and reusable mechanism for inspecting processor internals during simulation or hardware debugging.
