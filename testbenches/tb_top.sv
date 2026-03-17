@@ -60,8 +60,8 @@ module testbench();
       // 0 -> Run-Test/Idle
       // 1 -> Select-DR-Scan      
       //
-      // This sequence effectively initializes and positions
-      // the TAP into a known "halted / ready" configuration.
+      // This sequence should execute the HALT instruction which should cause the
+      // system clock to become gated and halt the DUT from further execution
       
       static logic [11:0] halt_tmsvector = 'b101100_0001_10;
       static logic [11:0] halt_tdivector = 'b000000_0110_00; // LSB first
@@ -90,6 +90,8 @@ module testbench();
       //   1 -> Select-IR-Scan
       //
       // Final TAP state: Select-IR-Scan
+      // This should cause all of the boundary scan registers to latch the data on their inputs
+      // into their shift registers so the data can be scanned out.
 
       static logic [11:0] sp_tmsvector = 'b1100_0001_1100;
       static logic [11:0] sp_tdivector = 'b0000_0100_0000; // LSB first

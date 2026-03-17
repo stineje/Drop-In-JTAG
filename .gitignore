@@ -7,10 +7,14 @@
 
 # Ignore simulation tool temporary files
 work/
+sim_build/
+__pycache__/
 *.sim
 *.fsdb
 *.wlf
 *.ini
+transcript*
+*.dbg
 
 # Ignore Vivado/Quartus/ModelSim/other tool folders
 .sim/
@@ -23,6 +27,13 @@ work/
 *.qpf
 *.qsf
 *.rpt
+*.runs/
+*.cache/
+*.hw/
+*.ip_user_files/
+*.sim/
+*.gen/
+*.log
 
 # Ignore system files
 .DS_Store
