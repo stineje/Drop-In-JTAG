@@ -35,7 +35,15 @@ module top #(parameter IMEM_INIT_FILE="riscvtest.mem")
    output logic success, fail  // PHY DEBUG
 );
 
-   logic [8:0] bsr_chain;
+   logic bsr_chain0;
+   logic bsr_chain1;
+   logic bsr_chain2;
+   logic bsr_chain3;
+   logic bsr_chain4;
+   logic bsr_chain5;
+   logic bsr_chain6;
+   logic bsr_chain7;
+   logic bsr_chain8;
 
    logic bsr_tdi, bsr_clk, bsr_update, bsr_shift, bsr_mode, bsr_tdo;
 
@@ -59,8 +67,8 @@ module top #(parameter IMEM_INIT_FILE="riscvtest.mem")
 
    assign reset = sys_reset || dm_reset;
 
-   assign bsr_chain[0] = bsr_tdi;
-   assign bsr_tdo = bsr_chain[6];
+   assign bsr_chain0 = bsr_tdi;
+   assign bsr_tdo = bsr_chain6;
 
    // PHY DEBUG
    always @(posedge sysclk or posedge reset) begin
@@ -113,8 +121,8 @@ module top #(parameter IMEM_INIT_FILE="riscvtest.mem")
                .update_dr(bsr_update),
                .shift_dr(bsr_shift),
                .mode(bsr_mode),
-               .tdi(bsr_chain[0]),
-               .tdo(bsr_chain[1]),
+               .tdi(bsr_chain0),
+               .tdo(bsr_chain1),
                .parallel_in(PCF_internal),
                .parallel_out(PCF));
 
@@ -122,8 +130,8 @@ module top #(parameter IMEM_INIT_FILE="riscvtest.mem")
              .update_dr(bsr_update),
              .shift_dr(bsr_shift),
              .mode(bsr_mode),
-             .tdi(bsr_chain[1]),
-             .tdo(bsr_chain[2]),
+             .tdi(bsr_chain1),
+             .tdo(bsr_chain2),
              .parallel_in(InstrF),
              .parallel_out(InstrF_internal));
 
@@ -131,8 +139,8 @@ module top #(parameter IMEM_INIT_FILE="riscvtest.mem")
                .update_dr(bsr_update),
                .shift_dr(bsr_shift),
                .mode(bsr_mode),
-               .tdi(bsr_chain[2]),
-               .tdo(bsr_chain[3]),
+               .tdi(bsr_chain2),
+               .tdo(bsr_chain3),
                .parallel_in(MemWriteM_internal),
                .parallel_out(MemWriteM));
 
@@ -140,8 +148,8 @@ module top #(parameter IMEM_INIT_FILE="riscvtest.mem")
                .update_dr(bsr_update),
                .shift_dr(bsr_shift),
                .mode(bsr_mode),
-               .tdi(bsr_chain[3]),
-               .tdo(bsr_chain[4]),
+               .tdi(bsr_chain3),
+               .tdo(bsr_chain4),
                .parallel_in(DataAdrM_internal),
                .parallel_out(DataAdrM));
 
@@ -149,8 +157,8 @@ module top #(parameter IMEM_INIT_FILE="riscvtest.mem")
                  .update_dr(bsr_update),
                  .shift_dr(bsr_shift),
                  .mode(bsr_mode),
-                 .tdi(bsr_chain[4]),
-                 .tdo(bsr_chain[5]),
+                 .tdi(bsr_chain4),
+                 .tdo(bsr_chain5),
                  .parallel_in(WriteDataM_internal),
                  .parallel_out(WriteDataM));
 
@@ -158,8 +166,8 @@ module top #(parameter IMEM_INIT_FILE="riscvtest.mem")
                 .update_dr(bsr_update),
                 .shift_dr(bsr_shift),
                 .mode(bsr_mode),
-                .tdi(bsr_chain[5]),
-                .tdo(bsr_chain[6]),
+                .tdi(bsr_chain5),
+                .tdo(bsr_chain6),
                 .parallel_in(ReadDataM),
                 .parallel_out(ReadDataM_internal));
 
