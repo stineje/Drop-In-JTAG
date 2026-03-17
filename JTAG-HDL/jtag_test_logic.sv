@@ -25,8 +25,8 @@
 // and limitations under the License.
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-module jtag_test_logic
-  (`include "defines.sv"
+module jtag_test_logic (
+   `include "defines.sv"
    input logic  tck, tms, tdi, trst,
    output logic tdo,
    output logic bsr_tdi, bsr_clk, bsr_update,
@@ -119,7 +119,7 @@ module jtag_test_logic
 
    // DR demux
    always_comb begin
-      unique0 case (instructions)
+      case (instructions)
          `D_BYPASS          : tdo_dr = tdo_br;
          `D_IDCODE          : tdo_dr = tdo_id;
          `D_SAMPLE_PRELOAD,
