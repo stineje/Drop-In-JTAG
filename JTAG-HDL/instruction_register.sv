@@ -57,17 +57,17 @@ module instruction_register (
    // 8.1.1 (e)
    always_comb begin
       unique0 case (shift_reg[`INST_REG_WIDTH-1:0]) // TODO: check spec for default case behavior
-         `E_BYPASS         : decoded <= `D_BYPASS;
-         `E_SAMPLE_PRELOAD : decoded <= `D_SAMPLE_PRELOAD;
-         `E_EXTEST         : decoded <= `D_EXTEST;
-         `E_INTEST         : decoded <= `D_INTEST;
-         `E_IDCODE         : decoded <= `D_IDCODE;
-         `E_CLAMP          : decoded <= `D_CLAMP;
-         `E_HALT           : decoded <= `D_HALT;
-         `E_STEP           : decoded <= `D_STEP;
-         `E_RESUME         : decoded <= `D_RESUME;
-         `E_RESET          : decoded <= `D_RESET;
-         default           : decoded <= 'bx;
+         `E_BYPASS         : decoded = `D_BYPASS;
+         `E_SAMPLE_PRELOAD : decoded = `D_SAMPLE_PRELOAD;
+         `E_EXTEST         : decoded = `D_EXTEST;
+         `E_INTEST         : decoded = `D_INTEST;
+         `E_IDCODE         : decoded = `D_IDCODE;
+         `E_CLAMP          : decoded = `D_CLAMP;
+         `E_HALT           : decoded = `D_HALT;
+         `E_STEP           : decoded = `D_STEP;
+         `E_RESUME         : decoded = `D_RESUME;
+         `E_RESET          : decoded = `D_RESET;
+         default           : decoded = 'bx;
       endcase
    end
 

@@ -120,13 +120,13 @@ module jtag_test_logic
    // DR demux
    always_comb begin
       unique0 case (instructions)
-         `D_BYPASS          : tdo_dr <= tdo_br;
-         `D_IDCODE          : tdo_dr <= tdo_id;
+         `D_BYPASS          : tdo_dr = tdo_br;
+         `D_IDCODE          : tdo_dr = tdo_id;
          `D_SAMPLE_PRELOAD,
          `D_EXTEST,
          `D_INTEST,
-         `D_CLAMP           : tdo_dr <= bsr_tdo;
-        default            : tdo_dr <= tdo_br;  // BYPASS
+         `D_CLAMP           : tdo_dr = bsr_tdo;
+         default            : tdo_dr = tdo_br;  // BYPASS
       endcase
    end
 
@@ -137,7 +137,6 @@ module jtag_test_logic
 
    // Debug Core (sys_clk domain) ////////////////////////////////////////////////
    logic clk_en, clk_gate;
-   logic [1:0] debug_state;
 
    logic       dbg_rst;
    logic       dbg_halt;
@@ -155,10 +154,11 @@ module jtag_test_logic
 
    assign dbg_clk = sys_clk & clk_gate;
 
-   localparam
+   enum logic [1:0] {
       DBGRUN  = 2'b00,
       DBGHALT = 2'b01,
-      DBGSTEP = 2'b10;
+      DBGSTEP = 2'b10
+   } debug_state;
 
    always @(posedge sys_clk, negedge dbg_rst) begin
       if (~dbg_rst) begin
@@ -185,6 +185,7 @@ module jtag_test_logic
                clk_en <= 0;
                debug_state <= DBGHALT;
             end
+            default : debug_state <= DBGRUN;
          endcase
       end
    end
