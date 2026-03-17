@@ -2,190 +2,192 @@
 // jtag_test_logic.sv
 //
 // Written: james.stine@okstate.edu, jacob.pease@okstate.edu, matotto@okstate.edu 28 July 2025
-// Modified: 
+// Modified:
 //
 // Purpose: JTAG test logic module
-// 
+//
 // A component of the CORE-V-WALLY configurable RISC-V project.
 // https://github.com/openhwgroup/cvw
-// 
+//
 // Copyright (C) 2021-25 Harvey Mudd College & Oklahoma State University
 //
 // SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
 //
-// Licensed under the Solderpad Hardware License v 2.1 (the “License”); you may not use this file 
-// except in compliance with the License, or, at your option, the Apache License version 2.0. You 
+// Licensed under the Solderpad Hardware License v 2.1 (the “License”); you may not use this file
+// except in compliance with the License, or, at your option, the Apache License version 2.0. You
 // may obtain a copy of the License at
 //
 // https://solderpad.org/licenses/SHL-2.1/
 //
-// Unless required by applicable law or agreed to in writing, any work distributed under the 
-// License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
-// either express or implied. See the License for the specific language governing permissions 
+// Unless required by applicable law or agreed to in writing, any work distributed under the
+// License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+// either express or implied. See the License for the specific language governing permissions
 // and limitations under the License.
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-module jtag_test_logic 
-  (`include "defines.sv"
-    input logic  tck, tms, tdi, trst,
-    output logic tdo,
-    output logic bsr_tdi, bsr_clk, bsr_update,
-    output logic bsr_shift, bsr_mode,
-    input logic  bsr_tdo,
-    input logic  sys_clk,
-    output logic dbg_clk,
-    output logic dm_reset);
+module jtag_test_logic (
+   `include "defines.sv"
+   input logic  tck, tms, tdi, trst,
+   output logic tdo,
+   output logic bsr_tdi, bsr_clk, bsr_update,
+   output logic bsr_shift, bsr_mode,
+   input logic  bsr_tdo,
+   input logic  sys_clk,
+   output logic dbg_clk,
+   output logic dm_reset);
 
    // TAP controller logic
-   logic 	 reset;
-   logic 	 tdo_en;
-   logic 	 shiftIR;
-   logic 	 captureIR;
-   logic 	 ir_clk;
-   logic 	 updateIR;
-   logic 	 shiftDR;
-   logic 	 captureDR;
-   logic 	 clk_dr;
-   logic 	 select;
-   
+   logic reset;
+   logic tdo_en;
+   logic shiftIR;
+   logic captureIR;
+   logic ir_clk;
+   logic updateIR;
+   logic shiftDR;
+   logic captureDR;
+   logic clk_dr;
+   logic updateDR;
+   logic select;
+
    // instruction signals
-   logic [`INST_COUNT-1:0]   instructions;
-   logic 		     idcode;
-   logic 		     sample_preload;
-   logic 		     extest;
-   logic 		     intest;
-   logic clamp;
-   logic clamp_last;
-   
+   logic [`INST_COUNT-1:0] instructions;
+   logic                   idcode;
+   logic                   sample_preload;
+   logic                   extest;
+   logic                   intest;
+   logic                   clamp;
+   logic                   clamp_last;
+
    logic halt;
    logic step;
    logic resume;
-   logic 		     logic_reset;
-   
+   logic logic_reset;
+
    // intermediate wires
-   logic 		     tdi_ir, tdi_dr;
-   logic 		     tdo_ir, tdo_dr;
-   logic 		     tdo_br;
-   logic 		     tdo_id;   
-   
-   tap_controller fsm (.tck(tck), .trst(trst), .tms(tms), .reset(reset), .tdo_en(tdo_en), 
-		       .shiftIR(shiftIR), .captureIR(captureIR), .clockIR(ir_clk), 
-		       .updateIR(updateIR), .shiftDR(shiftDR), .captureDR(captureDR),
-		       .clockDR(clk_dr),.updateDR(updateDR), .select(select));
+   logic tdi_ir, tdi_dr;
+   logic tdo_ir, tdo_dr;
+   logic tdo_br;
+   logic tdo_id;
+
+   tap_controller fsm (.tck(tck), .trst(trst), .tms(tms), .reset(reset), .tdo_en(tdo_en),
+             .shiftIR(shiftIR), .captureIR(captureIR), .clockIR(ir_clk),
+             .updateIR(updateIR), .shiftDR(shiftDR), .captureDR(captureDR),
+             .clockDR(clk_dr),.updateDR(updateDR), .select(select));
 
 
-   // IR/DR input demux 
+   // IR/DR input demux
    assign {tdi_ir, tdi_dr} = select ? {tdi,1'bx} : {1'bx,tdi};
    // IR/DR output mux
    assign tdo = ~tdo_en ? 1'b0 : // TODO: check spec to see if this should be low or high when tdo_en is low
-		select ? tdo_ir : tdo_dr;   
-   
+      select ? tdo_ir : tdo_dr;
+
    instruction_register ir (.tck_ir(ir_clk), .tdi(tdi_ir), .tl_reset(reset), .captureIR(captureIR),
-			    .updateIR(updateIR), .tdo(tdo_ir), .instructions(instructions));   
-   
+             .updateIR(updateIR), .tdo(tdo_ir), .instructions(instructions));
+
    // synth tool should recognize these as one-hot signals
    assign idcode         = (instructions == `D_IDCODE);
    assign sample_preload = (instructions == `D_SAMPLE_PRELOAD);
    assign extest         = (instructions == `D_EXTEST);
    assign intest         = (instructions == `D_INTEST);
    assign clamp          = (instructions == `D_CLAMP);
-   
+
    assign halt           = (instructions == `D_HALT);
    assign step           = (instructions == `D_STEP);
    assign resume         = (instructions == `D_RESUME);
    assign logic_reset    = (instructions == `D_RESET);
-   
-   // Data Registers   
+
+   // Data Registers
    bypass_register br (.clockDR(clk_dr), .tdi(tdi_dr),
-		       .shiftDR(shiftDR), // 10.1.1 (b)
-		       .tdo(tdo_br));   
-   
+             .shiftDR(shiftDR), // 10.1.1 (b)
+             .tdo(tdo_br));
+
    device_identification_register didr (.tdi(tdi_dr), .tdo(tdo_id),
-					.clockDR(clk_dr || ~idcode),
-					.captureDR(captureDR));   
-   
+               .clockDR(clk_dr || ~idcode),
+               .captureDR(captureDR));
+
    // BSR mux
-   logic 		   bsr_enable;
+   logic bsr_enable;
    assign bsr_enable = (sample_preload || extest || intest || clamp);
 
-   // selects parallel output regs for BSR output   
-   assign bsr_mode = (extest || intest || clamp || (clamp_last && step));  
-   
+   // selects parallel output regs for BSR output
+   assign bsr_mode = (extest || intest || clamp || (clamp_last && step));
+
    assign bsr_tdi = bsr_enable ? tdi_dr : 1'bx;
    assign bsr_clk = clk_dr || ~bsr_enable;  // clock high when idle
    assign bsr_update = updateDR || clk_dr && captureDR;  // 8.7.1 (f)
-   assign bsr_shift = shiftDR;   
-   
+   assign bsr_shift = shiftDR;
+
    // DR demux
    always_comb begin
-      unique0 case (instructions)
-        `D_BYPASS          : tdo_dr <= tdo_br;
-        `D_IDCODE          : tdo_dr <= tdo_id;
-        `D_SAMPLE_PRELOAD,
-          `D_EXTEST,
-          `D_INTEST,
-          `D_CLAMP           : tdo_dr <= bsr_tdo;
-        default            : tdo_dr <= tdo_br;  // BYPASS
+      case (instructions)
+         `D_BYPASS          : tdo_dr = tdo_br;
+         `D_IDCODE          : tdo_dr = tdo_id;
+         `D_SAMPLE_PRELOAD,
+         `D_EXTEST,
+         `D_INTEST,
+         `D_CLAMP           : tdo_dr = bsr_tdo;
+         default            : tdo_dr = tdo_br;  // BYPASS
       endcase
    end
-   
+
    // soft persistence clamp
    always @(posedge updateIR) begin
       clamp_last <= clamp;
-   end  
-   
-   // Debug Core (sys_clk domain) ////////////////////////////////////////////////   
+   end
+
+   // Debug Core (sys_clk domain) ////////////////////////////////////////////////
    logic clk_en, clk_gate;
-   logic [1:0] debug_state;
-   
+
    logic       dbg_rst;
    logic       dbg_halt;
    logic       dbg_step;
    logic       dbg_resume;
-   
+
    cdc_sync_stb logicrst (.a(logic_reset), .clk_b(sys_clk), .b(dm_reset));
    cdc_sync_stb #(.RISING_EDGE(0)) dbgrst (.a(trst && reset), .clk_b(sys_clk), .b(dbg_rst));
    cdc_sync_stb dbghalt (.a(halt), .clk_b(sys_clk), .b(dbg_halt));
    cdc_sync_stb dbgstep (.a(step && updateIR), .clk_b(sys_clk), .b(dbg_step));
-   cdc_sync_stb dbgresume (.a(resume), .clk_b(sys_clk), .b(dbg_resume));   
-   
+   cdc_sync_stb dbgresume (.a(resume), .clk_b(sys_clk), .b(dbg_resume));
+
    always @(negedge sys_clk)
-     clk_gate <= clk_en;
-   
+      clk_gate <= clk_en;
+
    assign dbg_clk = sys_clk & clk_gate;
-   
-   localparam
-     DBGRUN  = 2'b00,
-     DBGHALT = 2'b01,
-     DBGSTEP = 2'b10;
-   
+
+   enum logic [1:0] {
+      DBGRUN  = 2'b00,
+      DBGHALT = 2'b01,
+      DBGSTEP = 2'b10
+   } debug_state;
+
    always @(posedge sys_clk, negedge dbg_rst) begin
       if (~dbg_rst) begin
          debug_state <= DBGRUN;
          clk_en <= 1;
       end else begin
          case (debug_state)
-           DBGRUN : begin
-              if (dbg_halt) begin
-                 clk_en <= 0;
-                 debug_state <= DBGHALT;
-              end
-           end	   
-           DBGHALT : begin
-              if (dbg_step) begin
-                 clk_en <= 1;
-                 debug_state <= DBGSTEP;
-              end else if (dbg_resume) begin
-                 clk_en <= 1;
-                 debug_state <= DBGRUN;
-              end
-           end	   
-           DBGSTEP : begin
-              clk_en <= 0;
-              debug_state <= DBGHALT;
-           end
+            DBGRUN : begin
+               if (dbg_halt) begin
+                  clk_en <= 0;
+                  debug_state <= DBGHALT;
+               end
+            end
+            DBGHALT : begin
+               if (dbg_step) begin
+                  clk_en <= 1;
+                  debug_state <= DBGSTEP;
+               end else if (dbg_resume) begin
+                  clk_en <= 1;
+                  debug_state <= DBGRUN;
+               end
+            end
+            DBGSTEP : begin
+               clk_en <= 0;
+               debug_state <= DBGHALT;
+            end
+            default : debug_state <= DBGRUN;
          endcase
       end
    end
-   
+
 endmodule  // jtag_test_logic

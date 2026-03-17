@@ -1,6 +1,6 @@
 module bypass_register (
-    input        tdi, 
-    input        clockDR, 
+    input        tdi,
+    input        clockDR,
     input        shiftDR,
     output logic tdo
 );

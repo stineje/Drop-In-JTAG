@@ -1,7 +1,7 @@
 # TAP Controller (New Version)
 
 ## Overview
-The `tap_controller_new` module is an updated implementation of the IEEE 1149.1 JTAG Test Access Port (TAP) controller.  
+The `tap_controller_new` module is an updated implementation of the IEEE 1149.1 JTAG Test Access Port (TAP) controller.
 It is designed with a clean, **finite state machine (FSM)** architecture to make the TAP behavior more explicit, maintainable, and extensible for future debugging, testing, and boundary scan features.
 
 This controller supports all TAP states for both **Instruction Register (IR)** and **Data Register (DR)** scan paths, generating control signals for shifting, capturing, updating, and selecting between registers.
@@ -29,7 +29,7 @@ This controller supports all TAP states for both **Instruction Register (IR)** a
 ---
 
 ## Why This Matters
-The TAP controller is the **entry point for test and debug operations** in any JTAG-compliant device.  
+The TAP controller is the **entry point for test and debug operations** in any JTAG-compliant device.
 By restructuring it as a clean FSM:
 - Future modules can use similar FSM templates for better maintainability.
 - Designers can clearly see **state-to-signal mapping** without digging into tangled conditional logic.

@@ -38,7 +38,7 @@ module testbench();
 			   .updateDR(updateDR),
 			   .select(select)
 		       );
-   
+
    // clock
    initial begin
       tck = 1'b1;
@@ -47,7 +47,7 @@ module testbench();
 
    // fileout
    initial begin
-      handle3 = $fopen("fsm.out");    
+      handle3 = $fopen("fsm.out");
       desc3 = handle3;
    end
 
@@ -63,7 +63,7 @@ module testbench();
       end
    end
     */
-   
+
    initial begin
       tms = 1'b1;
       trst = 1;
@@ -76,9 +76,9 @@ module testbench();
       testvector = 57'b111111111011000100001000011000100001000010000110001111111;
 
       for (i=CYCLES-1; i >= 0; i=i-1) begin
-         
+
          @(negedge tck) begin
-            tms <= testvector[i];            
+            tms <= testvector[i];
          end
       end
 

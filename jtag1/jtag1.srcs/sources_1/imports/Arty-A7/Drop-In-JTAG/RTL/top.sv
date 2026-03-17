@@ -2,7 +2,7 @@
 //  alongside example system logic and boundary scan register
 
 
-module top #(parameter IMEM_INIT_FILE="riscvtest.mem") (    
+module top #(parameter IMEM_INIT_FILE="riscvtest.mem") (
     // jtag logic
     input tck,tdi,tms,trst,
     output tdo,
