@@ -165,13 +165,9 @@ These signals expose both datapath and control information from the processor.
 After scanning the vector, the testbench prints the decoded values.
 
 ```systemverilog
-$display("ReadDataM: %h | WriteDataM %h | DataAdrM: %h | MemWriteM: %b | InstrF: %h | PCF: %h",
-         tdovector[160:129],
-         tdovector[128:97],
-         tdovector[96:65],
-         tdovector[64],
-         tdovector[63:32],
-         tdovector[31:0]);
+      $display("ReadDataM: %08h | WriteDataM: %08h | DataAdrM: %08h | MemWriteM: %b | InstrF: %08h | PCF: %08h",
+               tdovector[31:0], tdovector[63:32], tdovector[95:64], tdovector[96], tdovector[128:97],
+                tdovector[160:129]);
 ```
 
 This allows inspection of processor execution state through JTAG.
