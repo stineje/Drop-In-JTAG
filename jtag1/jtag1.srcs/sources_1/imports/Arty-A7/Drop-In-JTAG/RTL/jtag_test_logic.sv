@@ -74,7 +74,7 @@ assign tdo = ~tdo_en ? 1'b0 : // TODO: check spec to see if this should be low o
 
 
 instruction_register ir (
-    .tck_ir(ir_clk), 
+    .tck_ir(ir_clk),
     .tdi(tdi_ir),
     .tl_reset(reset),
     .captureIR(captureIR),

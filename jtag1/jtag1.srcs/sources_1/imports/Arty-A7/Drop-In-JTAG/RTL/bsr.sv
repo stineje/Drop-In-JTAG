@@ -6,7 +6,7 @@ module bsr #(parameter WIDTH) (
 
     input  tdi,
     output tdo,
-    
+
     input [WIDTH-1:0] parallel_in,
     output [WIDTH-1:0] parallel_out
 );

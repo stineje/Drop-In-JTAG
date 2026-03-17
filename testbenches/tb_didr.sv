@@ -15,7 +15,7 @@ device_identification_register dut (
     .captureDR(captureDR),
     .clockDR(clockDR)
 );
-    
+
 // clock
 initial begin
     clockDR = 1'b1;
@@ -34,11 +34,11 @@ initial begin
         captureDR = 0;
 
     for (i=0; i < 32; i=i+1) begin
-        
+
         @(posedge clockDR) begin
 
             read_buffer[31-i] = tdo;
-            
+
         end
     end
 

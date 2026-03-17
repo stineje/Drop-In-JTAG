@@ -3,7 +3,7 @@ module instruction_register (
 
     input                          tck_ir,
     input                          tdi,
-    input                          tl_reset, 
+    input                          tl_reset,
     input                          captureIR,
     input                          updateIR,
     output                         tdo,
