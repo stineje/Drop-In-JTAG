@@ -25,7 +25,7 @@
 // and limitations under the License.
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-module top #(parameter IMEM_INIT_FILE="riscvtest.memfile")
+module top #(parameter IMEM_INIT_FILE="riscvtest.mem")
    (// jtag logic
    input logic  tck,tdi,tms,trst,
    output logic tdo,

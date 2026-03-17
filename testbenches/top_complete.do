@@ -59,7 +59,7 @@ add wave -hex /testbench/dut/core/dp/rf/*
 add wave -hex /testbench/dut/core/dp/rf/rf
 
 add wave -noupdate -divider -height 32 "TAP controller"
-add wave -label state -hex /testbench/dut/jtag/fsm/state 
+#add wave -label state -hex /testbench/dut/jtag/fsm/state 
 add wave -label tck -hex /testbench/dut/jtag/fsm/tck 
 add wave -label trst -hex /testbench/dut/jtag/fsm/trst 
 add wave -label tms -hex /testbench/dut/jtag/fsm/tms 
