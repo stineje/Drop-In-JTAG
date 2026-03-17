@@ -59,7 +59,7 @@ module testbench();
    initial begin
       // logic [160:0] tdovector;
 
-      // Puts TAP in modesl starting from reset
+      // Puts TAP in modes starting from reset
       static logic [11:0] halt_tmsvector = 'b101100_0001_10;
       static logic [11:0] halt_tdivector = 'b000000_0110_00; // LSB first
 
