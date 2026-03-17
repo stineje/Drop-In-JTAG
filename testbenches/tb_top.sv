@@ -43,9 +43,53 @@ module testbench();
    end
 
    initial begin
-      // Puts TAP in modes starting from reset
+
+      // Performs an IR scan (loads an instruction)
+      // Assuming TAP starts in Test-Logic-Reset:      
+      // Explanation 
+      // 0 -> Run-Test/Idle
+      // 1 -> Select-DR-Scan
+      // 1 -> Select-IR-Scan
+      // 0 -> Capture-IR
+      // 0 -> Shift-IR
+      // 0 -> Shift-IR
+      // 0 -> Shift-IR
+      // 0 -> Shift-IR
+      // 1 -> Exit1-IR
+      // 1 -> Update-IR
+      // 0 -> Run-Test/Idle
+      // 1 -> Select-DR-Scan      
+      //
+      // This sequence effectively initializes and positions
+      // the TAP into a known "halted / ready" configuration.
+      
       static logic [11:0] halt_tmsvector = 'b101100_0001_10;
       static logic [11:0] halt_tdivector = 'b000000_0110_00; // LSB first
+
+      // Positions the TAP (navigation only, no shifting)
+      // ============================================================
+      // Shift Path Entry (Edit Mode)
+      // ============================================================
+      // This sequence drives TAP into Shift-DR or Shift-IR
+      // where scan data can be inserted/extracted.
+      // Explanation:
+      // LSB-first TMS sequence: 0,0,1,1,1,0,0,0,0,0,1,1
+      //
+      // Assuming TAP starts in Test-Logic-Reset, this drives: 
+      //   0 -> Run-Test/Idle
+      //   0 -> Run-Test/Idle
+      //   1 -> Select-DR-Scan
+      //   1 -> Select-IR-Scan
+      //   1 -> Test-Logic-Reset
+      //   0 -> Run-Test/Idle
+      //   0 -> Run-Test/Idle
+      //   0 -> Run-Test/Idle
+      //   0 -> Run-Test/Idle
+      //   0 -> Run-Test/Idle
+      //   1 -> Select-DR-Scan
+      //   1 -> Select-IR-Scan
+      //
+      // Final TAP state: Select-IR-Scan
 
       static logic [11:0] sp_tmsvector = 'b1100_0001_1100;
       static logic [11:0] sp_tdivector = 'b0000_0100_0000; // LSB first
