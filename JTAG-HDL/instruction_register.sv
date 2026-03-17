@@ -36,20 +36,20 @@ module instruction_register (
    output logic [`INST_COUNT-1:0] instructions
 );
 
-   logic [`INST_REG_WIDTH:0] shift_reg;
-   logic [`INST_COUNT-1:0]   decoded;
+   logic [`INST_REG_WIDTH-1:0] shift_reg;
+   logic [`INST_COUNT-1:0]     decoded;
 
-   assign shift_reg[`INST_REG_WIDTH] = tdi;
    assign tdo = shift_reg[0];
 
    // Shift register
-   always @(posedge tck_ir) begin
+   always_ff @(posedge tck_ir) begin
       shift_reg[0] <= shift_reg[1] || captureIR;  // 7.1.1 (d)
-   end
-   genvar i;
-   for (i = `INST_REG_WIDTH; i > 1; i = i - 1) begin
-      always @(posedge tck_ir) begin
-         shift_reg[i-1] <= shift_reg[i] && ~captureIR;  // 7.1.1 (e)
+
+      for (int i = `INST_REG_WIDTH; i > 1; i = i - 1) begin
+         if (i == `INST_REG_WIDTH)
+            shift_reg[i-1] <= tdi && ~captureIR;
+         else
+            shift_reg[i-1] <= shift_reg[i] && ~captureIR;  // 7.1.1 (e)
       end
    end
 
