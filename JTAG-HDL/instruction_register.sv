@@ -25,18 +25,19 @@
 // and limitations under the License.
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-module instruction_register 
-  (`include "defines.sv"
+module instruction_register (
+   `include "defines.sv"
    input logic  tck_ir,
    input logic  tdi,
    input logic  tl_reset, 
    input logic  captureIR,
    input logic  updateIR,
    output logic tdo,
-   output logic [`INST_COUNT-1:0] instructions);
+   output logic [`INST_COUNT-1:0] instructions
+);
 
-   logic [`INST_REG_WIDTH:0] 	  shift_reg;
-   logic [`INST_COUNT-1:0] 	  decoded;   
+   logic [`INST_REG_WIDTH:0] shift_reg;
+   logic [`INST_COUNT-1:0]   decoded;   
    
    assign shift_reg[`INST_REG_WIDTH] = tdi;
    assign tdo = shift_reg[0];
@@ -50,32 +51,32 @@ module instruction_register
       always @(posedge tck_ir) begin
          shift_reg[i-1] <= shift_reg[i] && ~captureIR;  // 7.1.1 (e)
       end
-    end
+   end
    
    // Instruction decoder
    // 8.1.1 (e)
    always_comb begin
       unique0 case (shift_reg[`INST_REG_WIDTH-1:0]) // TODO: check spec for default case behavior
-        `E_BYPASS         : decoded <= `D_BYPASS;
-        `E_SAMPLE_PRELOAD : decoded <= `D_SAMPLE_PRELOAD;
-        `E_EXTEST         : decoded <= `D_EXTEST;
-        `E_INTEST         : decoded <= `D_INTEST;
-        `E_IDCODE         : decoded <= `D_IDCODE;
-        `E_CLAMP          : decoded <= `D_CLAMP;
-        `E_HALT           : decoded <= `D_HALT;
-        `E_STEP           : decoded <= `D_STEP;
-        `E_RESUME         : decoded <= `D_RESUME;
-        `E_RESET          : decoded <= `D_RESET;
-        default           : decoded <= 'bx;
+         `E_BYPASS         : decoded <= `D_BYPASS;
+         `E_SAMPLE_PRELOAD : decoded <= `D_SAMPLE_PRELOAD;
+         `E_EXTEST         : decoded <= `D_EXTEST;
+         `E_INTEST         : decoded <= `D_INTEST;
+         `E_IDCODE         : decoded <= `D_IDCODE;
+         `E_CLAMP          : decoded <= `D_CLAMP;
+         `E_HALT           : decoded <= `D_HALT;
+         `E_STEP           : decoded <= `D_STEP;
+         `E_RESUME         : decoded <= `D_RESUME;
+         `E_RESET          : decoded <= `D_RESET;
+         default           : decoded <= 'bx;
       endcase
    end
    
    // Instruction reg
    always @(posedge updateIR or negedge tl_reset) begin
       if (~tl_reset)
-        instructions <= `D_IDCODE;  // 7.2.1 (e,f)
+         instructions <= `D_IDCODE;  // 7.2.1 (e,f)
       else if (updateIR)
-        instructions <= decoded;
+         instructions <= decoded;
    end
    
 endmodule // instruction_register

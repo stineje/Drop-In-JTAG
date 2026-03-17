@@ -27,17 +27,17 @@
 
 module top #(parameter IMEM_INIT_FILE="riscvtest.mem") 
    (// jtag logic
-    input logic  tck,tdi,tms,trst,
-    output logic tdo,
-    // dut logic
-    input logic sysclk,
-    input logic  sys_reset,
-    output logic success, fail  // PHY DEBUG
-    );
+   input logic  tck,tdi,tms,trst,
+   output logic tdo,
+   // dut logic
+   input logic sysclk,
+   input logic  sys_reset,
+   output logic success, fail  // PHY DEBUG
+);
 
-   logic [8:0] 	bsr_chain;
+   logic [8:0] bsr_chain;
    
-   logic 	bsr_tdi, bsr_clk, bsr_update, bsr_shift, bsr_mode, bsr_tdo;
+   logic bsr_tdi, bsr_clk, bsr_update, bsr_shift, bsr_mode, bsr_tdo;
    
    logic dbgclk;
    logic dm_reset;
@@ -79,29 +79,29 @@ module top #(parameter IMEM_INIT_FILE="riscvtest.mem")
    
    // test logic ////////////////////////////////////////////////////   
    jtag_test_logic jtag (.tck(tck),
-			 .tms(tms),
-			 .tdi(tdi),
-			 .trst(trst),
-			 .tdo(tdo),
-			 .bsr_tdi(bsr_tdi),
-			 .bsr_clk(bsr_clk),
-			 .bsr_update(bsr_update),
-			 .bsr_shift(bsr_shift),
-			 .bsr_mode(bsr_mode),
-			 .bsr_tdo(bsr_tdo),
-			 .sys_clk(sysclk),
-			 .dbg_clk(dbgclk),
-			 .dm_reset(dm_reset));
+          .tms(tms),
+          .tdi(tdi),
+          .trst(trst),
+          .tdo(tdo),
+          .bsr_tdi(bsr_tdi),
+          .bsr_clk(bsr_clk),
+          .bsr_update(bsr_update),
+          .bsr_shift(bsr_shift),
+          .bsr_mode(bsr_mode),
+          .bsr_tdo(bsr_tdo),
+          .sys_clk(sysclk),
+          .dbg_clk(dbgclk),
+          .dm_reset(dm_reset));
 
    // RISC-V Core ///////////////////////////////////////////////////
    riscv core (.clk(dbgclk),
-	       .reset(reset),
-	       .PCF(PCF_internal),
-	       .InstrF(InstrF_internal),
-	       .MemWriteM(MemWriteM_internal),
-	       .ALUResultM(DataAdrM_internal),
-	       .WriteDataM(WriteDataM_internal),
-	       .ReadDataM(ReadDataM_internal));
+          .reset(reset),
+          .PCF(PCF_internal),
+          .InstrF(InstrF_internal),
+          .MemWriteM(MemWriteM_internal),
+          .ALUResultM(DataAdrM_internal),
+          .WriteDataM(WriteDataM_internal),
+          .ReadDataM(ReadDataM_internal));
    
    // Core memory   
    imem #(.MEM_INIT_FILE(IMEM_INIT_FILE)) imem (PCF, InstrF);
@@ -110,57 +110,57 @@ module top #(parameter IMEM_INIT_FILE="riscvtest.mem")
    // boundary scan registers ///////////////////////////////////////
    // add as needed (modify number of bsrs/cycles needed to get data out 32*5+1=161 cycles)   
    bsr #(.WIDTH(32)) PCF_bsr (.clk(bsr_clk),
-			      .update_dr(bsr_update),
-			      .shift_dr(bsr_shift),
-			      .mode(bsr_mode),
-			      .tdi(bsr_chain[0]),
-			      .tdo(bsr_chain[1]),
-			      .parallel_in(PCF_internal),
-			      .parallel_out(PCF));
+               .update_dr(bsr_update),
+               .shift_dr(bsr_shift),
+               .mode(bsr_mode),
+               .tdi(bsr_chain[0]),
+               .tdo(bsr_chain[1]),
+               .parallel_in(PCF_internal),
+               .parallel_out(PCF));
    
    bsr #(.WIDTH(32)) InstrF_bsr (.clk(bsr_clk),   
-				 .update_dr(bsr_update),
-				 .shift_dr(bsr_shift),
-				 .mode(bsr_mode),
-				 .tdi(bsr_chain[1]),
-				 .tdo(bsr_chain[2]),
-				 .parallel_in(InstrF),
-				 .parallel_out(InstrF_internal));
+             .update_dr(bsr_update),
+             .shift_dr(bsr_shift),
+             .mode(bsr_mode),
+             .tdi(bsr_chain[1]),
+             .tdo(bsr_chain[2]),
+             .parallel_in(InstrF),
+             .parallel_out(InstrF_internal));
    
    bsr #(.WIDTH(1)) MemWriteM_bsr (.clk(bsr_clk),
-				   .update_dr(bsr_update),
-				   .shift_dr(bsr_shift),
-				   .mode(bsr_mode),
-				   .tdi(bsr_chain[2]),
-				   .tdo(bsr_chain[3]),
-				   .parallel_in(MemWriteM_internal),
-				   .parallel_out(MemWriteM));
+               .update_dr(bsr_update),
+               .shift_dr(bsr_shift),
+               .mode(bsr_mode),
+               .tdi(bsr_chain[2]),
+               .tdo(bsr_chain[3]),
+               .parallel_in(MemWriteM_internal),
+               .parallel_out(MemWriteM));
    
    bsr #(.WIDTH(32)) DataAdrM_bsr (.clk(bsr_clk),
-				   .update_dr(bsr_update),
-				   .shift_dr(bsr_shift),
-				   .mode(bsr_mode),
-				   .tdi(bsr_chain[3]),
-				   .tdo(bsr_chain[4]),
-				   .parallel_in(DataAdrM_internal),
-				   .parallel_out(DataAdrM));
+               .update_dr(bsr_update),
+               .shift_dr(bsr_shift),
+               .mode(bsr_mode),
+               .tdi(bsr_chain[3]),
+               .tdo(bsr_chain[4]),
+               .parallel_in(DataAdrM_internal),
+               .parallel_out(DataAdrM));
    
    bsr #(.WIDTH(32)) WriteDataM_bsr (.clk(bsr_clk),
-				     .update_dr(bsr_update),
-				     .shift_dr(bsr_shift),
-				     .mode(bsr_mode),
-				     .tdi(bsr_chain[4]),
-				     .tdo(bsr_chain[5]),
-				     .parallel_in(WriteDataM_internal),
-				     .parallel_out(WriteDataM));
+                 .update_dr(bsr_update),
+                 .shift_dr(bsr_shift),
+                 .mode(bsr_mode),
+                 .tdi(bsr_chain[4]),
+                 .tdo(bsr_chain[5]),
+                 .parallel_in(WriteDataM_internal),
+                 .parallel_out(WriteDataM));
    
    bsr #(.WIDTH(32)) ReadDataM_bsr (.clk(bsr_clk),
-				    .update_dr(bsr_update),
-				    .shift_dr(bsr_shift),
-				    .mode(bsr_mode),
-				    .tdi(bsr_chain[5]),
-				    .tdo(bsr_chain[6]),
-				    .parallel_in(ReadDataM),
-				    .parallel_out(ReadDataM_internal));
+                .update_dr(bsr_update),
+                .shift_dr(bsr_shift),
+                .mode(bsr_mode),
+                .tdi(bsr_chain[5]),
+                .tdo(bsr_chain[6]),
+                .parallel_in(ReadDataM),
+                .parallel_out(ReadDataM_internal));
 
 endmodule // top

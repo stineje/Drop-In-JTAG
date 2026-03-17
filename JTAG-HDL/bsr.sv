@@ -25,32 +25,34 @@
 // and limitations under the License.
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-module bsr #(parameter WIDTH) (
-    input logic 	     clk,
-    input logic 	     update_dr,
-    input logic 	     shift_dr,
-    input logic 	     mode,			       
-    input logic 	     tdi,
-    output logic 	     tdo,			       
-    input logic [WIDTH-1:0]  parallel_in,
-    output logic [WIDTH-1:0] parallel_out
+module bsr #(parameter WIDTH=1) (
+   input  logic             clk,
+   input  logic             update_dr,
+   input  logic             shift_dr,
+   input  logic             mode,                
+   input  logic             tdi,
+   output logic             tdo,                
+   input  logic [WIDTH-1:0] parallel_in,
+   output logic [WIDTH-1:0] parallel_out
 );
 
-   logic [WIDTH:0] 	     shift_reg;
+   logic [WIDTH:0]           shift_reg;
    
    assign shift_reg[WIDTH] = tdi;
    assign tdo = shift_reg[0];
    
-   genvar 		     i;
+   genvar i;
    for (i=0; i<WIDTH; i=i+1) begin
-      bsr_cell bsr_cell (.clk(clk),
-			 .update_dr(update_dr),
-			 .shift_dr(shift_dr),
-			 .mode(mode),
-			 .parallel_in(parallel_in[i]),
-			 .parallel_out(parallel_out[i]),
-			 .sequential_in(shift_reg[i+1]),
-			 .sequential_out(shift_reg[i]));
+      bsr_cell bsr_cell (
+         .clk(clk),
+         .update_dr(update_dr),
+         .shift_dr(shift_dr),
+         .mode(mode),
+         .parallel_in(parallel_in[i]),
+         .parallel_out(parallel_out[i]),
+         .sequential_in(shift_reg[i+1]),
+         .sequential_out(shift_reg[i])
+      );
    end
 
 endmodule  // bsr

@@ -25,11 +25,12 @@
 // and limitations under the License.
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-module bypass_register 
-  (input logic  tdi, 
-   input logic 	clockDR, 
-   input logic 	shiftDR,
-   output logic tdo);
+module bypass_register (
+   input  logic tdi, 
+   input  logic clockDR, 
+   input  logic shiftDR,
+   output logic tdo
+);
 
    always @(posedge clockDR) begin
       tdo <= tdi & shiftDR;   // 10.1.1 (b)

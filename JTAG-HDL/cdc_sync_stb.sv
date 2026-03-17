@@ -25,16 +25,17 @@
 // and limitations under the License.
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-module cdc_sync_stb #(parameter RISING_EDGE = 1)
-   (input logic  a,
-    input logic  clk_b,
-    output logic b);
+module cdc_sync_stb #(parameter RISING_EDGE = 1) (
+   input  logic a,
+   input  logic clk_b,
+   output logic b
+);
 
-   logic 	 sync1, sync2;
-   logic 	 lock;
+   logic     sync1, sync2;
+   logic     lock;
    
    initial
-     lock = 0;
+      lock = 0;
    
    always @(posedge clk_b) begin
       sync1 <= a;
@@ -46,9 +47,9 @@ module cdc_sync_stb #(parameter RISING_EDGE = 1)
             b <= 1;
          end
          if (b)
-           b <= 0;
+            b <= 0;
          if (~sync2)
-           lock <= 0;
+            lock <= 0;
       end else begin
          if (~sync2 && ~lock) begin
             lock <= 1;
@@ -61,5 +62,4 @@ module cdc_sync_stb #(parameter RISING_EDGE = 1)
       end
    end
    
-endmodule // cdc_sync_stb
-
+endmodule  // cdc_sync_stb
