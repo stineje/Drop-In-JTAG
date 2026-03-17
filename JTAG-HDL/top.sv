@@ -25,7 +25,7 @@
 // and limitations under the License.
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-module top #(parameter IMEM_INIT_FILE="riscvtest.mem")
+module top #(parameter IMEM_INIT_FILE="riscvtest.memfile")
    (// jtag logic
    input logic  tck,tdi,tms,trst,
    output logic tdo,
@@ -42,8 +42,6 @@ module top #(parameter IMEM_INIT_FILE="riscvtest.mem")
    logic bsr_chain4;
    logic bsr_chain5;
    logic bsr_chain6;
-   logic bsr_chain7;
-   logic bsr_chain8;
 
    logic bsr_tdi, bsr_clk, bsr_update, bsr_shift, bsr_mode, bsr_tdo;
 
