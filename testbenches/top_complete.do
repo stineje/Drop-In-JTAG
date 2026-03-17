@@ -16,7 +16,7 @@ vlib work
 # compile source files
 vlog ../testbenches/tb_top.sv ../JTAG-HDL/top.sv ../JTAG-HDL/jtag_test_logic.sv
 vlog ../JTAG-HDL/bsr_cell.sv ../JTAG-HDL/cdc_sync_stb.sv
-vlog ../JTAG-HDL/tap_controller.sv ../JTAG-HDL/instruction_register.sv 
+vlog ../JTAG-HDL/tap_controller_old.sv ../JTAG-HDL/instruction_register.sv 
 vlog ../JTAG-HDL/bypass_register.sv ../JTAG-HDL/bsr.sv
 vlog ../JTAG-HDL/device_identification_register.sv
 vlog ../RISCV_pipe/riscv_pipelined.sv
