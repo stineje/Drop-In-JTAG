@@ -382,7 +382,7 @@ module mux3 #(parameter WIDTH = 8)
    assign y = s[1] ? d2 : (s[0] ? d1 : d0);
 endmodule
 
-module imem #(parameter MEM_INIT_FILE)
+module imem #(parameter MEM_INIT_FILE)=""
     (input  logic [31:0] a,
      output logic [31:0] rd);
 
