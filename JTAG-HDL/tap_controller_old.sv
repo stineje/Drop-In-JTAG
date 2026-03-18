@@ -25,7 +25,7 @@
 // and limitations under the License.
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-module tap_controller_old
+module tap_controller
   (input  logic tck, trst, tms,
    output logic reset,
    output logic tdo_en,
