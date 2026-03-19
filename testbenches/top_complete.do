@@ -59,38 +59,10 @@ add wave -hex /testbench/dut/core/dp/rf/*
 add wave -hex /testbench/dut/core/dp/rf/rf
 
 add wave -noupdate -divider -height 32 "TAP controller"
-#add wave -label state -hex /testbench/dut/jtag/fsm/state 
-add wave -label tck -hex /testbench/dut/jtag/fsm/tck 
-add wave -label trst -hex /testbench/dut/jtag/fsm/trst 
-add wave -label tms -hex /testbench/dut/jtag/fsm/tms 
-add wave -label reset -hex /testbench/dut/jtag/fsm/reset 
-add wave -label tdo_en -hex /testbench/dut/jtag/fsm/tdo_en 
-add wave -label shiftIR -hex /testbench/dut/jtag/fsm/shiftIR 
-add wave -label captureIR -hex /testbench/dut/jtag/fsm/captureIR 
-add wave -label clockIR -hex /testbench/dut/jtag/fsm/clockIR 
-add wave -label updateIR -hex /testbench/dut/jtag/fsm/updateIR 
-add wave -label shiftDR -hex /testbench/dut/jtag/fsm/shiftDR 
-add wave -label captureDR -hex /testbench/dut/jtag/fsm/captureDR 
-add wave -label clockDR -hex /testbench/dut/jtag/fsm/clockDR 
-add wave -label updateDR -hex /testbench/dut/jtag/fsm/updateDR 
-#add wave -label updateDRstate -hex /testbench/dut/jtag/fsm/updateDRstate 
-add wave -label select -hex /testbench/dut/jtag/fsm/select
+add wave -hex /testbench/dut/jtag/fsm/*
 
 add wave -noupdate -divider -height 32 "JTAG block"
-add wave -hex /testbench/dut/jtag/tck
-add wave -hex /testbench/dut/jtag/tms
-add wave -hex /testbench/dut/jtag/tdi
-add wave -hex /testbench/dut/jtag/trst
-add wave -hex /testbench/dut/jtag/tdo
-add wave -hex /testbench/dut/jtag/bsr_tdi
-add wave -hex /testbench/dut/jtag/bsr_clk
-add wave -hex /testbench/dut/jtag/bsr_update
-add wave -hex /testbench/dut/jtag/bsr_shift
-add wave -hex /testbench/dut/jtag/bsr_mode
-add wave -hex /testbench/dut/jtag/bsr_tdo
-add wave -hex /testbench/dut/jtag/sys_clk
-add wave -hex /testbench/dut/jtag/dbg_clk
-add wave -hex /testbench/dut/jtag/dm_reset
+add wave -hex /testbench/dut/jtag/*
 
 add wave -noupdate -divider -height 32 "PCF_bsr"
 add wave -hex /testbench/dut/PCF_bsr/*
@@ -118,8 +90,8 @@ add wave -hex /testbench/dut/ReadDataM_bsr/*
 -- Set Wave Output Items 
 TreeUpdate [SetDefaultTree]
 WaveRestoreZoom {0 ps} {200 ns}
-configure wave -namecolwidth 250
-configure wave -valuecolwidth 100
+configure wave -namecolwidth 150
+configure wave -valuecolwidth 250
 configure wave -justifyvalue left
 configure wave -signalnamewidth 1
 configure wave -snapdistance 10
