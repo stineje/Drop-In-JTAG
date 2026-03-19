@@ -3,14 +3,21 @@
 ## - uncomment the lines corresponding to used pins
 ## - rename the used ports (in each line, after get_ports) according to the top level signal names in the project
 
-# Clock signal
-set_property -dict { PACKAGE_PIN E3    IOSTANDARD LVCMOS33 } [get_ports { sysclk }]; #IO_L12P_T1_MRCC_35 Sch=gclk[100]
-create_clock -add -name sys_clk_pin -period 10.00 -waveform {0 5} [get_ports {sysclk}];
-create_clock -add -name sys_clk_pin -period 100.00 -waveform {0 5} [get_ports {tck}];
+set_property -dict { PACKAGE_PIN E3 IOSTANDARD LVCMOS33 } [get_ports { sysclk }]
+create_clock -name sys_clk_pin -period 10.000 -waveform {0 5.000} [get_ports {sysclk}]
+create_clock -name tck_clk_pin -period 100.000 -waveform {0 50.000} [get_ports {tck}]
 
 set_clock_groups -asynchronous \
-    -group [get_clocks sys_clk] \
-    -group [get_clocks tck]
+    -group [get_clocks -include_generated_clocks sys_clk_pin] \
+    -group [get_clocks -include_generated_clocks tck_clk_pin]
+
+# ignore the timing error or add an exception to your .xdc
+set_clock_groups -asynchronous -group [get_clocks tck_clk_pin] -group [get_clocks clk_out1_clk_wiz_0]
+
+# Issue with tck and implementation - fix (jes)
+set_property CLOCK_DEDICATED_ROUTE FALSE \
+    [get_nets -segments -of_objects [get_pins tck_IBUF_inst/O]]
+#set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets tck_IBUF]
 
 ## Switches
 set_property -dict { PACKAGE_PIN A8    IOSTANDARD LVCMOS33 } [get_ports { sw[0] }]; #IO_L12N_T1_MRCC_16 Sch=sw[0]
@@ -45,10 +52,6 @@ set_property -dict { PACKAGE_PIN D13   IOSTANDARD LVCMOS33 } [get_ports { tck }]
 set_property -dict { PACKAGE_PIN B18   IOSTANDARD LVCMOS33 } [get_ports { ja[8] }]; #IO_L10P_T1_AD11P_15 Sch=ja[8]
 set_property -dict { PACKAGE_PIN A18   IOSTANDARD LVCMOS33 } [get_ports { ja[9] }]; #IO_L10N_T1_AD11N_15 Sch=ja[9]
 set_property -dict { PACKAGE_PIN E15   IOSTANDARD LVCMOS33 } [get_ports { ja[10] }]; #IO_L11P_T1_SRCC_15 Sch=ja[10]
-
-# Issue with tck and implementation - fix (jes)
-# Vivado stops enforcing the dedicated clock-route requirement, so implementation can continue
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets tck_IBUF]
 
 ## Pmod Header JB
 set_property -dict { PACKAGE_PIN D15   IOSTANDARD LVCMOS33 } [get_ports { jb[1] }]; #IO_L12P_T1_MRCC_15 Sch=jb[1]
