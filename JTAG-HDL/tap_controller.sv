@@ -1,10 +1,10 @@
 ///////////////////////////////////////////
-// tap_controller.sv
+// tap_conntroller.sv
 //
-// Written: james.stine@okstate.edu, jacob.pease@okstate.edu 28 July 2025
+// Written: matotto@okstate.edu 13 Novemeber 2023
 // Modified:
 //
-// Purpose: IEEE 1149.1 tap controller
+// Purpose: IEEE 1149.1 tap controller based on standard
 //
 // A component of the CORE-V-WALLY configurable RISC-V project.
 // https://github.com/openhwgroup/cvw
@@ -37,102 +37,53 @@ module tap_controller
    output logic captureDR,
    output logic clockDR,
    output logic updateDR,
+//   output logic updateDRstate,  // removed as just redundant
    output logic select);
 
-   // -----------------------------------------------------------------------------
-   // TAP Controller States (IEEE 1149.1)
-   // State[3] distinguishes between DR path (0) and IR path / special (1)
-   //
-   //   State Name     | Encoding | Binary  | State[3] | Path Type
-   // -----------------+----------+---------+----------+------------------------
-   //   Exit2DR        | 0x0      | 0000    |    0     | DR path
-   //   Exit1DR        | 0x1      | 0001    |    0     | DR path
-   //   ShiftDR        | 0x2      | 0010    |    0     | DR path
-   //   PauseDR        | 0x3      | 0011    |    0     | DR path
-   //   SelectIR       | 0x4      | 0100    |    0     | DR path -> IR select
-   //   UpdateDR       | 0x5      | 0101    |    0     | DR path
-   //   CaptureDR      | 0x6      | 0110    |    0     | DR path
-   //   SelectDR       | 0x7      | 0111    |    0     | DR path
-   //   Exit2IR        | 0x8      | 1000    |    1     | IR path
-   //   Exit1IR        | 0x9      | 1001    |    1     | IR path
-   //   ShiftIR        | 0xA      | 1010    |    1     | IR path
-   //   PauseIR        | 0xB      | 1011    |    1     | IR path
-   //   RunTestIdle    | 0xC      | 1100    |    1     | IR path
-   //   UpdateIR       | 0xD      | 1101    |    1     | IR path
-   //   CaptureIR      | 0xE      | 1110    |    1     | IR path
-   //   TLReset        | 0xF      | 1111    |    1     | Special state
-   //
-   // Therefore:
-   //   assign select = State[3];  See Figure 6-5 in 1149.1
-   // -----------------------------------------------------------------------------
-   typedef enum logic [3:0] {
-              // --- DR Path States ---
-              Exit2DR      = 4'h0,
-              Exit1DR      = 4'h1,
-              ShiftDR      = 4'h2,
-              PauseDR      = 4'h3,
-              SelectIR     = 4'h4,
-              UpdateDR     = 4'h5,
-              CaptureDR    = 4'h6,
-              SelectDR     = 4'h7,
+   logic [3:0] state;
 
-              // --- IR Path States ---
-              Exit2IR      = 4'h8,
-              Exit1IR      = 4'h9,
-              ShiftIR      = 4'hA,
-              PauseIR      = 4'hB,
-              RunTestIdle  = 4'hC,
-              UpdateIR     = 4'hD,
-              CaptureIR    = 4'hE,
-
-              // --- Special State ---
-              TLReset      = 4'hF
-              } tap_state_t;
-
-   tap_state_t State;
-
-   always @(posedge tck) begin
-      if (~trst) State <= TLReset;
-      else case (State)
-         TLReset     : State <= tms ? TLReset : RunTestIdle;
-         RunTestIdle : State <= tms ? SelectDR : RunTestIdle;
-         SelectDR    : State <= tms ? SelectIR : CaptureDR;
-         CaptureDR   : State <= tms ? Exit1DR : ShiftDR;
-         ShiftDR     : State <= tms ? Exit1DR : ShiftDR;
-         Exit1DR     : State <= tms ? UpdateDR : PauseDR;
-         PauseDR     : State <= tms ? Exit2DR : PauseDR;
-         Exit2DR     : State <= tms ? UpdateDR : ShiftDR;
-         UpdateDR    : State <= tms ? SelectDR : RunTestIdle;
-         SelectIR    : State <= tms ? TLReset : CaptureIR;
-         CaptureIR   : State <= tms ? Exit1IR : ShiftIR;
-         ShiftIR     : State <= tms ? Exit1IR : ShiftIR;
-         Exit1IR     : State <= tms ? UpdateIR : PauseIR;
-         PauseIR     : State <= tms ? Exit2IR : PauseIR;
-         Exit2IR     : State <= tms ? UpdateIR : ShiftIR;
-         UpdateIR    : State <= tms ? SelectDR : RunTestIdle;
-      endcase // case (State)
+   always @(posedge tck, negedge trst) begin
+      if (~trst) begin
+         state <= 4'b1111;
+      end else begin
+         state[0] <= ~tms && ~state[2] && state[0] || tms && ~state[1] || tms && ~state[0] ||
+           tms && state[3] && state[2];
+         state[1] <= ~tms && state[1] && ~state[0] ||
+           ~tms && ~state[2] || ~tms && ~state[3] && state[1] ||
+           ~tms && ~state[3] && ~state[0] ||
+           tms && state[2] && ~state[1] || tms && state[3] && state[2] && state[0];
+         state[2] <= state[2] && ~state[1] || state[2] && state[0] || tms && ~state[1];
+         state[3] <= state[3] && ~state[2] || state[3] && state[1] || ~tms && state[2] && ~state[1] ||
+           ~state[3] && state[2] && ~state[1] && ~state[0];
+      end
    end
 
-
-   // 6.1.1 Section c
-   // actions occurring on the rising/falling edge of TCK in the state
-   always @(negedge tck) begin
-      shiftIR <= State == ShiftIR;
-      shiftDR <= State == ShiftDR;
-      reset <= ~(State == TLReset);
-      tdo_en <= State == ShiftIR || State == ShiftDR;
-      captureIR <= State == CaptureIR;
-      updateIR <= State == UpdateIR;
-      captureDR <= State == CaptureDR;
-      updateDR <= State == UpdateDR;
+   always @(negedge tck, negedge trst) begin
+      if (~trst) begin
+         reset <= 1'b0;
+         tdo_en <= 1'b0;
+         shiftIR <= 1'b0;
+         captureIR <= 1'b0;
+         shiftDR <= 1'b0;
+         captureDR <= 1'b0;
+      end else begin
+         reset <= ~&state;
+         tdo_en <= ~state[0] && state[1] && ~state[2] && state[3] ||
+         ~state[0] && state[1] && ~state[2] && ~state[3]; // shiftIR || shiftDR;
+         shiftIR <= ~state[0] && state[1] && ~state[2] && state[3];
+         captureIR <= ~state[0] && state[1] && state[2] && state[3];
+         shiftDR <= ~state[0] && state[1] && ~state[2] && ~state[3];
+    // TODO: && this with tck unless needed for one cycle
+         captureDR <= ~state[0] && state[1] && state[2] && ~state[3];
+      end
    end
 
-   // Clocking registers on rising edge of tck
-   // See spreadsheet: clockIR: 0xA|0xE; clockDR: 0x2|0x6
-   assign clockIR = tck | State[0] | ~State[1] | ~State[3];
-   assign clockDR = tck | State[0] | ~State[1] | State[3];
-   assign select = State[3];
+   assign clockIR = tck || state[0] || ~state[1] || ~state[3];
+   assign updateIR = ~tck && state[0] && ~state[1] && state[2] && state[3];
+   assign clockDR = tck || state[0] || ~state[1] || state[3];
+   //assign updateDR = ~tck && updateDRstate;
+   assign updateDR = ~tck && state[0] && ~state[1] && state[2] && ~state[3];
+   //assign updateDRstate = state[0] && ~state[1] && state[2] && ~state[3];
+   assign select = state[3];
 
-endmodule // tap_controller_new
-
-
+endmodule  // tap_controller
