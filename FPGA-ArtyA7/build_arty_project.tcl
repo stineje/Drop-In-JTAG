@@ -19,7 +19,7 @@
 # ------------------------------------------------------------
 # User settings
 # ------------------------------------------------------------
-set PROJECT_NAME "arty_jtag_riscv"
+set PROJECT_NAME "Drop-In-JTAG"
 set PROJECT_DIR  "./Drop-In-JTAG"
 set TOP_MODULE   "top"
 set PART_NAME    "xc7a100tcsg324-1"
