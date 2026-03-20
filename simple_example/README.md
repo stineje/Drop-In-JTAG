@@ -12,7 +12,7 @@ modify.
 |------|---------|
 | `top_accum.sv` | Top-level wrapper: accumulator DUT + JTAG test logic + BSR chain |
 | `tb_top_accum.sv` | QuestaSim testbench |
-| `top_accum_complete.do` | ModelSim/QuestaSim run script |
+| `top.do` | ModelSim/QuestaSim run script |
 
 The JTAG infrastructure itself (`jtag_test_logic.sv`, `tap_controller.sv`,
 `bsr.sv`, etc.) lives in `../JTAG-HDL/` and is shared with the main project.
@@ -167,7 +167,7 @@ The opcode occupies TDI bits **[6:3]**, shifted LSB-first:
 |-------------|--------|------------|
 | HALT | `4'b0110` | `12'b000000110000` |
 | SAMPLE_PRELOAD | `4'b0010` | `12'b000000100000` |
-| EXTEST | `4'b0011` | `12'b000000110000` |
+| EXTEST | `4'b0011` | `12'b000000011000` |
 | RESUME | `4'b1000` | `12'b000010000000` |
 
 ## Expected Output
