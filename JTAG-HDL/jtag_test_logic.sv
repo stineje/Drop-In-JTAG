@@ -141,12 +141,21 @@ module jtag_test_logic (
    logic       dbg_step;
    logic       dbg_resume;
 
-   //cdc_sync_stb logicrst (.a(logic_reset), .clk_b(sys_clk), .b(dm_reset));
-   //cdc_sync_stb #(.RISING_EDGE(0)) dbgrst (.a(~trst && reset), .clk_b(sys_clk), .b(dbg_rst));
-   //cdc_sync_stb dbghalt (.a(halt), .clk_b(sys_clk), .b(dbg_halt));
-   //cdc_sync_stb dbgstep (.a(step && updateIR), .clk_b(sys_clk), .b(dbg_step));
-   //cdc_sync_stb dbgresume (.a(resume), .clk_b(sys_clk), .b(dbg_resume));
-   
+   // Clock-Domain Crossing: TCK -> sys_clk //////////////////////////////////////
+   //
+   // All control signals below originate in the TCK clock domain (or are
+   // asynchronous TAP inputs) and must be safely transferred into the sys_clk
+   // domain before driving the debug FSM.  TCK is an externally supplied,
+   // board-level clock with no fixed phase or frequency relationship to sys_clk;
+   // any signal crossing this boundary without synchronization is susceptible to
+   // metastability, which can cause the receiving flip-flop to resolve to an
+   // indeterminate logic level and propagate a corrupt value through the FSM.
+   //
+   // Each two-flop synchronizer adds two sys_clk cycles of latency, which is
+   // acceptable here because JTAG control signals are quasi-static relative to
+   // sys_clk frequencies — they change only on UpdateIR/UpdateDR boundaries
+   // that are orders of magnitude slower than sys_clk.
+   /////////////////////////////////////////////////////////////////////////////
    synchronizer logicrst (.clk(sys_clk), .d(logic_reset),       .q(dm_reset));
    synchronizer dbgrst   (.clk(sys_clk), .d(~trst | ~reset),    .q(dbg_rst));
    synchronizer dbghalt  (.clk(sys_clk), .d(halt),              .q(dbg_halt));
