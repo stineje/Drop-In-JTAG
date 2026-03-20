@@ -253,8 +253,95 @@ report_timing_summary -file [file join $PROJECT_DIR timing_summary.rpt]
 report_utilization    -file [file join $PROJECT_DIR utilization.rpt]
 report_power          -file [file join $PROJECT_DIR power.rpt]
 
+# ------------------------------------------------------------
+# Hierarchical utilization breakdown by top-level instance
+#
+# Instance hierarchy under top:
+#   jtag         - jtag_test_logic (TAP controller + IR/DR + debug FSM)
+#   core         - riscv pipelined core
+#   imem         - instruction memory
+#   dmem         - data memory
+#   clk_inst     - clk_gen MMCM clock generator
+#   BSR chain    - six boundary scan register instances
+# ------------------------------------------------------------
+set rpt_dir [file join $PROJECT_DIR utilization_breakdown]
+file mkdir $rpt_dir
+
+puts "Writing hierarchical utilization reports to: $rpt_dir"
+
+# Helper: report utilization for a cell, catch gracefully if not found
+proc report_cell_util {inst_path rpt_file} {
+    set cells [get_cells -quiet -hierarchical -filter "NAME =~ $inst_path"]
+    if {[llength $cells] == 0} {
+        puts "  WARNING: No cells found matching '$inst_path' -- skipping"
+        return
+    }
+    report_utilization -cells $cells -file $rpt_file
+    puts "  Written: $rpt_file"
+}
+
+# JTAG test logic (TAP FSM + IR + DR registers + debug FSM)
+report_cell_util "jtag"     [file join $rpt_dir util_jtag.rpt]
+
+# JTAG sub-blocks for finer breakdown
+report_cell_util "jtag/fsm" [file join $rpt_dir util_jtag_tap_fsm.rpt]
+
+# RISC-V core
+report_cell_util "core"     [file join $rpt_dir util_riscv_core.rpt]
+
+# Memories
+report_cell_util "imem"     [file join $rpt_dir util_imem.rpt]
+report_cell_util "dmem"     [file join $rpt_dir util_dmem.rpt]
+
+# Clock generator
+report_cell_util "clk_inst" [file join $rpt_dir util_clk_gen.rpt]
+
+# BSR chain — report all six together and individually
+report_cell_util "*_bsr"    [file join $rpt_dir util_bsr_all.rpt]
+report_cell_util "PCF_bsr"       [file join $rpt_dir util_bsr_PCF.rpt]
+report_cell_util "InstrF_bsr"    [file join $rpt_dir util_bsr_InstrF.rpt]
+report_cell_util "MemWriteM_bsr" [file join $rpt_dir util_bsr_MemWriteM.rpt]
+report_cell_util "DataAdrM_bsr"  [file join $rpt_dir util_bsr_DataAdrM.rpt]
+report_cell_util "WriteDataM_bsr"[file join $rpt_dir util_bsr_WriteDataM.rpt]
+report_cell_util "ReadDataM_bsr" [file join $rpt_dir util_bsr_ReadDataM.rpt]
+
+# Summary table printed to stdout for quick reference in the build log
+puts ""
+puts "============================================================"
+puts " Utilization Summary by Block"
+puts "============================================================"
+foreach {label pattern} {
+    "JTAG (total)"   "jtag"
+    "RISC-V core"    "core"
+    "imem"           "imem"
+    "dmem"           "dmem"
+    "clk_gen"        "clk_inst"
+    "BSR chain"      "*_bsr"
+} {
+    set cells [get_cells -quiet -hierarchical -filter "NAME =~ $pattern"]
+    if {[llength $cells] > 0} {
+        set luts  [get_property -quiet PRIMITIVE_COUNT [get_cells -quiet -hierarchical \
+                      -filter "NAME =~ $pattern && REF_NAME =~ LUT*"]]
+        set ffs   [get_property -quiet PRIMITIVE_COUNT [get_cells -quiet -hierarchical \
+                      -filter "NAME =~ $pattern && REF_NAME =~ FD*"]]
+        # Use report_utilization -return_string for a clean one-liner per block
+        set util_str [report_utilization -cells $cells -return_string]
+        # Extract LUT and FF totals from the report string
+        set lut_count "?"
+        set ff_count  "?"
+        regexp {Slice LUTs\s*\|\s*(\d+)} $util_str -> lut_count
+        regexp {Slice Registers\s*\|\s*(\d+)} $util_str -> ff_count
+        puts [format "  %-20s  LUTs: %6s   FFs: %6s" $label $lut_count $ff_count]
+    } else {
+        puts [format "  %-20s  (not found)" $label]
+    }
+}
+puts "============================================================"
+puts ""
+
 puts ""
 puts "Build complete."
-puts "Project directory : $PROJECT_DIR"
-puts "Bitstream         : [glob -nocomplain [file join $PROJECT_DIR $PROJECT_NAME.runs impl_1 *.bit]]"
+puts "Project directory    : $PROJECT_DIR"
+puts "Bitstream            : [glob -nocomplain [file join $PROJECT_DIR $PROJECT_NAME.runs impl_1 *.bit]]"
+puts "Utilization reports  : $rpt_dir"
 puts ""
