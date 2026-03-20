@@ -141,11 +141,17 @@ module jtag_test_logic (
    logic       dbg_step;
    logic       dbg_resume;
 
-   cdc_sync_stb logicrst (.a(logic_reset), .clk_b(sys_clk), .b(dm_reset));
-   cdc_sync_stb #(.RISING_EDGE(0)) dbgrst (.a(~trst && reset), .clk_b(sys_clk), .b(dbg_rst));
-   cdc_sync_stb dbghalt (.a(halt), .clk_b(sys_clk), .b(dbg_halt));
-   cdc_sync_stb dbgstep (.a(step && updateIR), .clk_b(sys_clk), .b(dbg_step));
-   cdc_sync_stb dbgresume (.a(resume), .clk_b(sys_clk), .b(dbg_resume));
+   //cdc_sync_stb logicrst (.a(logic_reset), .clk_b(sys_clk), .b(dm_reset));
+   //cdc_sync_stb #(.RISING_EDGE(0)) dbgrst (.a(~trst && reset), .clk_b(sys_clk), .b(dbg_rst));
+   //cdc_sync_stb dbghalt (.a(halt), .clk_b(sys_clk), .b(dbg_halt));
+   //cdc_sync_stb dbgstep (.a(step && updateIR), .clk_b(sys_clk), .b(dbg_step));
+   //cdc_sync_stb dbgresume (.a(resume), .clk_b(sys_clk), .b(dbg_resume));
+   
+   synchronizer logicrst (.clk(sys_clk), .d(logic_reset),       .q(dm_reset));
+   synchronizer dbgrst   (.clk(sys_clk), .d(~trst | ~reset),    .q(dbg_rst));
+   synchronizer dbghalt  (.clk(sys_clk), .d(halt),              .q(dbg_halt));
+   synchronizer dbgstep  (.clk(sys_clk), .d(step && updateIR),  .q(dbg_step));
+   synchronizer dbgresume(.clk(sys_clk), .d(resume),            .q(dbg_resume));   
 
    always @(negedge sys_clk)
       clk_gate <= clk_en;
