@@ -2,7 +2,7 @@
 // top.sv
 //
 // Written: james.stine@okstate.edu, jacob.pease@okstate.edu, matotto@okstate.edu 28 July 2025
-// Modified: Added MMCM to divide 100MHz board clock to 25MHz
+// Modified: Refactored MMCM into clk_gen module
 //
 // Purpose: top-level design for JTAG Drop-in-Test (Arty A7-100T)
 //
@@ -29,51 +29,56 @@ module top #(parameter IMEM_INIT_FILE="riscvtest.mem")
    (// jtag logic
    input logic  tck, tdi, tms, trst,
    output logic tdo,
-   // dut logic — sysclk is now the raw 100MHz board clock
+   // dut logic - sysclk is the raw 100MHz board clock from Arty A7-100T
    input logic  sysclk,
    input logic  sys_reset,
    output logic success, fail  // PHY DEBUG
 );
 
-   // -------------------------------------------------------
-   // MMCM: divide 100MHz board clock down to 25MHz
-   //   VCO = 100MHz * CLKFBOUT_MULT_F(8) = 800MHz
-   //   CLKOUT0 = 800MHz / CLKOUT0_DIVIDE_F(32) = 25MHz
-   //   Both within Artix-7 MMCM VCO range (600–1200MHz)
-   // -------------------------------------------------------
-   logic clk_fb;          // MMCM feedback
-   logic clk_25_unbuf;    // raw MMCM output (before BUFG)
-   logic clk_locked;      // MMCM lock indicator
-   logic sysclk_25;       // 25MHz clock used everywhere in design
+   logic sysclk_25;
+   logic clk_locked;
 
-   MMCME2_BASE #(
-      .CLKIN1_PERIOD     (10.0),   // 100MHz input = 10ns period
-      .CLKFBOUT_MULT_F   (8.0),    // VCO = 100 * 8 = 800MHz
-      .CLKOUT0_DIVIDE_F  (32.0),   // 800 / 32 = 25MHz
-      .CLKOUT0_DUTY_CYCLE(0.5),
-      .CLKOUT0_PHASE     (0.0),
-      .DIVCLK_DIVIDE     (1),
-      .REF_JITTER1       (0.01),
-      .STARTUP_WAIT      ("FALSE")
-   ) mmcm_inst (
-      .CLKIN1   (sysclk),
-      .CLKFBIN  (clk_fb),
-      .CLKFBOUT (clk_fb),
-      .CLKOUT0  (clk_25_unbuf),
-      .LOCKED   (clk_locked),
-      // unused outputs
-      .CLKOUT0B (), .CLKOUT1  (), .CLKOUT1B (),
-      .CLKOUT2  (), .CLKOUT2B (), .CLKOUT3  (),
-      .CLKOUT3B (), .CLKOUT4  (), .CLKOUT5  (),
-      .CLKOUT6  (), .CLKFBOUTB(),
-      .PWRDWN   (1'b0),
-      .RST      (sys_reset)
+   // Allowable output frequencies are determined by the MMCM VCO frequency and the
+   // DIVIDE_F parameter.  The VCO frequency is fixed by CLKIN_PERIOD and MULT_F
+   // (default: 100MHz * 8 = 800MHz) and must stay within the Artix-7 legal range of
+   // 600-1200MHz.  DIVIDE_F then divides the VCO down to the target output frequency
+   // and must be between 1.0 and 128.0 in increments of 0.125.  The output frequency
+   // must also stay within 4.69MHz (MMCM minimum) and 464MHz (practical BUFG/routing
+   // maximum on Artix-7).
+   //
+   // With the default VCO of 800MHz, common round-number output frequencies are:
+   //
+   //   DIVIDE_F  |  Output Frequency
+   //   ----------+------------------
+   //      4.0    |    200 MHz
+   //      5.0    |    160 MHz
+   //      8.0    |    100 MHz
+   //     10.0    |     80 MHz
+   //     16.0    |     50 MHz
+   //     20.0    |     40 MHz
+   //     25.0    |     32 MHz
+   //     32.0    |     25 MHz   (default)
+   //     40.0    |     20 MHz
+   //     50.0    |     16 MHz
+   //     64.0    |   12.5 MHz
+   //     80.0    |     10 MHz
+   //    100.0    |      8 MHz
+   //    128.0    |   6.25 MHz
+   //
+   // For frequencies not in this table, adjust MULT_F to target a different VCO
+   // frequency (keeping it within 600-1200MHz) and choose DIVIDE_F accordingly.
+   clk_gen #(
+      .CLKIN_PERIOD (10.0),   // 100MHz board clock = 10ns
+      .MULT_F       (8.0),    // VCO = 800MHz (within Artix-7 600-1200MHz range)
+      .DIVIDE_F     (32.0)    // Fout = 800MHz / 32 = 25MHz
+   ) clk_inst (
+      .clk_in  (sysclk),
+      .reset   (sys_reset),
+      .clk_out (sysclk_25),
+      .locked  (clk_locked)
    );
 
-   // Route 25MHz through a global clock buffer
-   BUFG bufg_25 (.I(clk_25_unbuf), .O(sysclk_25));
-
-   // Hold design in reset until MMCM locks
+   // Hold entire design in reset until MMCM has locked
    logic internal_reset;
    assign internal_reset = sys_reset | ~clk_locked;
 
@@ -110,106 +115,121 @@ module top #(parameter IMEM_INIT_FILE="riscvtest.mem")
    assign reset = internal_reset | dm_reset;
 
    assign bsr_chain0 = bsr_tdi;
-   assign bsr_tdo = bsr_chain6;
+   assign bsr_tdo    = bsr_chain6;
 
    // PHY DEBUG
    always @(posedge sysclk_25 or posedge reset) begin
       if (reset) begin
          success <= 0;
-         fail <= 0;
+         fail    <= 0;
       end else if (MemWriteM) begin
-         if(DataAdrM === 100 & WriteDataM === 25) begin
+         if (DataAdrM === 100 & WriteDataM === 25)
             success <= 1;
-         end else if (DataAdrM === 100 & WriteDataM !== 25) begin
+         else if (DataAdrM === 100 & WriteDataM !== 25)
             fail <= 1;
-         end
       end
    end
    // end PHY DEBUG
 
    // test logic ////////////////////////////////////////////////////
-   jtag_test_logic jtag (.tck(tck),
-          .tms(tms),
-          .tdi(tdi),
-          .trst(trst),
-          .tdo(tdo),
-          .bsr_tdi(bsr_tdi),
-          .bsr_clk(bsr_clk),
-          .bsr_update(bsr_update),
-          .bsr_shift(bsr_shift),
-          .bsr_mode(bsr_mode),
-          .bsr_tdo(bsr_tdo),
-          .sys_clk(sysclk_25),
-          .dbg_clk(dbgclk),
-          .dm_reset(dm_reset));
+   jtag_test_logic jtag (
+      .tck       (tck),
+      .tms       (tms),
+      .tdi       (tdi),
+      .trst      (trst),
+      .tdo       (tdo),
+      .bsr_tdi   (bsr_tdi),
+      .bsr_clk   (bsr_clk),
+      .bsr_update(bsr_update),
+      .bsr_shift (bsr_shift),
+      .bsr_mode  (bsr_mode),
+      .bsr_tdo   (bsr_tdo),
+      .sys_clk   (sysclk_25),
+      .dbg_clk   (dbgclk),
+      .dm_reset  (dm_reset)
+   );
 
    // RISC-V Core ///////////////////////////////////////////////////
-   riscv core (.clk(dbgclk),
-          .reset(reset),
-          .PCF(PCF_internal),
-          .InstrF(InstrF_internal),
-          .MemWriteM(MemWriteM_internal),
-          .ALUResultM(DataAdrM_internal),
-          .WriteDataM(WriteDataM_internal),
-          .ReadDataM(ReadDataM_internal));
+   riscv core (
+      .clk        (dbgclk),
+      .reset      (reset),
+      .PCF        (PCF_internal),
+      .InstrF     (InstrF_internal),
+      .MemWriteM  (MemWriteM_internal),
+      .ALUResultM (DataAdrM_internal),
+      .WriteDataM (WriteDataM_internal),
+      .ReadDataM  (ReadDataM_internal)
+   );
 
-   // Core memory
+   // Core memory ///////////////////////////////////////////////////
    imem #(.MEM_INIT_FILE(IMEM_INIT_FILE)) imem (PCF, InstrF);
    dmem dmem (dbgclk, MemWriteM, DataAdrM, WriteDataM, ReadDataM);
 
    // boundary scan registers ///////////////////////////////////////
-   bsr #(.WIDTH(32)) PCF_bsr (.clk(bsr_clk),
-               .update_dr(bsr_update),
-               .shift_dr(bsr_shift),
-               .mode(bsr_mode),
-               .tdi(bsr_chain0),
-               .tdo(bsr_chain1),
-               .parallel_in(PCF_internal),
-               .parallel_out(PCF));
+   bsr #(.WIDTH(32)) PCF_bsr (
+      .clk         (bsr_clk),
+      .update_dr   (bsr_update),
+      .shift_dr    (bsr_shift),
+      .mode        (bsr_mode),
+      .tdi         (bsr_chain0),
+      .tdo         (bsr_chain1),
+      .parallel_in (PCF_internal),
+      .parallel_out(PCF)
+   );
 
-   bsr #(.WIDTH(32)) InstrF_bsr (.clk(bsr_clk),
-             .update_dr(bsr_update),
-             .shift_dr(bsr_shift),
-             .mode(bsr_mode),
-             .tdi(bsr_chain1),
-             .tdo(bsr_chain2),
-             .parallel_in(InstrF),
-             .parallel_out(InstrF_internal));
+   bsr #(.WIDTH(32)) InstrF_bsr (
+      .clk         (bsr_clk),
+      .update_dr   (bsr_update),
+      .shift_dr    (bsr_shift),
+      .mode        (bsr_mode),
+      .tdi         (bsr_chain1),
+      .tdo         (bsr_chain2),
+      .parallel_in (InstrF),
+      .parallel_out(InstrF_internal)
+   );
 
-   bsr #(.WIDTH(1)) MemWriteM_bsr (.clk(bsr_clk),
-               .update_dr(bsr_update),
-               .shift_dr(bsr_shift),
-               .mode(bsr_mode),
-               .tdi(bsr_chain2),
-               .tdo(bsr_chain3),
-               .parallel_in(MemWriteM_internal),
-               .parallel_out(MemWriteM));
+   bsr #(.WIDTH(1)) MemWriteM_bsr (
+      .clk         (bsr_clk),
+      .update_dr   (bsr_update),
+      .shift_dr    (bsr_shift),
+      .mode        (bsr_mode),
+      .tdi         (bsr_chain2),
+      .tdo         (bsr_chain3),
+      .parallel_in (MemWriteM_internal),
+      .parallel_out(MemWriteM)
+   );
 
-   bsr #(.WIDTH(32)) DataAdrM_bsr (.clk(bsr_clk),
-               .update_dr(bsr_update),
-               .shift_dr(bsr_shift),
-               .mode(bsr_mode),
-               .tdi(bsr_chain3),
-               .tdo(bsr_chain4),
-               .parallel_in(DataAdrM_internal),
-               .parallel_out(DataAdrM));
+   bsr #(.WIDTH(32)) DataAdrM_bsr (
+      .clk         (bsr_clk),
+      .update_dr   (bsr_update),
+      .shift_dr    (bsr_shift),
+      .mode        (bsr_mode),
+      .tdi         (bsr_chain3),
+      .tdo         (bsr_chain4),
+      .parallel_in (DataAdrM_internal),
+      .parallel_out(DataAdrM)
+   );
 
-   bsr #(.WIDTH(32)) WriteDataM_bsr (.clk(bsr_clk),
-                 .update_dr(bsr_update),
-                 .shift_dr(bsr_shift),
-                 .mode(bsr_mode),
-                 .tdi(bsr_chain4),
-                 .tdo(bsr_chain5),
-                 .parallel_in(WriteDataM_internal),
-                 .parallel_out(WriteDataM));
+   bsr #(.WIDTH(32)) WriteDataM_bsr (
+      .clk         (bsr_clk),
+      .update_dr   (bsr_update),
+      .shift_dr    (bsr_shift),
+      .mode        (bsr_mode),
+      .tdi         (bsr_chain4),
+      .tdo         (bsr_chain5),
+      .parallel_in (WriteDataM_internal),
+      .parallel_out(WriteDataM)
+   );
 
-   bsr #(.WIDTH(32)) ReadDataM_bsr (.clk(bsr_clk),
-                .update_dr(bsr_update),
-                .shift_dr(bsr_shift),
-                .mode(bsr_mode),
-                .tdi(bsr_chain5),
-                .tdo(bsr_chain6),
-                .parallel_in(ReadDataM),
-                .parallel_out(ReadDataM_internal));
+   bsr #(.WIDTH(32)) ReadDataM_bsr (
+      .clk         (bsr_clk),
+      .update_dr   (bsr_update),
+      .shift_dr    (bsr_shift),
+      .mode        (bsr_mode),
+      .tdi         (bsr_chain5),
+      .tdo         (bsr_chain6),
+      .parallel_in (ReadDataM),
+      .parallel_out(ReadDataM_internal)
+   );
 
 endmodule // top
