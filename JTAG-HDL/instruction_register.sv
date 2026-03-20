@@ -28,6 +28,8 @@
 module instruction_register (
    `include "defines.sv"
    input logic  tck_ir,
+   input logic  tck,			     
+   input logic  trst,
    input logic  tdi,
    input logic  tl_reset,
    input logic  captureIR,
@@ -42,14 +44,15 @@ module instruction_register (
    assign tdo = shift_reg[0];
 
    // Shift register
-   always_ff @(posedge tck_ir) begin
-      shift_reg[0] <= shift_reg[1] || captureIR;  // 7.1.1 (d)
-
-      for (int i = `INST_REG_WIDTH; i > 1; i = i - 1) begin
-         if (i == `INST_REG_WIDTH)
-            shift_reg[i-1] <= tdi && ~captureIR;
-         else
-            shift_reg[i-1] <= shift_reg[i] && ~captureIR;  // 7.1.1 (e)
+   always_ff @(posedge tck) begin
+      if (tck_ir) begin
+	 shift_reg[0] <= shift_reg[1] || captureIR;  // 7.1.1 (d)
+	 for (int i = `INST_REG_WIDTH; i > 1; i = i - 1) begin
+            if (i == `INST_REG_WIDTH)
+              shift_reg[i-1] <= tdi && ~captureIR;
+            else
+              shift_reg[i-1] <= shift_reg[i] && ~captureIR;  // 7.1.1 (e)
+	 end
       end
    end
 
@@ -72,8 +75,8 @@ module instruction_register (
    end
 
    // Instruction reg
-   always @(posedge updateIR or negedge tl_reset) begin
-      if (~tl_reset)
+   always @(posedge updateIR or posedge trst) begin
+      if (trst)
          instructions <= `D_IDCODE;  // 7.2.1 (e,f)
       else if (updateIR)
          instructions <= decoded;

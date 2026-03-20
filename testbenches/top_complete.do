@@ -61,6 +61,9 @@ add wave -hex /testbench/dut/core/dp/rf/rf
 add wave -noupdate -divider -height 32 "TAP controller"
 add wave -hex /testbench/dut/jtag/fsm/*
 
+add wave -noupdate -divider -height 32 "instruction register"
+add wave -hex /testbench/dut/jtag/ir/*
+
 add wave -noupdate -divider -height 32 "JTAG block"
 add wave -hex /testbench/dut/jtag/*
 

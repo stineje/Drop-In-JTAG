@@ -27,27 +27,27 @@
 
 module jtag_test_logic (
    `include "defines.sv"
-   input logic  tck, tms, tdi, trst,
-   output logic tdo,
-   output logic bsr_tdi, bsr_clk, bsr_update,
-   output logic bsr_shift, bsr_mode,
-   input logic  bsr_tdo,
-   input logic  sys_clk,
-   output logic dbg_clk,
-   output logic dm_reset);
+   input  logic            tck, tms, tdi, trst,
+   output logic            tdo,
+   output logic            bsr_tdi, bsr_clk, bsr_update,
+   output logic            bsr_shift, bsr_mode,
+   input  logic            bsr_tdo,
+   input  logic            sys_clk,
+   output logic            dbg_clk,
+   output logic            dm_reset);
 
    // TAP controller logic
-   logic reset;
-   logic tdo_en;
-   logic shiftIR;
-   logic captureIR;
-   logic ir_clk;
-   logic updateIR;
-   logic shiftDR;
-   logic captureDR;
-   logic clk_dr;
-   logic updateDR;
-   logic select;
+   logic	           reset;
+   logic		   tdo_en;
+   logic		   shiftIR;
+   logic		   captureIR;
+   logic		   ir_clk;
+   logic		   updateIR;
+   logic		   shiftDR;
+   logic		   captureDR;
+   logic		   clk_dr;
+   logic		   updateDR;
+   logic		   select;
 
    // instruction signals
    logic [`INST_COUNT-1:0] instructions;
@@ -57,31 +57,30 @@ module jtag_test_logic (
    logic                   intest;
    logic                   clamp;
    logic                   clamp_last;
-
-   logic halt;
-   logic step;
-   logic resume;
-   logic logic_reset;
-
+   
+   logic		   halt;
+   logic		   step;
+   logic		   resume;
+   logic		   logic_reset;
+   
    // intermediate wires
-   logic tdi_ir, tdi_dr;
-   logic tdo_ir, tdo_dr;
-   logic tdo_br;
-   logic tdo_id;
+   logic		   tdi_ir, tdi_dr;
+   logic		   tdo_ir, tdo_dr;
+   logic		   tdo_br;
+   logic		   tdo_id;
 
    tap_controller fsm (.tck(tck), .trst(trst), .tms(tms), .reset(reset), .tdo_en(tdo_en),
              .shiftIR(shiftIR), .captureIR(captureIR), .clockIR(ir_clk),
              .updateIR(updateIR), .shiftDR(shiftDR), .captureDR(captureDR),
              .clockDR(clk_dr),.updateDR(updateDR), .select(select));
-
-
+   
    // IR/DR input demux
    assign {tdi_ir, tdi_dr} = select ? {tdi,1'bx} : {1'bx,tdi};
    // IR/DR output mux
    assign tdo = ~tdo_en ? 1'b0 : // TODO: check spec to see if this should be low or high when tdo_en is low
       select ? tdo_ir : tdo_dr;
 
-   instruction_register ir (.tck_ir(ir_clk), .tdi(tdi_ir), .tl_reset(reset), .captureIR(captureIR),
+   instruction_register ir (.tck_ir(ir_clk), .tck(tck), .trst(trst), .tdi(tdi_ir), .tl_reset(reset), .captureIR(captureIR),
              .updateIR(updateIR), .tdo(tdo_ir), .instructions(instructions));
 
    // synth tool should recognize these as one-hot signals
@@ -90,7 +89,6 @@ module jtag_test_logic (
    assign extest         = (instructions == `D_EXTEST);
    assign intest         = (instructions == `D_INTEST);
    assign clamp          = (instructions == `D_CLAMP);
-
    assign halt           = (instructions == `D_HALT);
    assign step           = (instructions == `D_STEP);
    assign resume         = (instructions == `D_RESUME);
@@ -102,7 +100,7 @@ module jtag_test_logic (
              .tdo(tdo_br));
 
    device_identification_register didr (.tdi(tdi_dr), .tdo(tdo_id),
-               .clockDR(clk_dr || ~idcode),
+               .clockDR(~(tck & clk_dr) || ~idcode),
                .captureDR(captureDR));
 
    // BSR mux
@@ -113,7 +111,7 @@ module jtag_test_logic (
    assign bsr_mode = (extest || intest || clamp || (clamp_last && step));
 
    assign bsr_tdi = bsr_enable ? tdi_dr : 1'bx;
-   assign bsr_clk = clk_dr || ~bsr_enable;  // clock high when idle
+   assign bsr_clk = (tck & clk_dr) || ~bsr_enable;  // clock high when idle
    assign bsr_update = updateDR || clk_dr && captureDR;  // 8.7.1 (f)
    assign bsr_shift = shiftDR;
 
@@ -144,7 +142,7 @@ module jtag_test_logic (
    logic       dbg_resume;
 
    cdc_sync_stb logicrst (.a(logic_reset), .clk_b(sys_clk), .b(dm_reset));
-   cdc_sync_stb #(.RISING_EDGE(0)) dbgrst (.a(trst && reset), .clk_b(sys_clk), .b(dbg_rst));
+   cdc_sync_stb #(.RISING_EDGE(0)) dbgrst (.a(~trst && reset), .clk_b(sys_clk), .b(dbg_rst));
    cdc_sync_stb dbghalt (.a(halt), .clk_b(sys_clk), .b(dbg_halt));
    cdc_sync_stb dbgstep (.a(step && updateIR), .clk_b(sys_clk), .b(dbg_step));
    cdc_sync_stb dbgresume (.a(resume), .clk_b(sys_clk), .b(dbg_resume));
