@@ -297,13 +297,13 @@ report_cell_util "dmem"     [file join $rpt_dir util_dmem.rpt]
 report_cell_util "clk_inst" [file join $rpt_dir util_clk_gen.rpt]
 
 # BSR chain — report all six together and individually
-report_cell_util "*_bsr"    [file join $rpt_dir util_bsr_all.rpt]
-report_cell_util "PCF_bsr"       [file join $rpt_dir util_bsr_PCF.rpt]
-report_cell_util "InstrF_bsr"    [file join $rpt_dir util_bsr_InstrF.rpt]
-report_cell_util "MemWriteM_bsr" [file join $rpt_dir util_bsr_MemWriteM.rpt]
-report_cell_util "DataAdrM_bsr"  [file join $rpt_dir util_bsr_DataAdrM.rpt]
-report_cell_util "WriteDataM_bsr"[file join $rpt_dir util_bsr_WriteDataM.rpt]
-report_cell_util "ReadDataM_bsr" [file join $rpt_dir util_bsr_ReadDataM.rpt]
+report_cell_util "*_bsr"          [file join $rpt_dir util_bsr_all.rpt]
+report_cell_util "PCF_bsr"        [file join $rpt_dir util_bsr_PCF.rpt]
+report_cell_util "InstrF_bsr"     [file join $rpt_dir util_bsr_InstrF.rpt]
+report_cell_util "MemWriteM_bsr"  [file join $rpt_dir util_bsr_MemWriteM.rpt]
+report_cell_util "DataAdrM_bsr"   [file join $rpt_dir util_bsr_DataAdrM.rpt]
+report_cell_util "WriteDataM_bsr" [file join $rpt_dir util_bsr_WriteDataM.rpt]
+report_cell_util "ReadDataM_bsr"  [file join $rpt_dir util_bsr_ReadDataM.rpt]
 
 # Summary table printed to stdout for quick reference in the build log
 puts ""
