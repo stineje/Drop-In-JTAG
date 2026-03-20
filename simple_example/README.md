@@ -216,6 +216,6 @@ on an FPGA without a JTAG connection:
 
 ```bash
 cd Drop-In-JTAG/accum
-vsim -do top_accum_complete.do -c      # batch mode
-vsim -do top_accum_complete.do         # GUI mode
+vsim -do top.do -c      # batch mode
+vsim -do top.do         # GUI mode
 ```
