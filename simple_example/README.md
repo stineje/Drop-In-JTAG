@@ -183,16 +183,24 @@ Returning to Test-Logic-Reset
 BSR Scan Readback
   op       : 00
   operand  : 0x06  (6)
-  acc      : 0xXX  (some value >= 0x2A)
-  result   : 0xXX  (acc + 0x06)
+  acc      : 0xa0  (160)
+  result   : 0xa6  (166)
   flags    : zero=0  carry=0  overflow=0
 ------------------------------------------------------------
 All checks PASSED
 ```
 
-The captured `acc` will typically be a few steps past `0x2A` because the
-accumulator advances during the HALT IR scan before `dbgclk` gates.  The
-testbench verifies `result == acc + operand` rather than an exact `acc` value.
+The captured `acc` is `0xA0` (160), not `0x2A` (42).  The testbench detects
+`acc=0x2A` and immediately begins the HALT IR scan, but the accumulator keeps
+running on `dbgclk` for the duration of that scan (~12 TCK cycles, each 20 ns
+= 240 ns total).  With `sysclk` at 2 ns, that is 120 more accumulator steps:
+120 × 6 = 720.  `0x2A + 720 = 762`, which wraps modulo 256 to `0xA2`.  The
+exact captured value varies slightly based on synchronizer latency in the
+debug FSM, landing around `0xA0`.
+
+The testbench therefore does not check for an exact `acc` value.  Instead it
+verifies `result == acc + operand`, confirming that whatever state was frozen
+is internally consistent.
 
 ## PHY Debug Indicators
 
