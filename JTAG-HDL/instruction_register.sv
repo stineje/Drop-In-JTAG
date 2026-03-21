@@ -75,8 +75,8 @@ module instruction_register (
    end
 
    // Instruction reg
-   always @(posedge updateIR or posedge trst) begin
-      if (trst)
+   always @(posedge updateIR or negedge trst) begin
+      if (~trst)
          instructions <= `D_IDCODE;  // 7.2.1 (e,f)
       else if (updateIR)
          instructions <= decoded;

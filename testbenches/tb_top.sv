@@ -36,10 +36,10 @@ module testbench();
       tdi = 1'b1;
 
       reset <= 1;
-      trst <= 1;
+      trst <= 0;
       # 22;
       reset <= 0;
-      trst <= 0;
+      trst <= 1;
    end
 
    initial begin

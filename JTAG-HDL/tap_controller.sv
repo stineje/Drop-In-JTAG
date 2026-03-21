@@ -86,8 +86,8 @@ module tap_controller
 
    statetype State, NextState;
 
-   always @(posedge tck, posedge trst) begin
-      if (trst) State <= TEST_LOGIC_RESET;
+   always @(posedge tck, negedge trst) begin
+      if (~trst) State <= TEST_LOGIC_RESET;
       else case (State)
              TEST_LOGIC_RESET : State <= tms ? TEST_LOGIC_RESET : RUN_TEST_IDLE;
              RUN_TEST_IDLE    : State <= tms ? SELECT_DR : RUN_TEST_IDLE;
@@ -123,8 +123,8 @@ module tap_controller
    // signal present in the IEEE 1149.1-2001 spec Figure 6-5 (may not be needed)
    assign select = State[3];
 
-   always @(negedge tck, posedge trst)
-     if (trst) begin
+   always @(negedge tck, negedge trst)
+     if (~trst) begin
         captureIR <= 0;
 	captureDR <= 0;	
         shiftIR <= 0;

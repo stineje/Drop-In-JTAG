@@ -157,7 +157,7 @@ module jtag_test_logic (
    // that are orders of magnitude slower than sys_clk.
    /////////////////////////////////////////////////////////////////////////////
    synchronizer logicrst (.clk(sys_clk), .d(logic_reset),       .q(dm_reset));
-   synchronizer dbgrst   (.clk(sys_clk), .d(~trst | ~reset),    .q(dbg_rst));
+   synchronizer dbgrst   (.clk(sys_clk), .d(trst | ~reset),    .q(dbg_rst));
    synchronizer dbghalt  (.clk(sys_clk), .d(halt),              .q(dbg_halt));
    synchronizer dbgstep  (.clk(sys_clk), .d(step && updateIR),  .q(dbg_step));
    synchronizer dbgresume(.clk(sys_clk), .d(resume),            .q(dbg_resume));   
