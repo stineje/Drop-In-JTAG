@@ -78,10 +78,11 @@ module jtag_test_logic (
    assign {tdi_ir, tdi_dr} = select ? {tdi,1'bx} : {1'bx,tdi};
    // IR/DR output mux
    assign tdo = ~tdo_en ? 1'b0 : // TODO: check spec to see if this should be low or high when tdo_en is low
-      select ? tdo_ir : tdo_dr;
+		select ? tdo_ir : tdo_dr;
 
-   instruction_register ir (.tck_ir(ir_clk), .tck(tck), .trst(trst), .tdi(tdi_ir), .tl_reset(reset), .captureIR(captureIR),
-             .updateIR(updateIR), .tdo(tdo_ir), .instructions(instructions));
+   instruction_register ir (.tck_ir(ir_clk), .tck(tck), .trst(trst), .tdi(tdi_ir), 
+			    .tl_reset(reset), .captureIR(captureIR),
+			    .updateIR(updateIR), .tdo(tdo_ir), .instructions(instructions));
 
    // synth tool should recognize these as one-hot signals
    assign idcode         = (instructions == `D_IDCODE);
@@ -98,7 +99,7 @@ module jtag_test_logic (
    bypass_register br (.tck(tck), .clockDR(clk_dr), .tdi(tdi_dr),
 		       .shiftDR(shiftDR), // 10.1.1 (b)
 		       .tdo(tdo_br));
-
+   
    device_identification_register didr (.tdi(tdi_dr), .tdo(tdo_id),
 					.clockDR(~(tck & clk_dr) || ~idcode),
 					.captureDR(captureDR));
@@ -109,7 +110,6 @@ module jtag_test_logic (
 
    // selects parallel output regs for BSR output
    assign bsr_mode = (extest || intest || clamp || (clamp_last && step));
-
    assign bsr_tdi = bsr_enable ? tdi_dr : 1'bx;
    assign bsr_clk = (tck & clk_dr) || ~bsr_enable;  // clock high when idle
    assign bsr_update = updateDR || clk_dr && captureDR;  // 8.7.1 (f)
@@ -157,7 +157,7 @@ module jtag_test_logic (
    // that are orders of magnitude slower than sys_clk.
    /////////////////////////////////////////////////////////////////////////////
    synchronizer logicrst (.clk(sys_clk), .d(logic_reset),       .q(dm_reset));
-   synchronizer dbgrst   (.clk(sys_clk), .d(trst | ~reset),    .q(dbg_rst));
+   synchronizer dbgrst   (.clk(sys_clk), .d(trst | ~reset),     .q(dbg_rst));
    synchronizer dbghalt  (.clk(sys_clk), .d(halt),              .q(dbg_halt));
    synchronizer dbgstep  (.clk(sys_clk), .d(step && updateIR),  .q(dbg_step));
    synchronizer dbgresume(.clk(sys_clk), .d(resume),            .q(dbg_resume));   
@@ -167,6 +167,7 @@ module jtag_test_logic (
 
    assign dbg_clk = sys_clk & clk_gate;
 
+   // Main Drop-In-JTAG FSM
    enum logic [1:0] {
       DBGRUN  = 2'b00,
       DBGHALT = 2'b01,
