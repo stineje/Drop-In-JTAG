@@ -83,11 +83,6 @@ module top #(parameter IMEM_INIT_FILE="riscvtest.mem")
    end
    // end PHY DEBUG
 
-   // trst: TAP reset, active-low per IEEE 1149.1 (signal is formally named nTRST
-   // in the spec).  All compliant JTAG probes (including the Sipeed adapter)
-   // assert reset by driving this pin low.  The Arty A7 PMOD pins float high
-   // when undriven, so an unconnected trst safely deasserts reset by default.   
-
    // test logic ////////////////////////////////////////////////////
    jtag_test_logic jtag (.tck(tck),
           .tms(tms),

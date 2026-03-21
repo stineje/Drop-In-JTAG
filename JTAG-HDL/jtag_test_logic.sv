@@ -70,9 +70,9 @@ module jtag_test_logic (
    logic		   tdo_id;
 
    tap_controller fsm (.tck(tck), .trst(trst), .tms(tms), .reset(reset), .tdo_en(tdo_en),
-             .shiftIR(shiftIR), .captureIR(captureIR), .clockIR(ir_clk),
-             .updateIR(updateIR), .shiftDR(shiftDR), .captureDR(captureDR),
-             .clockDR(clk_dr),.updateDR(updateDR), .select(select));
+		       .shiftIR(shiftIR), .captureIR(captureIR), .clockIR(ir_clk),
+		       .updateIR(updateIR), .shiftDR(shiftDR), .captureDR(captureDR),
+		       .clockDR(clk_dr),.updateDR(updateDR), .select(select));
    
    // IR/DR input demux
    assign {tdi_ir, tdi_dr} = select ? {tdi,1'bx} : {1'bx,tdi};
@@ -95,13 +95,13 @@ module jtag_test_logic (
    assign logic_reset    = (instructions == `D_RESET);
 
    // Data Registers
-   bypass_register br (.clockDR(clk_dr), .tdi(tdi_dr),
-             .shiftDR(shiftDR), // 10.1.1 (b)
-             .tdo(tdo_br));
+   bypass_register br (.tck(tck), .clockDR(clk_dr), .tdi(tdi_dr),
+		       .shiftDR(shiftDR), // 10.1.1 (b)
+		       .tdo(tdo_br));
 
    device_identification_register didr (.tdi(tdi_dr), .tdo(tdo_id),
-               .clockDR(~(tck & clk_dr) || ~idcode),
-               .captureDR(captureDR));
+					.clockDR(~(tck & clk_dr) || ~idcode),
+					.captureDR(captureDR));
 
    // BSR mux
    logic bsr_enable;

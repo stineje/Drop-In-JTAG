@@ -32,7 +32,9 @@ module top #(parameter IMEM_INIT_FILE="riscvtest.mem")
    // dut logic - sysclk is the raw 100MHz board clock from Arty A7-100T
    input logic  sysclk,
    input logic  sys_reset,
-   output logic success, fail  // PHY DEBUG
+   output logic success, fail,  // PHY DEBUG
+   // LED indicators
+   output logic [3:0] led       // see assignments below
 );
 
    logic sysclk_25;
@@ -231,5 +233,17 @@ module top #(parameter IMEM_INIT_FILE="riscvtest.mem")
       .parallel_in (ReadDataM),
       .parallel_out(ReadDataM_internal)
    );
+
+   // LED indicators ////////////////////////////////////////////////
+   //
+   //   LED[0]  tck         - JTAG clock active (brightens during scans)
+   //   LED[1]  clk_locked  - MMCM locked, board clock stable
+   //   LED[2]  dm_reset    - debug module held in reset
+   //   LED[3]  bsr_shift   - boundary scan shift in progress
+   //
+   assign led[0] = tck;
+   assign led[1] = clk_locked;
+   assign led[2] = dm_reset;
+   assign led[3] = bsr_shift;
 
 endmodule // top
