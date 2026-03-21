@@ -110,10 +110,15 @@ The JTAG signals are routed to the **Pmod JA** connector on the Arty A7-100T.
 Connect the Sipeed USB-JTAG/TTL debugger as follows:
 
 ```
-Pmod JA (top row)                    Pmod JA (bottom row)
-  Pin1   Pin2   Pin3   Pin4   Pin5   Pin7   Pin8   Pin9   Pin10  Pin11
-  JA1    JA2    JA3    JA4    GND    JA7    JA8    JA9    JA10   GND
-  TDI    TDO    TRST   TMS                                 TCK
+Pmod JA — top row (as viewed from front of board)
+  Pin1   Pin2   Pin3   Pin4   Pin5   Pin6
+  JA1    JA2    JA3    JA4    GND    VCC(3.3V)
+  TDI    TDO    TRST   TMS
+
+Pmod JA — bottom row
+  Pin7   Pin8   Pin9   Pin10  Pin11  Pin12
+  JA7    JA8    JA9    JA10   GND    VCC(3.3V)
+                       TCK
 ```
 
 | Sipeed Pin | Signal | Pmod JA Pin | Row         |
@@ -142,5 +147,3 @@ Pmod JA (top row)                    Pmod JA (bottom row)
 > It is solely the user's responsibility to verify correct voltage selection
 > before powering on. No warranty is expressed or implied for damage resulting
 > from incorrect connections.
-
-
