@@ -101,3 +101,46 @@ FPGA version, `clk_gen.sv` is copied alongside it. When restoring the original,
 > ./swap_top.sh --fpga
 > ```
 > You can confirm the active version at any time with `./swap_top.sh --status`.
+
+---
+
+## Sipeed USB-JTAG Connections (Pmod JA)
+
+The JTAG signals are routed to the **Pmod JA** connector on the Arty A7-100T.
+Connect the Sipeed USB-JTAG/TTL debugger as follows:
+
+```
+Pmod JA (top row)                    Pmod JA (bottom row)
+  Pin1   Pin2   Pin3   Pin4   Pin5   Pin7   Pin8   Pin9   Pin10  Pin11
+  JA1    JA2    JA3    JA4    GND    JA7    JA8    JA9    JA10   GND
+  TDI    TDO    TRST   TMS                                 TCK
+```
+
+| Sipeed Pin | Signal | Pmod JA Pin | Row         |
+|------------|--------|-------------|-------------|
+| TDI        | TDI    | JA1         | Top, 1st    |
+| TDO        | TDO    | JA2         | Top, 2nd    |
+| TMS        | TMS    | JA4         | Top, 4th    |
+| TCK        | TCK    | JA10        | Bottom, 4th |
+| GND        | GND    | JA5 or JA11 | Either, 5th |
+| **3.3V**   | VCC    | JA6 or JA12 | Either, 6th |
+
+> **Note on TRST:** The Sipeed USB-JTAG does not expose a dedicated TRST pin.
+> Connect JA3 (TRST) to 3.3V through a 10KΩ pull-up resistor to keep the TAP
+> out of reset, or leave it unconnected if your software drives TRST via the
+> TMS reset sequence.
+
+---
+
+> ⚠️ **VOLTAGE WARNING — READ BEFORE CONNECTING**
+>
+> The Sipeed USB-JTAG/TTL exposes both a **3.3V** and a **5V** power pin.
+> The Arty A7-100T Pmod I/O is **3.3V LVCMOS only**.
+>
+> **You MUST use the 3.3V pin. Connecting 5V will damage or destroy the FPGA I/O.**
+>
+> It is solely the user's responsibility to verify correct voltage selection
+> before powering on. No warranty is expressed or implied for damage resulting
+> from incorrect connections.
+
+
