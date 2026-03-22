@@ -55,9 +55,9 @@ module tb_top_accum();
 
    initial begin
       tms = 1; tdi = 1;
-      reset <= 1; trst <= 1;
+      reset <= 1; trst <= 0;   // trst=0 holds TAP in reset (active low)
       #22;
-      reset <= 0; trst <= 0;
+      reset <= 0; trst <= 1;   // trst=1 releases TAP reset
    end
 
    initial begin
